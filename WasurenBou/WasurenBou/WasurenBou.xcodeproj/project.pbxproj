@@ -29,9 +29,22 @@
 		14EFBE4D2E43062900E1F663 /* WasurenBouUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WasurenBouUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		14648FB22E459B0800874D45 /* Exceptions for "WasurenBou" folder in "WasurenBou" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 14EFBE322E43062700E1F663 /* WasurenBou */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		14EFBE352E43062700E1F663 /* WasurenBou */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				14648FB22E459B0800874D45 /* Exceptions for "WasurenBou" folder in "WasurenBou" target */,
+			);
 			path = WasurenBou;
 			sourceTree = "<group>";
 		};
@@ -400,8 +413,12 @@
 				DEVELOPMENT_TEAM = RVU4KGDM65;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "音声でリマインダーを作成するためにマイクへのアクセスが必要です";
-				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "音声入力でリマインダーのタイトルを認識するために音声認識機能が必要です";
+				INFOPLIST_FILE = WasurenBou/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "近くの場所でチェックリストを自動表示するために位置情報を使用します。";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "近くの場所でチェックリストを自動表示するために位置情報を使用します。";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "音声入力でリマインダーを作成するためにマイクを使用します。";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "話した内容をテキスト化するために音声認識を使用します。";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "より関連性の高い広告の表示のために使用します。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -431,8 +448,12 @@
 				DEVELOPMENT_TEAM = RVU4KGDM65;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "音声でリマインダーを作成するためにマイクへのアクセスが必要です";
-				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "音声入力でリマインダーのタイトルを認識するために音声認識機能が必要です";
+				INFOPLIST_FILE = WasurenBou/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "近くの場所でチェックリストを自動表示するために位置情報を使用します。";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "近くの場所でチェックリストを自動表示するために位置情報を使用します。";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "音声入力でリマインダーを作成するためにマイクを使用します。";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "話した内容をテキスト化するために音声認識を使用します。";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "より関連性の高い広告の表示のために使用します。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -1,0 +1,5 @@
+"NSLocationWhenInUseUsageDescription" = "近くの場所でチェックリストを自動表示するために位置情報を使用します。";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "バックグラウンドでも場所の出入りを検知して通知するために位置情報を使用します。";
+"NSMicrophoneUsageDescription" = "音声入力でリマインダーを作成するためにマイクを使用します。";
+"NSSpeechRecognitionUsageDescription" = "話した内容をテキスト化するために音声認識を使用します。";
+"NSUserTrackingUsageDescription" = "より関連性の高い広告の表示のために使用します。"; 

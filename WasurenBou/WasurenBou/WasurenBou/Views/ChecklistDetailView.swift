@@ -149,6 +149,7 @@ struct ChecklistDetailView: View {
                             .background(Color.blue.opacity(0.2))
                             .foregroundColor(.blue)
                             .cornerRadius(4)
+                            .accessibilityLabel("位置連動: \(checklist.locationName ?? "有効")")
                         }
                         
                         if checklist.reminderEnabled {
@@ -162,6 +163,7 @@ struct ChecklistDetailView: View {
                             .background(Color.orange.opacity(0.2))
                             .foregroundColor(.orange)
                             .cornerRadius(4)
+                            .accessibilityLabel("リマインダー: \(checklist.getReminderDescription())")
                         }
                     }
                 }
@@ -169,22 +171,26 @@ struct ChecklistDetailView: View {
                 Spacer()
             }
             
-            // 進行状況バー
-            ProgressView(value: checklist.completionPercentage) {
-                HStack {
+            // 進捗リング + 次リセットまで
+            HStack(spacing: 16) {
+                progressRing
+                VStack(alignment: .leading, spacing: 4) {
                     Text("進行状況")
                         .font(.caption)
                         .foregroundColor(.secondary)
-                    
-                    Spacer()
-                    
-                    Text("\(Int(checklist.completionPercentage * 100))%")
+                    Text("\(Int(checklist.completionPercentage * 100))% 完了")
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(checklist.isCompleted ? .green : .primary)
+                    Text("自動リセットまで \(hoursUntilMidnightText())")
                         .font(.caption)
-                        .fontWeight(.medium)
-                        .foregroundColor(checklist.isCompleted ? .green : .blue)
+                        .foregroundColor(.secondary)
+                        .accessibilityLabel("自動リセットまで \(hoursUntilMidnightText())")
                 }
+                Spacer()
             }
-            .progressViewStyle(LinearProgressViewStyle())
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel("進捗 \(Int(checklist.completionPercentage * 100))パーセント。自動リセットまで \(hoursUntilMidnightText())")
             
             // 完了メッセージ
             if checklist.isCompleted {
@@ -235,12 +241,49 @@ struct ChecklistDetailView: View {
                     )
                 }
                 .buttonStyle(PlainButtonStyle())
+                .accessibilityHint("タップしてリマインダーを設定")
             }
         }
         .padding(.horizontal)
         .padding(.top)
         .padding(.bottom, 8)
         .background(Color.systemCardBackground)
+    }
+    
+    private var progressRing: some View {
+        ZStack {
+            Circle()
+                .stroke(Color.gray.opacity(0.2), lineWidth: 10)
+            Circle()
+                .trim(from: 0, to: CGFloat(max(0.01, min(1.0, checklist.completionPercentage))))
+                .stroke(checklist.isCompleted ? Color.green : Color.accentColor,
+                        style: StrokeStyle(lineWidth: 10, lineCap: .round))
+                .rotationEffect(.degrees(-90))
+            VStack(spacing: 2) {
+                Text("\(Int(checklist.completionPercentage * 100))%")
+                    .font(.headline)
+                    .monospacedDigit()
+                Text("完了")
+                    .font(.caption2)
+                    .foregroundColor(.secondary)
+            }
+        }
+        .frame(width: 72, height: 72)
+        .accessibilityHidden(true)
+    }
+    
+    private func hoursUntilMidnightText() -> String {
+        let calendar = Calendar.current
+        let now = Date()
+        let startOfTomorrow = calendar.date(byAdding: .day, value: 1, to: calendar.startOfDay(for: now)) ?? now
+        let remaining = startOfTomorrow.timeIntervalSince(now)
+        let hours = Int(remaining / 3600)
+        let minutes = Int((remaining.truncatingRemainder(dividingBy: 3600)) / 60)
+        if hours > 0 {
+            return "\(hours)時間\(minutes > 0 ? "\(minutes)分" : "")"
+        } else {
+            return "\(minutes)分"
+        }
     }
     
     // MARK: - Empty Items View
@@ -342,6 +385,8 @@ struct ChecklistItemRow: View {
                     .animation(.spring(response: 0.3), value: item.isChecked)
             }
             .buttonStyle(PlainButtonStyle())
+            .accessibilityLabel(item.isChecked ? "未完了にする: \(item.title ?? "アイテム")" : "完了にする: \(item.title ?? "アイテム")")
+            .accessibilityHint("ダブルタップで切り替え")
             
             // アイテム名
             Text(item.title ?? "アイテム")
@@ -349,6 +394,7 @@ struct ChecklistItemRow: View {
                 .foregroundColor(item.isChecked ? .secondary : .primary)
                 .strikethrough(item.isChecked)
                 .animation(.easeInOut(duration: 0.2), value: item.isChecked)
+                .accessibilityLabel("アイテム: \(item.title ?? "")")
             
             Spacer()
             
@@ -359,6 +405,7 @@ struct ChecklistItemRow: View {
                     .foregroundColor(.red.opacity(0.7))
             }
             .buttonStyle(PlainButtonStyle())
+            .accessibilityLabel("削除: \(item.title ?? "アイテム")")
         }
         .padding()
         .background(Color.systemCardBackground)

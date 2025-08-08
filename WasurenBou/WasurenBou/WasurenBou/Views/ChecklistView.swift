@@ -18,13 +18,25 @@ struct ChecklistView: View {
             VStack(spacing: 0) {
                 // チェックリスト一覧
                 if viewModel.checklists.isEmpty {
-                    emptyStateView
+                    if viewModel.isLoading {
+                        skeletonList
+                    } else {
+                        emptyStateView
+                    }
                 } else {
                     checklistsListView
                 }
                 
                 // 広告エリア（無料版のみ）
                 if !viewModel.isPremium {
+                    Button(action: { showingUpgradePrompt = true }) {
+                        Text("広告を非表示（プレミアム）")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                            .padding(.vertical, 8)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    
                     AdMobBannerView()
                         .frame(height: 50)
                 }
@@ -68,27 +80,57 @@ struct ChecklistView: View {
                     .font(.headline)
                     .fontWeight(.semibold)
                 
-                Text("最初のチェックリストを作成してみましょう")
+                Text("テンプレートから始めるか、空のチェックリストを作成できます")
                     .font(.body)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
             }
             
-            Button(action: addChecklistTapped) {
-                HStack {
-                    Image(systemName: "plus")
-                    Text("チェックリストを作成")
-                        .fontWeight(.medium)
+            HStack(spacing: 12) {
+                Button(action: addChecklistTapped) {
+                    HStack { Image(systemName: "plus"); Text("空のチェックリスト") }
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.accentColor)
+                        .foregroundColor(.white)
+                        .cornerRadius(12)
                 }
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color.accentColor)
-                .foregroundColor(.white)
-                .cornerRadius(12)
+                
+                Button(action: {
+                    // サンプルテンプレート作成（3つ）
+                    viewModel.createChecklist(title: "外出用", emoji: "🚶‍♂️")
+                    viewModel.createChecklist(title: "買い物", emoji: "🛒")
+                    viewModel.createChecklist(title: "仕事", emoji: "💼")
+                }) {
+                    HStack { Image(systemName: "sparkles"); Text("サンプルを追加") }
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.gray.opacity(0.15))
+                        .foregroundColor(.primary)
+                        .cornerRadius(12)
+                }
             }
             .padding(.horizontal)
             
             Spacer()
+        }
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel("空の状態。チェックリストを作成またはサンプルを追加できます")
+    }
+    
+    // MARK: - Skeleton
+    private var skeletonList: some View {
+        ScrollView {
+            LazyVStack(spacing: 12) {
+                ForEach(0..<6, id: \.self) { _ in
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color.gray.opacity(0.12))
+                        .frame(height: 64)
+                        .redacted(reason: .placeholder)
+                        .shimmer()
+                }
+            }
+            .padding()
         }
     }
     

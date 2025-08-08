@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreLocation
+import MapKit
 
 struct LocationSettingsView: View {
     let checklist: Checklist
@@ -106,6 +107,13 @@ struct LocationSettingsView: View {
             
             if isLocationEnabled {
                 VStack(spacing: 16) {
+                    // ミニマップ（座標があるときに表示）
+                    if let lat = latitude, let lon = longitude {
+                        MiniMapView(center: CLLocationCoordinate2D(latitude: lat, longitude: lon), radius: radius)
+                            .frame(height: 180)
+                            .cornerRadius(12)
+                            .accessibilityLabel("地図プレビュー。半径\(Int(radius))メートル")
+                    }
                     // 場所名設定
                     VStack(alignment: .leading, spacing: 8) {
                         Text("場所名")
@@ -114,6 +122,7 @@ struct LocationSettingsView: View {
                         
                         TextField("例：自宅（任意）", text: $locationName)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .accessibilityHint("任意のメモ名を入力")
                     }
                     
                     // 範囲設定
@@ -124,6 +133,8 @@ struct LocationSettingsView: View {
                         
                         Slider(value: $radius, in: 50...500, step: 25)
                             .accentColor(.blue)
+                            .accessibilityLabel("検知範囲")
+                            .accessibilityValue("\(Int(radius))メートル")
                         
                         HStack {
                             Text("50m")
@@ -148,6 +159,7 @@ struct LocationSettingsView: View {
                         .foregroundColor(.blue)
                         .cornerRadius(8)
                     }
+                    .accessibilityHint("位置権限を許可後、現在地の座標を取得します")
                     
                     if let lat = latitude, let lon = longitude {
                         HStack(spacing: 8) {
@@ -236,6 +248,38 @@ struct LocationSettingsView: View {
         LocationService.shared.requestAuthorization(always: true)
         LocationService.shared.requestSingleLocation()
         HapticFeedback.impact(.medium)
+    }
+}
+
+// MARK: - MiniMap View (Simple Overlay)
+struct MiniMapView: View {
+    var center: CLLocationCoordinate2D
+    var radius: Double
+    @State private var region: MKCoordinateRegion = .init()
+    
+    var body: some View {
+        Map(
+            coordinateRegion: Binding(
+                get: { regionForCenter(center) },
+                set: { region = $0 }
+            ),
+            interactionModes: []
+        )
+        .overlay(
+            Circle()
+                .stroke(Color.blue.opacity(0.6), lineWidth: 2)
+                .background(Circle().fill(Color.blue.opacity(0.1)))
+                .padding(40)
+        )
+        .onAppear {
+            region = regionForCenter(center)
+        }
+    }
+    
+    private func regionForCenter(_ center: CLLocationCoordinate2D) -> MKCoordinateRegion {
+        let meters = max(200, radius * 4)
+        let span = MKCoordinateSpan(latitudeDelta: meters / 111_000, longitudeDelta: meters / 111_000)
+        return MKCoordinateRegion(center: center, span: span)
     }
 }
 
