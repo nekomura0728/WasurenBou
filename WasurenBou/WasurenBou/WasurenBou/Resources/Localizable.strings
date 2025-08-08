@@ -1,0 +1,120 @@
+/* 
+  Localizable.strings (English - Base)
+  Remind!!!
+  
+  Created by Claude on 2025/08/07.
+*/
+
+// MARK: - App Name
+"app_name" = "Remind!!!";
+
+// MARK: - Main Screen
+"today_reminders" = "Today's Reminders";
+"no_reminders_today" = "No reminders for today";
+"create_reminder_prompt" = "Use voice input or templates\nto create new reminders";
+"frequently_used_templates" = "Frequently Used Templates";
+"tap_to_speak" = "🎤 Tap to Speak";
+"recording" = "🎤 Recording...";
+"recognizing_speech" = "Recognizing speech...";
+"tap_for_voice_reminder" = "Tap to create reminder with voice";
+"items_count" = "%d items";
+
+// MARK: - Voice Input
+"speech_permission_denied" = "Please allow speech recognition access from Settings";
+"speech_recognition_failed" = "Could not recognize speech";
+
+// MARK: - Reminders
+"complete" = "Complete";
+"reminder_completed" = "Reminder completed! 🎉";
+"time_label" = "Time: %@";
+
+// MARK: - Time Selection
+"close" = "Close";
+"reminder_title" = "Reminder: %@";
+"quick_selection" = "Quick Selection";
+"detailed_settings" = "Detailed Settings";
+"choose_detailed_time" = "Please choose a detailed time";
+"set_reminder_time" = "Set reminder for this time";
+
+// MARK: - Quick Time Options
+"5_minutes_later" = "5 min later";
+"15_minutes_later" = "15 min later";
+"30_minutes_later" = "30 min later";
+"1_hour_later" = "1 hour later";
+"2_hours_later" = "2 hours later";
+"tomorrow_morning" = "Tomorrow at 9 AM";
+
+// MARK: - Templates
+"template_laundry" = "Bring in laundry";
+"template_medicine" = "Take medicine";
+"template_trash" = "Take out trash";
+"template_call_mom" = "Call mom";
+"template_buy_milk" = "Buy milk";
+"template_check_car" = "Check car engine";
+
+// MARK: - Settings
+"settings" = "Settings";
+"appearance" = "Appearance";
+"notifications" = "Notifications";
+"templates" = "Templates";
+"speech_recognition" = "Speech Recognition";
+"about" = "About";
+
+// MARK: - Appearance Settings
+"dark_mode" = "Dark Mode";
+"theme_color" = "Theme Color";
+"text_size" = "Text Size";
+"automatic" = "Automatic";
+"light" = "Light";
+"dark" = "Dark";
+
+// MARK: - Notification Settings
+"notification_sound" = "Notification Sound";
+"escalation_intervals" = "Escalation Intervals";
+"enable_notifications" = "Enable Notifications";
+"critical_alerts" = "Critical Alerts";
+
+// MARK: - Template Management
+"add_template" = "Add Template";
+"edit_template" = "Edit Template";
+"delete_template" = "Delete Template";
+"template_title" = "Template Title";
+"template_emoji" = "Template Emoji";
+"usage_count" = "Used %d times";
+
+// MARK: - Error Messages
+"error" = "Error";
+"network_error" = "Network Error: %@";
+"data_error" = "Data Error: %@";
+"permission_error" = "Permission Error: %@";
+"notification_error" = "Notification Error: %@";
+"speech_recognition_error" = "Speech Recognition Error: %@";
+"database_error" = "Database Error: %@";
+"unknown_error" = "Error: %@";
+
+// MARK: - Error Recovery
+"check_internet_connection" = "Please check your internet connection";
+"restart_app" = "Please restart the app";
+"allow_permissions" = "Please allow necessary permissions from Settings";
+"check_notification_settings" = "Please check notification settings";
+"check_microphone_permission" = "Please check microphone permission or enter manually";
+"data_sync_issue" = "There's an issue with data synchronization. Please wait a moment";
+"restart_if_problem_persists" = "Please restart the app if the problem persists";
+
+// MARK: - Actions
+"retry" = "Retry";
+"cancel" = "Cancel";
+"save" = "Save";
+"delete" = "Delete";
+"edit" = "Edit";
+"add" = "Add";
+"done" = "Done";
+
+// MARK: - Loading
+"loading" = "Loading";
+"loading_data" = "Loading data...";
+
+// MARK: - Success Messages
+"reminder_created" = "Reminder created successfully!";
+"template_created" = "Template created successfully!";
+"settings_saved" = "Settings saved successfully!";

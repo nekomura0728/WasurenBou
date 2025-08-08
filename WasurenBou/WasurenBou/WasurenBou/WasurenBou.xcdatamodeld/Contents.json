@@ -1,0 +1,33 @@
+{
+  "objects": [
+    {
+      "configurations": [
+        {
+          "id": "6E2F3F70-9F5B-4C8F-8A12-1A2B3C4D5E6F",
+          "manualMigration": false,
+          "name": "Default"
+        }
+      ],
+      "elements": [
+        {
+          "name": "Reminder",
+          "renamingIdentifier": "Reminder",
+          "syncable": true,
+          "codeGenerationType": "category"
+        },
+        {
+          "name": "ReminderTemplate", 
+          "renamingIdentifier": "ReminderTemplate",
+          "syncable": true,
+          "codeGenerationType": "category"
+        }
+      ],
+      "fetchRequestTemplates": [],
+      "passedVersionIDs": [
+        "6E2F3F70-9F5B-4C8F-8A12-1A2B3C4D5E6F"
+      ],
+      "versionHashModifier": ""
+    }
+  ],
+  "objectVersion": 1
+}

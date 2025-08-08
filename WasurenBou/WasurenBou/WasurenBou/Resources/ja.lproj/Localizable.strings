@@ -1,0 +1,120 @@
+/* 
+  Localizable.strings (Japanese)
+  Remind!!!
+  
+  Created by Claude on 2025/08/07.
+*/
+
+// MARK: - App Name
+"app_name" = "忘れないアプリ";
+
+// MARK: - Main Screen
+"today_reminders" = "今日のリマインダー";
+"no_reminders_today" = "今日のリマインダーはありません";
+"create_reminder_prompt" = "音声入力やテンプレートから\n新しいリマインダーを作成しましょう";
+"frequently_used_templates" = "よく使うテンプレート";
+"tap_to_speak" = "🎤 話しかけて";
+"recording" = "🎤 録音中...";
+"recognizing_speech" = "音声を認識しています...";
+"tap_for_voice_reminder" = "タップして音声でリマインダーを作成";
+"items_count" = "%d件";
+
+// MARK: - Voice Input
+"speech_permission_denied" = "音声認識の権限を設定から許可してください";
+"speech_recognition_failed" = "音声を認識できませんでした";
+
+// MARK: - Reminders
+"complete" = "完了";
+"reminder_completed" = "素晴らしい！リマインダーを完了しました 🎉";
+"time_label" = "時刻: %@";
+
+// MARK: - Time Selection
+"close" = "×";
+"reminder_title" = "リマインダー: %@";
+"quick_selection" = "簡単選択";
+"detailed_settings" = "詳細設定";
+"choose_detailed_time" = "詳しい時刻を選んでください";
+"set_reminder_time" = "この時刻でリマインド設定";
+
+// MARK: - Quick Time Options
+"5_minutes_later" = "5分後";
+"15_minutes_later" = "15分後";
+"30_minutes_later" = "30分後";
+"1_hour_later" = "1時間後";
+"2_hours_later" = "2時間後";
+"tomorrow_morning" = "明日の朝9時";
+
+// MARK: - Templates
+"template_laundry" = "洗濯物取り込む";
+"template_medicine" = "薬を飲む";
+"template_trash" = "ゴミ出し";
+"template_call_mom" = "母に電話";
+"template_buy_milk" = "牛乳買う";
+"template_check_car" = "車のエンジンチェック";
+
+// MARK: - Settings
+"settings" = "設定";
+"appearance" = "外観";
+"notifications" = "通知";
+"templates" = "テンプレート";
+"speech_recognition" = "音声認識";
+"about" = "このアプリについて";
+
+// MARK: - Appearance Settings
+"dark_mode" = "ダークモード";
+"theme_color" = "テーマカラー";
+"text_size" = "文字サイズ";
+"automatic" = "自動";
+"light" = "ライト";
+"dark" = "ダーク";
+
+// MARK: - Notification Settings
+"notification_sound" = "通知音";
+"escalation_intervals" = "エスカレーション間隔";
+"enable_notifications" = "通知を有効にする";
+"critical_alerts" = "重要な通知";
+
+// MARK: - Template Management
+"add_template" = "テンプレートを追加";
+"edit_template" = "テンプレートを編集";
+"delete_template" = "テンプレートを削除";
+"template_title" = "テンプレートのタイトル";
+"template_emoji" = "テンプレートの絵文字";
+"usage_count" = "%d回使用";
+
+// MARK: - Error Messages
+"error" = "エラー";
+"network_error" = "ネットワークエラー: %@";
+"data_error" = "データエラー: %@";
+"permission_error" = "権限エラー: %@";
+"notification_error" = "通知エラー: %@";
+"speech_recognition_error" = "音声認識エラー: %@";
+"database_error" = "データベースエラー: %@";
+"unknown_error" = "エラー: %@";
+
+// MARK: - Error Recovery
+"check_internet_connection" = "インターネット接続を確認してください";
+"restart_app" = "アプリを再起動してください";
+"allow_permissions" = "設定から必要な権限を許可してください";
+"check_notification_settings" = "通知設定を確認してください";
+"check_microphone_permission" = "マイクの権限を確認するか、手動で入力してください";
+"data_sync_issue" = "データの同期に問題があります。しばらくお待ちください";
+"restart_if_problem_persists" = "問題が続く場合はアプリを再起動してください";
+
+// MARK: - Actions
+"retry" = "再試行";
+"cancel" = "キャンセル";
+"save" = "保存";
+"delete" = "削除";
+"edit" = "編集";
+"add" = "追加";
+"done" = "完了";
+
+// MARK: - Loading
+"loading" = "読み込み中";
+"loading_data" = "データを読み込んでいます...";
+
+// MARK: - Success Messages
+"reminder_created" = "リマインダーを作成しました！";
+"template_created" = "テンプレートを作成しました！";
+"settings_saved" = "設定を保存しました！";
