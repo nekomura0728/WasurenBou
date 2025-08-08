@@ -74,10 +74,9 @@ struct ChecklistDetailView: View {
                             Label("リマインダー設定", systemImage: "alarm")
                         }
                         
-                        if viewModel.isPremium {
-                            Button(action: { showingLocationSettings = true }) {
-                                Label("GPS設定", systemImage: "location")
-                            }
+                        // GPS設定は常に表示
+                        Button(action: { showingLocationSettings = true }) {
+                            Label("GPS設定", systemImage: "location")
                         }
                         
                         Divider()

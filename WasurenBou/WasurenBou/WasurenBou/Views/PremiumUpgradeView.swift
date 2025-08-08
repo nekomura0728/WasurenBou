@@ -59,13 +59,13 @@ struct PremiumUpgradeView: View {
                 .foregroundColor(.orange)
             
             // タイトル
-            Text("プレミアム版で\nもっと便利に")
+            Text("プレミアム版で\n広告を非表示に")
                 .font(.title)
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
             
-            // サブタイトル
-            Text("買い切り480円で広告なし\nGPS連動忘れ物防止")
+            // サブタイトル（広告非表示のみ）
+            Text("買い切りでアプリ内の広告をすべて非表示")
                 .font(.body)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
@@ -81,40 +81,10 @@ struct PremiumUpgradeView: View {
             
             VStack(spacing: 12) {
                 PremiumFeatureRow(
-                    title: "基本リマインダー機能",
-                    freeVersion: true,
-                    premiumVersion: true
-                )
-                
-                PremiumFeatureRow(
-                    title: "チェックリスト作成",
-                    freeVersion: "3つまで",
-                    premiumVersion: true
-                )
-                
-                PremiumFeatureRow(
                     title: "広告表示",
                     freeVersion: true,
                     premiumVersion: false,
                     isReverse: true
-                )
-                
-                PremiumFeatureRow(
-                    title: "GPS連動忘れ物防止",
-                    freeVersion: false,
-                    premiumVersion: true
-                )
-                
-                PremiumFeatureRow(
-                    title: "カスタム場所設定",
-                    freeVersion: false,
-                    premiumVersion: true
-                )
-                
-                PremiumFeatureRow(
-                    title: "無制限チェックリスト",
-                    freeVersion: false,
-                    premiumVersion: true
                 )
             }
             .padding()

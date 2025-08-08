@@ -276,11 +276,10 @@ class ChecklistViewModel: ObservableObject {
         }
     }
     
-    // MARK: - GPS Features (Premium Only)
+    // MARK: - GPS Features (Previously Premium Only)
     
     func enableLocationReminder(for checklist: Checklist, locationName: String, latitude: Double, longitude: Double, radius: Double = 100.0) {
-        guard isPremium else { return }
-        
+        // プレミアム制限撤廃
         let context = persistenceController.container.viewContext
         checklist.isLocationBased = true
         checklist.locationName = locationName

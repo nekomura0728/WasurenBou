@@ -30,7 +30,7 @@ struct ChecklistView: View {
                 // 広告エリア（無料版のみ）
                 if !viewModel.isPremium {
                     Button(action: { showingUpgradePrompt = true }) {
-                        Text("広告を非表示（プレミアム）")
+                        Text(LocalizedStringKey("hide_ads_premium"))
                             .font(.caption)
                             .foregroundColor(.secondary)
                             .padding(.vertical, 8)
@@ -41,7 +41,7 @@ struct ChecklistView: View {
                         .frame(height: 50)
                 }
             }
-            .navigationTitle("チェックリスト")
+            .navigationTitle(NSLocalizedString("checklists_title", comment: ""))
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -76,11 +76,11 @@ struct ChecklistView: View {
                 .foregroundColor(.gray)
             
             VStack(spacing: 8) {
-                Text("チェックリストがありません")
+                Text(LocalizedStringKey("empty_checklists_title"))
                     .font(.headline)
                     .fontWeight(.semibold)
                 
-                Text("テンプレートから始めるか、空のチェックリストを作成できます")
+                Text(LocalizedStringKey("empty_checklists_subtitle"))
                     .font(.body)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -88,7 +88,7 @@ struct ChecklistView: View {
             
             HStack(spacing: 12) {
                 Button(action: addChecklistTapped) {
-                    HStack { Image(systemName: "plus"); Text("空のチェックリスト") }
+                    HStack { Image(systemName: "plus"); Text(LocalizedStringKey("create_empty_checklist")) }
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(Color.accentColor)
@@ -102,7 +102,7 @@ struct ChecklistView: View {
                     viewModel.createChecklist(title: "買い物", emoji: "🛒")
                     viewModel.createChecklist(title: "仕事", emoji: "💼")
                 }) {
-                    HStack { Image(systemName: "sparkles"); Text("サンプルを追加") }
+                    HStack { Image(systemName: "sparkles"); Text(LocalizedStringKey("add_samples")) }
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(Color.gray.opacity(0.15))
@@ -115,7 +115,7 @@ struct ChecklistView: View {
             Spacer()
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel("空の状態。チェックリストを作成またはサンプルを追加できます")
+        .accessibilityLabel(NSLocalizedString("empty_checklists_a11y", comment: ""))
     }
     
     // MARK: - Skeleton
@@ -155,12 +155,8 @@ struct ChecklistView: View {
     
     // MARK: - Actions
     private func addChecklistTapped() {
-        // 無料版は3つまで制限
-        if !viewModel.isPremium && viewModel.checklists.count >= 3 {
-            showingUpgradePrompt = true
-        } else {
-            showingAddChecklist = true
-        }
+        // プレミアム制限撤廃：常に追加画面を表示
+        showingAddChecklist = true
     }
 }
 

@@ -118,3 +118,16 @@
 "reminder_created" = "Reminder created successfully!";
 "template_created" = "Template created successfully!";
 "settings_saved" = "Settings saved successfully!";
+
+// MARK: - Checklists Screen
+"checklists_title" = "Checklists";
+"empty_checklists_title" = "No checklists yet";
+"empty_checklists_subtitle" = "Start from a template or create an empty checklist";
+"create_empty_checklist" = "Create Empty Checklist";
+"add_samples" = "Add Samples";
+"empty_checklists_a11y" = "Empty state. You can create a checklist or add samples.";
+"hide_ads_premium" = "Hide ads (Premium)";
+
+// MARK: - StoreKit
+"product_not_found" = "Product not found. Please check the product ID and App Store Connect settings.";
+"purchase_verification_failed" = "Purchase verification failed. Please try again.";

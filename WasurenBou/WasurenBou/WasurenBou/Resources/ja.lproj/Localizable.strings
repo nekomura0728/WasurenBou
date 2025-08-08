@@ -6,7 +6,7 @@
 */
 
 // MARK: - App Name
-"app_name" = "忘れないアプリ";
+"app_name" = "Remind!!!";
 
 // MARK: - Main Screen
 "today_reminders" = "今日のリマインダー";
@@ -18,6 +18,15 @@
 "recognizing_speech" = "音声を認識しています...";
 "tap_for_voice_reminder" = "タップして音声でリマインダーを作成";
 "items_count" = "%d件";
+
+// MARK: - Checklists Screen
+"checklists_title" = "チェックリスト";
+"empty_checklists_title" = "チェックリストがありません";
+"empty_checklists_subtitle" = "テンプレートから始めるか、空のチェックリストを作成できます";
+"create_empty_checklist" = "空のチェックリスト";
+"add_samples" = "サンプルを追加";
+"empty_checklists_a11y" = "空の状態。チェックリストを作成またはサンプルを追加できます";
+"hide_ads_premium" = "広告を非表示（プレミアム）";
 
 // MARK: - Voice Input
 "speech_permission_denied" = "音声認識の権限を設定から許可してください";
@@ -118,3 +127,7 @@
 "reminder_created" = "リマインダーを作成しました！";
 "template_created" = "テンプレートを作成しました！";
 "settings_saved" = "設定を保存しました！";
+
+// MARK: - StoreKit
+"product_not_found" = "製品が見つかりません。Product ID と App Store Connect 設定を確認してください。";
+"purchase_verification_failed" = "購入の検証に失敗しました。もう一度お試しください。";

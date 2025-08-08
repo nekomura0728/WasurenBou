@@ -2,4 +2,7 @@
 "NSLocationAlwaysAndWhenInUseUsageDescription" = "We use your location in the background to detect leaving/arrival and send notifications.";
 "NSMicrophoneUsageDescription" = "We use the microphone to let you create reminders with voice input.";
 "NSSpeechRecognitionUsageDescription" = "We use speech recognition to convert your voice into text.";
-"NSUserTrackingUsageDescription" = "Used to show more relevant ads."; 
+"NSUserTrackingUsageDescription" = "Used to show more relevant ads.";
+
+"CFBundleDisplayName" = "Remind!!!";
+"CFBundleName" = "Remind!!!"; 

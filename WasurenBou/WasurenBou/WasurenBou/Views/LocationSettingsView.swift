@@ -29,12 +29,8 @@ struct LocationSettingsView: View {
                     // ヘッダー
                     headerView
                     
-                    // GPS設定
-                    if viewModel.isPremium {
-                        gpsSettingsView
-                    } else {
-                        premiumPromptView
-                    }
+                    // GPS設定（常時表示）
+                    gpsSettingsView
                 }
                 .padding()
             }
@@ -47,13 +43,12 @@ struct LocationSettingsView: View {
                     }
                 }
                 
-                if viewModel.isPremium {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button("保存") {
-                            saveLocationSettings()
-                        }
-                        .fontWeight(.semibold)
+                // 保存ボタン（常時表示）
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("保存") {
+                        saveLocationSettings()
                     }
+                    .fontWeight(.semibold)
                 }
             }
         }

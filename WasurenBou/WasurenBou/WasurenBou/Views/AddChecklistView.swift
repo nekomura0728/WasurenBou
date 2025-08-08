@@ -141,41 +141,17 @@ struct AddChecklistView: View {
                 }
             }
             
-            // プレミアム機能の案内
-            if !viewModel.isPremium {
-                premiumFeaturePrompt
-            }
+            // プレミアム機能の案内（削除）
+            // if !viewModel.isPremium {
+            //     premiumFeaturePrompt
+            // }
         }
     }
     
-    // MARK: - Premium Feature Prompt
-    private var premiumFeaturePrompt: some View {
-        VStack(spacing: 12) {
-            HStack {
-                Image(systemName: "location.fill")
-                    .foregroundColor(.blue)
-                Text("GPS連動機能")
-                    .fontWeight(.medium)
-                Spacer()
-                Image(systemName: "crown.fill")
-                    .foregroundColor(.orange)
-            }
-            
-            Text("プレミアム版では、設定した場所から離れる時に自動でチェックリストを表示します")
-                .font(.caption)
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.leading)
-            
-            Button("プレミアム版について") {
-                // TODO: プレミアム画面を表示
-            }
-            .font(.caption)
-            .foregroundColor(.blue)
-        }
-        .padding()
-        .background(Color.blue.opacity(0.05))
-        .cornerRadius(8)
-    }
+    // MARK: - Premium Feature Prompt（削除）
+    // private var premiumFeaturePrompt: some View {
+    //     EmptyView()
+    // }
     
     // MARK: - Actions
     private func selectTemplate(_ template: ChecklistTemplate) {
