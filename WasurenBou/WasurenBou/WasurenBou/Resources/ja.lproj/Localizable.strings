@@ -156,3 +156,6 @@
 "minutes_value" = "%d分";
 "english" = "英語";
 "japanese" = "日本語";
+"developer" = "開発";
+"dev_force_premium" = "開発用: プレミアムを強制ON";
+"dev_force_premium_desc" = "テスト用。実機課金が使えない場合に利用";

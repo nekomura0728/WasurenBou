@@ -254,8 +254,8 @@ struct SettingsView: View {
                                 .foregroundColor(.gray)
                                 .frame(width: 24)
                             VStack(alignment: .leading, spacing: 2) {
-                                Text("開発用: プレミアムを強制ON")
-                                Text("テスト用。実機課金が使えない場合に利用")
+                                Text(NSLocalizedString("dev_force_premium", comment: "Developer force premium"))
+                                Text(NSLocalizedString("dev_force_premium_desc", comment: "Developer force premium description"))
                                     .font(.caption)
                                     .foregroundColor(.secondary)
                             }
@@ -265,7 +265,7 @@ struct SettingsView: View {
                         HapticFeedback.selection()
                     }
                 } header: {
-                    Text("Developer")
+                    Text(NSLocalizedString("developer", comment: "Developer section"))
                 }
                 #endif
             }

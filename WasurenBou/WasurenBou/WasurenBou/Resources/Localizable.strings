@@ -156,3 +156,6 @@
 "minutes_value" = "%d minutes";
 "english" = "English";
 "japanese" = "Japanese";
+"developer" = "Developer";
+"dev_force_premium" = "Developer: Force Premium ON";
+"dev_force_premium_desc" = "For testing when real purchase isn't available";
