@@ -1,0 +1,76 @@
+# WasurenBou プロジェクト用 Cursor ルール
+
+## 基本方針
+- このリポジトリでは、AIアシスタントは常に日本語で応答すること。
+- プレミアムの定義は「広告非表示のみ」。機能制限（GPS/チェックリスト数など）を再導入しないこと。
+- 非消耗型IAPの Product ID は `com.lizaria.wasurenbou.premium`。変更が必要な場合は、コードと App Store Connect の両方を必ず同期すること。
+- 機微情報（APIキー/シークレット/証明書）はコードに埋め込まない。設定値を追加する際は、ダミー値と説明を README に記載。
+
+## 対象技術
+- 言語: Swift 5（SwiftUI, Combine, StoreKit2, UserNotifications, CoreData, MapKit）
+- 最低対応: iOS 18.2（プロジェクト設定準拠）
+- バンドルID: `com.lizaria.WasurenBou`
+
+## 広告/課金のルール
+- プレミアム=広告非表示。広告以外の機能は無料でフル提供。
+- IAP: 非消耗型（買い切り）。Product ID は `com.lizaria.wasurenbou.premium` 固定。
+- 価格や表示文言を変更する場合は、`PremiumUpgradeView` とローカライズの両方（Base/ja）を更新。
+- AdMob は `canImport(GoogleMobileAds)` ガードでビルド分岐。実稼働用の Ad Unit ID を導入する場合は、テスト用IDを残しつつ設定箇所を一元化（`AdMobService`）。
+- ATT/GDPR は `ConsentService` を通じてリクエスト。実装を変更する場合は表示タイミングをアプリ初回起動直後に寄せ、二重ダイアログを避ける。
+
+## UI/UX ルール
+- プレミアム導線は広告非表示を明確に。その他の特典は記載しない。
+- 無料版ユーザーには広告領域を表示するが、主要操作を阻害しない位置/サイズに限定（既存実装準拠）。
+- アクセシビリティ（Dynamic Type/VoiceOver）を損なう変更を避ける。
+
+## ローカライズ
+- 新規キー追加時は `Resources/Localizable.strings`（Base）と `Resources/ja.lproj/Localizable.strings` を同時更新。
+- StoreKit 関連キー（例: `product_not_found`, `purchase_verification_failed`）など、ユーザーが目にするエラーは必ず多言語対応。
+
+## エラーハンドリング
+- 例外/失敗は `ErrorHandlingService` を用いてユーザーに分かりやすく提示。
+- ネットワーク/権限/データ/通知/音声認識/CoreData の各カテゴリで適切な文言を返すこと。
+
+## データ/権限
+- 位置情報・マイクの権限文言は `Info.plist`（自動生成キー）に依存。文言変更時は英日両方へ反映。
+- 位置情報に基づく通知やジオフェンスは、ユーザー操作を明示的トリガとする（自動で有効化しない）。
+
+## コード編集規約
+- 命名は意味的で長さをいとわない（省略形NG）。
+- 早期リターンを好む。入れ子は2-3段まで。
+- コメントは「なぜ」を短く。TODO残しは避けて実装する。
+- Swift の型推論に沿いつつ、公開APIは明示注釈。
+- フォーマット/スタイルは既存コードに合わせる。無関係な大量整形はしない。
+
+## ビルド/テスト
+- 変更後は最低限のビルド確認を行うこと：
+  - Debug: `xcodebuild -scheme WasurenBou -configuration Debug -destination 'generic/platform=iOS' build`
+  - Release も重要変更時に実行。
+- ビルド番号を上げる場合：`agvtool new-version -all <build>` を推奨。`MARKETING_VERSION` はXcode管理。
+
+## Git 運用
+- 既定ブランチ: `main`。
+- コミットメッセージ（推奨）: `<type>: <summary>`
+  - type: feat, fix, refactor, chore, docs, build, i18n, release
+  - 例: `feat(premium): remove non-ad feature gates`
+- ローカライズのみの更新は `i18n: ...` を使用。
+
+## 重要ファイル
+- 課金: `Services/StoreKitService.swift`（Product ID, 購入/復元, 検証, isPremium）
+- 広告: `Services/AdMobService.swift`（Ad Unit, initialize, Banner表示）
+- プレミアムUI: `Views/PremiumUpgradeView.swift`
+- 一覧/詳細/設定: `Views/ChecklistView.swift`, `Views/ChecklistDetailView.swift`, `Views/SettingsView.swift`
+- GPS: `Views/LocationSettingsView.swift`, `Services/LocationService.swift`
+- ローカライズ: `Resources/Localizable.strings`, `Resources/ja.lproj/Localizable.strings`
+
+## 変更禁止/注意
+- プレミアム特典に「広告非表示」以外を追加しない。
+- `com.lizaria.wasurenbou.premium` を不用意に変更しない。やむを得ず変更する場合は、App Store Connect 側との整合をドキュメント化。
+- 広告SDKの導入/削除や権限UI変更は審査影響が大きい。PRで理由とスクショを添付。
+
+## レビュー観点（AI向けチェックリスト）
+- 仕様合致: プレミアム=広告非表示のみか？
+- ローカライズ: 新規/変更文言は EN/JA 反映済みか？
+- ビルド: Debugビルドが通るか？
+- 依存: 新規ライブラリ追加の有無と必要性の説明があるか？
+- 追従: 変更で他画面の分岐（`isPremium`）に影響が出ていないか？ 
