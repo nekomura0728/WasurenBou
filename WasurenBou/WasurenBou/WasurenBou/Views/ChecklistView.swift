@@ -37,7 +37,7 @@ struct ChecklistView: View {
                     }
                     .buttonStyle(PlainButtonStyle())
                     
-                    AdMobBannerView()
+                    AdMobService.shared.loadBannerAd()
                         .frame(height: 50)
                 }
             }

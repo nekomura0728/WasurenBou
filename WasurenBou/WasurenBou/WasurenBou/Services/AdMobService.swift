@@ -17,7 +17,7 @@ import GoogleMobileAds
 struct AdMobBannerView: UIViewRepresentable {
     let adUnitID: String
     
-    init(adUnitID: String = "ca-app-pub-3940256099942544/2934735716") {
+    init(adUnitID: String = AdMobService.shared.currentBannerUnitID) {
         self.adUnitID = adUnitID
     }
     
@@ -62,17 +62,30 @@ class AdMobService: ObservableObject {
     @Published var isAdLoaded = false
     @Published var adError: String?
     
+    // 本番ユニットID（提供されたもの）
+    private let productionBannerUnitID = "ca-app-pub-4187811193514537/6354257330"
+    // テストユニットID（Google公式）
+    private let testBannerUnitID = "ca-app-pub-3940256099942544/2934735716"
+    
+    // 切替フラグ：DebugはテストID、Releaseは本番IDを使用
+    var currentBannerUnitID: String {
+        #if DEBUG
+        return testBannerUnitID
+        #else
+        return productionBannerUnitID
+        #endif
+    }
+    
     private init() {}
     
     func initialize() {
         #if canImport(GoogleMobileAds)
-        // ATT/同意のハンドリングはアプリ側で事前に実施想定
         GADMobileAds.sharedInstance().start(completionHandler: nil)
-        print("AdMob初期化")
+        print("AdMob初期化: AppID=\(Bundle.main.object(forInfoDictionaryKey: "GADApplicationIdentifier") as? String ?? "-")")
         #else
         print("AdMob初期化（SDK未導入）")
         #endif
     }
     
-    func loadBannerAd() -> AdMobBannerView { AdMobBannerView() }
+    func loadBannerAd() -> AdMobBannerView { AdMobBannerView(adUnitID: currentBannerUnitID) }
 }

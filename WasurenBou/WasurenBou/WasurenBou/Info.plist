@@ -5,12 +5,14 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<string>5</string>
 	<key>CFBundleLocalizations</key>
 	<array>
 		<string>ja</string>
 		<string>en</string>
 	</array>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-4187811193514537~8449937639</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

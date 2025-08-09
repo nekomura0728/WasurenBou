@@ -154,7 +154,7 @@ struct ContentView: View {
                 
                 // 広告エリア（無料版のみ）
                 if !checklistViewModel.isPremium {
-                    AdMobBannerView()
+                    AdMobService.shared.loadBannerAd()
                         .frame(height: 50)
                 }
             }
