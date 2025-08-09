@@ -34,18 +34,18 @@ struct LocationSettingsView: View {
                 }
                 .padding()
             }
-            .navigationTitle("GPS設定")
+            .navigationTitle(NSLocalizedString("gps_settings_title", comment: "GPS settings title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("キャンセル") {
+                    Button(NSLocalizedString("cancel", comment: "Cancel")) {
                         dismiss()
                     }
                 }
                 
                 // 保存ボタン（常時表示）
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("保存") {
+                    Button(NSLocalizedString("save", comment: "Save")) {
                         saveLocationSettings()
                     }
                     .fontWeight(.semibold)
@@ -54,6 +54,16 @@ struct LocationSettingsView: View {
         }
         .onAppear {
             loadCurrentSettings()
+            // 起動時に既知の現在地があれば反映
+            if latitude == nil || longitude == nil, let loc = locationService.lastKnownLocation {
+                latitude = loc.coordinate.latitude
+                longitude = loc.coordinate.longitude
+            }
+        }
+        // LocationServiceの現在地更新を購読し、座標を反映
+        .onReceive(locationService.$lastKnownLocation.compactMap { $0 }) { loc in
+            latitude = loc.coordinate.latitude
+            longitude = loc.coordinate.longitude
         }
     }
     
@@ -64,16 +74,16 @@ struct LocationSettingsView: View {
                 .font(.system(size: 60))
                 .foregroundColor(.blue)
             
-            Text("場所ベースリマインダー")
+            Text(NSLocalizedString("location_based_reminder_title", comment: "Location based reminder title"))
                 .font(.title2)
                 .fontWeight(.bold)
             
-            Text("設定した場所から離れる時に\nチェックリストを自動表示します")
+            Text(NSLocalizedString("location_based_reminder_desc", comment: "Location based reminder description"))
                 .font(.body)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
             
-            Text("場所名は任意のメモです（例：自宅、会社、スーパー）。\n現在地ボタンは座標のみを反映します。")
+            Text(NSLocalizedString("location_name_hint_desc", comment: "Location name hint description"))
                 .font(.caption)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
@@ -84,7 +94,7 @@ struct LocationSettingsView: View {
                         .font(.caption)
                         .foregroundColor(.red)
                         .multilineTextAlignment(.center)
-                    Button("設定を開く") {
+                    Button(NSLocalizedString("open_settings", comment: "Open settings")) {
                         LocationService.shared.openAppSettings()
                     }
                     .font(.caption)
@@ -97,7 +107,7 @@ struct LocationSettingsView: View {
     private var gpsSettingsView: some View {
         VStack(spacing: 20) {
             // GPS有効/無効切り替え
-            Toggle("GPS連動を有効にする", isOn: $isLocationEnabled)
+            Toggle(NSLocalizedString("location_toggle_enable", comment: "Enable location toggle"), isOn: $isLocationEnabled)
                 .toggleStyle(SwitchToggleStyle())
             
             if isLocationEnabled {
@@ -107,29 +117,29 @@ struct LocationSettingsView: View {
                         MiniMapView(center: CLLocationCoordinate2D(latitude: lat, longitude: lon), radius: radius)
                             .frame(height: 180)
                             .cornerRadius(12)
-                            .accessibilityLabel("地図プレビュー。半径\(Int(radius))メートル")
+                            .accessibilityLabel(NSLocalizedString("map_preview_a11y", comment: "Map preview a11y"))
                     }
                     // 場所名設定
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("場所名")
+                        Text(NSLocalizedString("location_name", comment: "Location name label"))
                             .font(.subheadline)
                             .fontWeight(.medium)
                         
-                        TextField("例：自宅（任意）", text: $locationName)
+                        TextField(NSLocalizedString("location_name_placeholder", comment: "Location name placeholder"), text: $locationName)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .accessibilityHint("任意のメモ名を入力")
+                            .accessibilityHint(NSLocalizedString("location_name_a11y_hint", comment: "Location name a11y hint"))
                     }
                     
                     // 範囲設定
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("検知範囲: \(Int(radius))m")
+                        Text(String(format: NSLocalizedString("detection_range_m", comment: "Detection range"), Int(radius)))
                             .font(.subheadline)
                             .fontWeight(.medium)
                         
                         Slider(value: $radius, in: 50...500, step: 25)
                             .accentColor(.blue)
-                            .accessibilityLabel("検知範囲")
-                            .accessibilityValue("\(Int(radius))メートル")
+                            .accessibilityLabel(NSLocalizedString("detection_range_label", comment: "Detection range label"))
+                            .accessibilityValue(String(format: NSLocalizedString("meters_value", comment: "Meters value"), Int(radius)))
                         
                         HStack {
                             Text("50m")
@@ -146,7 +156,7 @@ struct LocationSettingsView: View {
                     Button(action: setCurrentLocation) {
                         HStack {
                             Image(systemName: "location.fill")
-                            Text("現在地の座標を使用")
+                            Text(NSLocalizedString("use_current_location", comment: "Use current location"))
                         }
                         .frame(maxWidth: .infinity)
                         .padding()
@@ -154,7 +164,7 @@ struct LocationSettingsView: View {
                         .foregroundColor(.blue)
                         .cornerRadius(8)
                     }
-                    .accessibilityHint("位置権限を許可後、現在地の座標を取得します")
+                    .accessibilityHint(NSLocalizedString("use_current_location_hint", comment: "Use current location hint"))
                     
                     if let lat = latitude, let lon = longitude {
                         HStack(spacing: 8) {

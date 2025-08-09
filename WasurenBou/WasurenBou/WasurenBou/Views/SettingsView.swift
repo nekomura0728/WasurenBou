@@ -12,6 +12,12 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.colorScheme) private var colorScheme
     
+    private var appVersionString: String {
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+        let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
+        return "\(version) (\(build))"
+    }
+
     @State private var showingTemplateManager = false
     @State private var showingAbout = false
     @State private var showingPremium = false
@@ -41,7 +47,7 @@ struct SettingsView: View {
                                 .font(.title2)
                                 .fontWeight(.bold)
                             
-                            Text("Version 1.0.0")
+                            Text(String(format: NSLocalizedString("version_format", comment: "Version format"), appVersionString))
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
                         }
@@ -119,7 +125,7 @@ struct SettingsView: View {
                                 Text(NSLocalizedString("templates", comment: "Templates section"))
                                     .foregroundColor(.primary)
                                 
-                                Text("\(viewModel.templates.count) templates")
+                                Text(String(format: NSLocalizedString("templates_count", comment: "Templates count"), viewModel.templates.count))
                                     .font(.caption)
                                     .foregroundColor(.secondary)
                             }
@@ -157,7 +163,7 @@ struct SettingsView: View {
                                 VStack(alignment: .leading, spacing: 2) {
                                     Text(NSLocalizedString("critical_alerts", comment: "Critical alerts"))
                                     
-                                    Text("For urgent reminders")
+                                    Text(NSLocalizedString("critical_alerts_subtitle", comment: "Critical alerts subtitle"))
                                         .font(.caption)
                                         .foregroundColor(.secondary)
                                 }
@@ -172,7 +178,7 @@ struct SettingsView: View {
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(NSLocalizedString("escalation_intervals", comment: "Escalation intervals"))
                                 
-                                Text("\(Int(escalationInterval / 60)) minutes")
+                                Text(String(format: NSLocalizedString("minutes_value", comment: "Minutes value"), Int(escalationInterval / 60)))
                                     .font(.caption)
                                     .foregroundColor(.secondary)
                             }
@@ -192,9 +198,9 @@ struct SettingsView: View {
                     Picker(selection: $speechLanguage) {
                         Text(NSLocalizedString("automatic", comment: "Automatic language"))
                             .tag("auto")
-                        Text("English")
+                        Text(NSLocalizedString("english", comment: "English language"))
                             .tag("en-US")
-                        Text("日本語")
+                        Text(NSLocalizedString("japanese", comment: "Japanese language"))
                             .tag("ja-JP")
                     } label: {
                         HStack {
@@ -288,9 +294,9 @@ struct SettingsView: View {
         case "auto":
             return NSLocalizedString("automatic", comment: "Automatic language")
         case "en-US":
-            return "English"
+            return NSLocalizedString("english", comment: "English language")
         case "ja-JP":
-            return "日本語"
+            return NSLocalizedString("japanese", comment: "Japanese language")
         default:
             return NSLocalizedString("automatic", comment: "Automatic language")
         }

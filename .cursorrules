@@ -74,3 +74,22 @@
 - ビルド: Debugビルドが通るか？
 - 依存: 新規ライブラリ追加の有無と必要性の説明があるか？
 - 追従: 変更で他画面の分岐（`isPremium`）に影響が出ていないか？ 
+
+## ローカライズ運用（厳守）
+- 画面に表示される文字列はすべてローカライズキー経由（`NSLocalizedString` or `LocalizedStringKey`）。ハードコード禁止。
+- 新規キー追加時は Base(`Resources/Localizable.strings`) と日本語(`Resources/ja.lproj/Localizable.strings`) を同時更新。
+- A11y文言（accessibilityLabel/Hint）も同様にキー化。数値を含む表示は `String(format:)` を用い、両言語で自然になるようにする。
+
+## GPS/Map 運用
+- 位置取得は `LocationService` を唯一の窓口とする。画面側は `LocationService.$lastKnownLocation` を購読してUI更新。
+- 許可フローは `requestWhenInUseAuthorization` 基本。バックグラウンド位置が必要な操作のみ `requestAlwaysAuthorization` を提示。
+- 地図は iOS 17+ の新しい `Map` 初期化子を優先（将来対応）。互換のため旧API使用時もA11y/ローカライズ対応を徹底。
+- エラーメッセージはユーザー向けに簡潔・ローカライズ済みで提示し、必要に応じて `ErrorHandlingService` に委譲。
+
+## 課金/広告の表示ルール
+- 価格表示は `Product.displayPrice` を使用し、金額のハードコードを避ける（フォールバックを置く場合でも中立文言）。
+- プレミアム訴求は「広告非表示のみ」。GPSなど機能の優遇文言は記載しない。
+
+## ビルド品質
+- 変更後は Debug ビルドを実行し、警告はゼロを目標（非推奨APIの置換や未使用変数の整理を優先）。
+- 位置/GPS機能は実機検証を前提（シミュレータ不可のケースを想定）。 

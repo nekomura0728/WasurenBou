@@ -131,3 +131,28 @@
 // MARK: - StoreKit
 "product_not_found" = "Product not found. Please check the product ID and App Store Connect settings.";
 "purchase_verification_failed" = "Purchase verification failed. Please try again.";
+
+// MARK: - GPS / Location Settings
+"gps_settings_title" = "Location Settings";
+"location_based_reminder_title" = "Location-based Reminder";
+"location_based_reminder_desc" = "Show checklist automatically when you leave the set place";
+"location_name_hint_desc" = "Location name is optional (e.g., Home, Office, Supermarket). The button uses only coordinates.";
+"open_settings" = "Open Settings";
+"location_toggle_enable" = "Enable location-based reminder";
+"map_preview_a11y" = "Map preview";
+"location_name" = "Location Name";
+"location_name_placeholder" = "e.g. Home (optional)";
+"location_name_a11y_hint" = "Enter any memo name";
+"detection_range_m" = "Detection range: %dm";
+"detection_range_label" = "Detection range";
+"meters_value" = "%d meters";
+"use_current_location" = "Use current location";
+"use_current_location_hint" = "After allowing location permission, fetch current coordinates";
+
+// MARK: - Settings (additional)
+"version_format" = "Version %@";
+"templates_count" = "%d templates";
+"critical_alerts_subtitle" = "For urgent reminders";
+"minutes_value" = "%d minutes";
+"english" = "English";
+"japanese" = "Japanese";

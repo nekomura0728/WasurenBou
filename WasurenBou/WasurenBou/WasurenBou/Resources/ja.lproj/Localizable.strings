@@ -131,3 +131,28 @@
 // MARK: - StoreKit
 "product_not_found" = "製品が見つかりません。Product ID と App Store Connect 設定を確認してください。";
 "purchase_verification_failed" = "購入の検証に失敗しました。もう一度お試しください。";
+
+// MARK: - GPS / Location Settings
+"gps_settings_title" = "GPS設定";
+"location_based_reminder_title" = "場所ベースリマインダー";
+"location_based_reminder_desc" = "設定した場所から離れる時にチェックリストを自動表示します";
+"location_name_hint_desc" = "場所名は任意のメモです（例：自宅、会社、スーパー）。現在地ボタンは座標のみを反映します。";
+"open_settings" = "設定を開く";
+"location_toggle_enable" = "GPS連動を有効にする";
+"map_preview_a11y" = "地図プレビュー";
+"location_name" = "場所名";
+"location_name_placeholder" = "例：自宅（任意）";
+"location_name_a11y_hint" = "任意のメモ名を入力";
+"detection_range_m" = "検知範囲: %dm";
+"detection_range_label" = "検知範囲";
+"meters_value" = "%dメートル";
+"use_current_location" = "現在地の座標を使用";
+"use_current_location_hint" = "位置権限を許可後、現在地の座標を取得します";
+
+// MARK: - Settings (additional)
+"version_format" = "バージョン %@";
+"templates_count" = "%d件のテンプレート";
+"critical_alerts_subtitle" = "重要なリマインダー用";
+"minutes_value" = "%d分";
+"english" = "英語";
+"japanese" = "日本語";
