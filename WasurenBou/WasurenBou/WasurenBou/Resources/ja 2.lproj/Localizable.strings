@@ -1,0 +1,237 @@
+/* 
+  Localizable.strings (Japanese)
+  Remind!!!
+  
+  Created by Claude on 2025/08/07.
+*/
+
+// MARK: - App Name
+"app_name" = "Remind!!!";
+
+// MARK: - Main Screen
+"today_reminders" = "今日のリマインダー";
+"no_reminders_today" = "今日のリマインダーはありません";
+"create_reminder_prompt" = "音声入力やテンプレートから\n新しいリマインダーを作成しましょう";
+"frequently_used_templates" = "よく使うテンプレート";
+"tap_to_speak" = "🎤 話しかけて";
+"recording" = "🎤 録音中...";
+"recognizing_speech" = "音声を認識しています...";
+"tap_for_voice_reminder" = "タップして音声でリマインダーを作成";
+"items_count" = "%d件";
+
+// MARK: - Checklists Screen
+"checklists_title" = "チェックリスト";
+"empty_checklists_title" = "チェックリストがありません";
+"empty_checklists_subtitle" = "テンプレートから始めるか、空のチェックリストを作成できます";
+"create_empty_checklist" = "空のチェックリスト";
+"add_samples" = "サンプルを追加";
+"empty_checklists_a11y" = "空の状態。チェックリストを作成またはサンプルを追加できます";
+"hide_ads_premium" = "広告を非表示（プレミアム）";
+
+// MARK: - Voice Input
+"speech_permission_denied" = "音声認識の権限を設定から許可してください";
+"speech_recognition_failed" = "音声を認識できませんでした";
+
+// MARK: - Reminders
+"complete" = "完了";
+"reminder_completed" = "素晴らしい！リマインダーを完了しました 🎉";
+"time_label" = "時刻: %@";
+
+// MARK: - Time Selection
+"close" = "×";
+"reminder_title" = "リマインダー: %@";
+"quick_selection" = "簡単選択";
+"detailed_settings" = "詳細設定";
+"choose_detailed_time" = "詳しい時刻を選んでください";
+"set_reminder_time" = "この時刻でリマインド設定";
+
+// MARK: - Quick Time Options
+"5_minutes_later" = "5分後";
+"15_minutes_later" = "15分後";
+"30_minutes_later" = "30分後";
+"1_hour_later" = "1時間後";
+"2_hours_later" = "2時間後";
+"tomorrow_morning" = "明日の朝9時";
+
+// MARK: - Templates
+"template_laundry" = "洗濯物取り込む";
+"template_medicine" = "薬を飲む";
+"template_trash" = "ゴミ出し";
+"template_call_mom" = "母に電話";
+"template_buy_milk" = "牛乳買う";
+"template_check_car" = "車のエンジンチェック";
+
+// MARK: - Settings
+"settings" = "設定";
+"appearance" = "外観";
+"notifications" = "通知";
+"templates" = "テンプレート";
+"speech_recognition" = "音声認識";
+"about" = "このアプリについて";
+
+// MARK: - Appearance Settings
+"dark_mode" = "ダークモード";
+"theme_color" = "テーマカラー";
+"text_size" = "文字サイズ";
+"automatic" = "自動";
+"light" = "ライト";
+"dark" = "ダーク";
+
+// MARK: - Notification Settings
+"notification_sound" = "通知音";
+"escalation_intervals" = "エスカレーション間隔";
+"enable_notifications" = "通知を有効にする";
+"critical_alerts" = "重要な通知";
+
+// MARK: - Template Management
+"add_template" = "テンプレートを追加";
+"edit_template" = "テンプレートを編集";
+"delete_template" = "テンプレートを削除";
+"template_title" = "テンプレートのタイトル";
+"template_emoji" = "テンプレートの絵文字";
+"usage_count" = "%d回使用";
+
+// MARK: - Error Messages
+"error" = "エラー";
+"network_error" = "ネットワークエラー: %@";
+"data_error" = "データエラー: %@";
+"permission_error" = "権限エラー: %@";
+"notification_error" = "通知エラー: %@";
+"speech_recognition_error" = "音声認識エラー: %@";
+"database_error" = "データベースエラー: %@";
+"unknown_error" = "エラー: %@";
+
+// MARK: - Error Recovery
+"check_internet_connection" = "インターネット接続を確認してください";
+"restart_app" = "アプリを再起動してください";
+"allow_permissions" = "設定から必要な権限を許可してください";
+"check_notification_settings" = "通知設定を確認してください";
+"check_microphone_permission" = "マイクの権限を確認するか、手動で入力してください";
+"data_sync_issue" = "データの同期に問題があります。しばらくお待ちください";
+"restart_if_problem_persists" = "問題が続く場合はアプリを再起動してください";
+
+// MARK: - Actions
+"retry" = "再試行";
+"cancel" = "キャンセル";
+"save" = "保存";
+"delete" = "削除";
+"edit" = "編集";
+"add" = "追加";
+"done" = "完了";
+
+// MARK: - Loading
+"loading" = "読み込み中";
+"loading_data" = "データを読み込んでいます...";
+
+// MARK: - Success Messages
+"reminder_created" = "リマインダーを作成しました！";
+"template_created" = "テンプレートを作成しました！";
+"settings_saved" = "設定を保存しました！";
+
+// MARK: - StoreKit
+"product_not_found" = "製品が見つかりません。Product ID と App Store Connect 設定を確認してください。";
+"purchase_verification_failed" = "購入の検証に失敗しました。もう一度お試しください。";
+
+// MARK: - GPS / Location Settings
+"gps_settings_title" = "GPS設定";
+"location_based_reminder_title" = "場所ベースリマインダー";
+"location_based_reminder_desc" = "設定した場所から離れる時にチェックリストを自動表示します";
+"location_name_hint_desc" = "場所名は任意のメモです（例：自宅、会社、スーパー）。現在地ボタンは座標のみを反映します。";
+"open_settings" = "設定を開く";
+"location_toggle_enable" = "GPS連動を有効にする";
+"map_preview_a11y" = "地図プレビュー";
+"location_name" = "場所名";
+"location_name_placeholder" = "例：自宅（任意）";
+"location_name_a11y_hint" = "任意のメモ名を入力";
+"detection_range_m" = "検知範囲: %dm";
+"detection_range_label" = "検知範囲";
+"meters_value" = "%dメートル";
+"use_current_location" = "現在地の座標を使用";
+"use_current_location_hint" = "位置権限を許可後、現在地の座標を取得します";
+
+// MARK: - Settings (additional)
+"version_format" = "バージョン %@";
+"templates_count" = "%d件のテンプレート";
+"critical_alerts_subtitle" = "重要なリマインダー用";
+"minutes_value" = "%d分";
+"english" = "英語";
+"japanese" = "日本語";
+"developer" = "開発";
+"dev_force_premium" = "開発用: プレミアムを強制ON";
+"dev_force_premium_desc" = "テスト用。実機課金が使えない場合に利用";
+
+// MARK: - Checklist Screen
+"checklist" = "チェックリスト";
+"completion_percentage" = "%d%% 完了";
+"items_count_format" = "%d個のアイテム";
+"progress" = "進行状況";
+"auto_reset_in" = "自動リセットまで %@";
+"all_completed_message" = "すべて完了しました！🎉";
+"reminder_settings" = "リマインダー設定";
+"no_reminder" = "リマインダーなし";
+"tap_to_set_reminder" = "タップしてリマインダーを設定";
+"manual_reset" = "手動でリセット";
+"daily_reset_desc" = "日付が変わるとチェックは自動的にリセットされます";
+"done_button" = "完了";
+"add_item" = "アイテム追加";
+"gps_location" = "GPS連動";
+
+// MARK: - Settings Screen
+"premium_version" = "プレミアム版";
+"restore_purchases" = "購入を復元";
+
+// MARK: - Time Format
+"hours_minutes_format" = "%d時間%d分";
+"hours_only_format" = "%d時間";
+"minutes_only_format" = "%d分";
+
+// MARK: - Add Checklist Screen
+"add_checklist" = "チェックリストを追加";
+"select_template" = "テンプレートを選択";
+"custom_template" = "カスタム";
+"create_button" = "作成";
+"going_out_checklist" = "外出用チェックリスト";
+"travel_checklist" = "旅行用チェックリスト";
+"work_checklist" = "仕事用チェックリスト";
+"item_smartphone" = "スマホ";
+"item_wallet" = "財布";
+"item_house_keys" = "家の鍵";
+"item_handkerchief" = "ハンカチ・ティッシュ";
+"item_mask" = "マスク";
+"item_passport" = "パスポート・身分証";
+"item_tickets" = "チケット";
+"item_charger" = "充電器";
+"item_clothes" = "着替え";
+"item_toiletries" = "洗面用具";
+"item_laptop" = "ノートPC";
+"item_documents" = "資料";
+"item_business_cards" = "名刺";
+"item_stationery" = "筆記用具";
+"item_employee_id" = "社員証";
+"checklist_name" = "チェックリスト名";
+"select_emoji" = "絵文字を選択";
+"customize" = "カスタマイズ";
+"title_label" = "タイトル";
+"emoji_label" = "絵文字";
+"checklist_placeholder" = "例：外出用チェックリスト";
+
+// MARK: - Template Manager
+"no_templates" = "テンプレートがありません";
+"no_templates_description" = "最初のカスタムテンプレートを作成してください";
+
+// MARK: - About Screen  
+"app_description" = "みんなに優しいリマインダーアプリ";
+"features" = "機能";
+"feature_voice_input" = "音声入力";
+"feature_voice_input_desc" = "音声認識でリマインダーを作成";
+"feature_smart_notifications" = "スマート通知";
+"feature_smart_notifications_desc" = "エスカレーション通知で忘れを防止";
+"feature_custom_templates" = "カスタムテンプレート";
+"feature_custom_templates_desc" = "よく使うリマインダーに簡単アクセス";
+"feature_dark_mode" = "ダークモード";
+"feature_dark_mode_desc" = "好みに合わせた美しいインターフェース";
+"feature_multilingual" = "多言語対応";
+"feature_multilingual_desc" = "日本語と英語に対応";
+"created_with_love" = "SwiftUIで❤️を込めて作られました";
+"copyright" = "© 2025 Remind!!!";
+"current_language" = "現在の言語: %@";

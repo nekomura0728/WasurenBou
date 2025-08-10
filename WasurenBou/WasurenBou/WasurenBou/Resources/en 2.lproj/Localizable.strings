@@ -1,0 +1,237 @@
+/* 
+  Localizable.strings (English - Base)
+  Remind!!!
+  
+  Created by Claude on 2025/08/07.
+*/
+
+// MARK: - App Name
+"app_name" = "Remind!!!";
+
+// MARK: - Main Screen
+"today_reminders" = "Today's Reminders";
+"no_reminders_today" = "No reminders for today";
+"create_reminder_prompt" = "Use voice input or templates\nto create new reminders";
+"frequently_used_templates" = "Frequently Used Templates";
+"tap_to_speak" = "🎤 Tap to Speak";
+"recording" = "🎤 Recording...";
+"recognizing_speech" = "Recognizing speech...";
+"tap_for_voice_reminder" = "Tap to create reminder with voice";
+"items_count" = "%d items";
+
+// MARK: - Voice Input
+"speech_permission_denied" = "Please allow speech recognition access from Settings";
+"speech_recognition_failed" = "Could not recognize speech";
+
+// MARK: - Reminders
+"complete" = "Complete";
+"reminder_completed" = "Reminder completed! 🎉";
+"time_label" = "Time: %@";
+
+// MARK: - Time Selection
+"close" = "Close";
+"reminder_title" = "Reminder: %@";
+"quick_selection" = "Quick Selection";
+"detailed_settings" = "Detailed Settings";
+"choose_detailed_time" = "Please choose a detailed time";
+"set_reminder_time" = "Set reminder for this time";
+
+// MARK: - Quick Time Options
+"5_minutes_later" = "5 min later";
+"15_minutes_later" = "15 min later";
+"30_minutes_later" = "30 min later";
+"1_hour_later" = "1 hour later";
+"2_hours_later" = "2 hours later";
+"tomorrow_morning" = "Tomorrow at 9 AM";
+
+// MARK: - Templates
+"template_laundry" = "Bring in laundry";
+"template_medicine" = "Take medicine";
+"template_trash" = "Take out trash";
+"template_call_mom" = "Call mom";
+"template_buy_milk" = "Buy milk";
+"template_check_car" = "Check car engine";
+
+// MARK: - Settings
+"settings" = "Settings";
+"appearance" = "Appearance";
+"notifications" = "Notifications";
+"templates" = "Templates";
+"speech_recognition" = "Speech Recognition";
+"about" = "About";
+
+// MARK: - Appearance Settings
+"dark_mode" = "Dark Mode";
+"theme_color" = "Theme Color";
+"text_size" = "Text Size";
+"automatic" = "Automatic";
+"light" = "Light";
+"dark" = "Dark";
+
+// MARK: - Notification Settings
+"notification_sound" = "Notification Sound";
+"escalation_intervals" = "Escalation Intervals";
+"enable_notifications" = "Enable Notifications";
+"critical_alerts" = "Critical Alerts";
+
+// MARK: - Template Management
+"add_template" = "Add Template";
+"edit_template" = "Edit Template";
+"delete_template" = "Delete Template";
+"template_title" = "Template Title";
+"template_emoji" = "Template Emoji";
+"usage_count" = "Used %d times";
+
+// MARK: - Error Messages
+"error" = "Error";
+"network_error" = "Network Error: %@";
+"data_error" = "Data Error: %@";
+"permission_error" = "Permission Error: %@";
+"notification_error" = "Notification Error: %@";
+"speech_recognition_error" = "Speech Recognition Error: %@";
+"database_error" = "Database Error: %@";
+"unknown_error" = "Error: %@";
+
+// MARK: - Error Recovery
+"check_internet_connection" = "Please check your internet connection";
+"restart_app" = "Please restart the app";
+"allow_permissions" = "Please allow necessary permissions from Settings";
+"check_notification_settings" = "Please check notification settings";
+"check_microphone_permission" = "Please check microphone permission or enter manually";
+"data_sync_issue" = "There's an issue with data synchronization. Please wait a moment";
+"restart_if_problem_persists" = "Please restart the app if the problem persists";
+
+// MARK: - Actions
+"retry" = "Retry";
+"cancel" = "Cancel";
+"save" = "Save";
+"delete" = "Delete";
+"edit" = "Edit";
+"add" = "Add";
+"done" = "Done";
+
+// MARK: - Loading
+"loading" = "Loading";
+"loading_data" = "Loading data...";
+
+// MARK: - Success Messages
+"reminder_created" = "Reminder created successfully!";
+"template_created" = "Template created successfully!";
+"settings_saved" = "Settings saved successfully!";
+
+// MARK: - Checklists Screen
+"checklists_title" = "Checklists";
+"empty_checklists_title" = "No checklists yet";
+"empty_checklists_subtitle" = "Start from a template or create an empty checklist";
+"create_empty_checklist" = "Create Empty Checklist";
+"add_samples" = "Add Samples";
+"empty_checklists_a11y" = "Empty state. You can create a checklist or add samples.";
+"hide_ads_premium" = "Hide ads (Premium)";
+
+// MARK: - StoreKit
+"product_not_found" = "Product not found. Please check the product ID and App Store Connect settings.";
+"purchase_verification_failed" = "Purchase verification failed. Please try again.";
+
+// MARK: - GPS / Location Settings
+"gps_settings_title" = "Location Settings";
+"location_based_reminder_title" = "Location-based Reminder";
+"location_based_reminder_desc" = "Show checklist automatically when you leave the set place";
+"location_name_hint_desc" = "Location name is optional (e.g., Home, Office, Supermarket). The button uses only coordinates.";
+"open_settings" = "Open Settings";
+"location_toggle_enable" = "Enable location-based reminder";
+"map_preview_a11y" = "Map preview";
+"location_name" = "Location Name";
+"location_name_placeholder" = "e.g. Home (optional)";
+"location_name_a11y_hint" = "Enter any memo name";
+"detection_range_m" = "Detection range: %dm";
+"detection_range_label" = "Detection range";
+"meters_value" = "%d meters";
+"use_current_location" = "Use current location";
+"use_current_location_hint" = "After allowing location permission, fetch current coordinates";
+
+// MARK: - Settings (additional)
+"version_format" = "Version %@";
+"templates_count" = "%d templates";
+"critical_alerts_subtitle" = "For urgent reminders";
+"minutes_value" = "%d minutes";
+"english" = "English";
+"japanese" = "Japanese";
+"developer" = "Developer";
+"dev_force_premium" = "Developer: Force Premium ON";
+"dev_force_premium_desc" = "For testing when real purchase isn't available";
+
+// MARK: - Checklist Screen
+"checklist" = "Checklist";
+"completion_percentage" = "%d%% Complete";
+"items_count_format" = "%d items";
+"progress" = "Progress";
+"auto_reset_in" = "Auto-reset in %@";
+"all_completed_message" = "All completed! 🎉";
+"reminder_settings" = "Reminder Settings";
+"no_reminder" = "No reminder";
+"tap_to_set_reminder" = "Tap to set a reminder";
+"manual_reset" = "Manual reset";
+"daily_reset_desc" = "Checks will automatically reset when the date changes";
+"done_button" = "Done";
+"add_item" = "Add Item";
+"gps_location" = "GPS linked";
+
+// MARK: - Settings Screen
+"premium_version" = "Premium Version";
+"restore_purchases" = "Restore Purchases";
+
+// MARK: - Time Format
+"hours_minutes_format" = "%d hours %d minutes";
+"hours_only_format" = "%d hours";
+"minutes_only_format" = "%d minutes";
+
+// MARK: - Add Checklist Screen  
+"add_checklist" = "Add Checklist";
+"select_template" = "Select Template";
+"custom_template" = "Custom";
+"create_button" = "Create";
+"going_out_checklist" = "Going Out Checklist";
+"travel_checklist" = "Travel Checklist";
+"work_checklist" = "Work Checklist";
+"item_smartphone" = "Smartphone";
+"item_wallet" = "Wallet";
+"item_house_keys" = "House Keys";
+"item_handkerchief" = "Handkerchief/Tissues";
+"item_mask" = "Mask";
+"item_passport" = "Passport/ID";
+"item_tickets" = "Tickets";
+"item_charger" = "Charger";
+"item_clothes" = "Change of Clothes";
+"item_toiletries" = "Toiletries";
+"item_laptop" = "Laptop";
+"item_documents" = "Documents";
+"item_business_cards" = "Business Cards";
+"item_stationery" = "Stationery";
+"item_employee_id" = "Employee ID";
+"checklist_name" = "Checklist Name";
+"select_emoji" = "Select Emoji";
+"customize" = "Customize";
+"title_label" = "Title";
+"emoji_label" = "Emoji";
+"checklist_placeholder" = "e.g., Going Out Checklist";
+
+// MARK: - Template Manager
+"no_templates" = "No Templates";
+"no_templates_description" = "Create your first custom template to get started";
+
+// MARK: - About Screen
+"app_description" = "A kind reminder app for everyone";
+"features" = "Features";
+"feature_voice_input" = "Voice Input";
+"feature_voice_input_desc" = "Create reminders using voice recognition";
+"feature_smart_notifications" = "Smart Notifications";
+"feature_smart_notifications_desc" = "Escalating reminders ensure you never forget";
+"feature_custom_templates" = "Custom Templates";
+"feature_custom_templates_desc" = "Quick access to your frequently used reminders";
+"feature_dark_mode" = "Dark Mode";
+"feature_dark_mode_desc" = "Beautiful interface that adapts to your preference";
+"feature_multilingual" = "Multilingual";
+"feature_multilingual_desc" = "Supports Japanese and English";
+"created_with_love" = "Created with ❤️ using SwiftUI";
+"copyright" = "© 2025 Remind!!!";
+"current_language" = "Current Language: %@";
