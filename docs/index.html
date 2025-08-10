@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remind!!! - 忘れがちなあなたを優しくサポート</title>
+    <meta name="description" content="忘れることは悪いことじゃない。思い出すお手伝いをするだけです。Remind!!!は忘れがちな人のための優しいリマインダーアプリです。">
+    <meta http-equiv="refresh" content="0; url=support.html">
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .redirect-message {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="redirect-message">
+        <h1>🔔 Remind!!!</h1>
+        <p>サポートページに移動しています...</p>
+        <div class="spinner"></div>
+        <p><a href="support.html" style="color: white;">こちらをクリック</a>してサポートページへ</p>
+    </div>
+</body>
+</html>

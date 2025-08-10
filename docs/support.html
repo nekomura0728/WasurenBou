@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remind!!! - サポート</title>
+    <meta name="description" content="Remind!!!のサポートページ。よくある質問、お問い合わせ方法、プライバシーポリシーなど">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 18px;
+            display: inline-block;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .faq-item h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .faq-item p {
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        .contact-info {
+            background: rgba(118, 75, 162, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #764ba2;
+        }
+        
+        .contact-info strong {
+            color: #2c3e50;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .feature-card {
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 30px;
+        }
+        
+        .lang-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .lang-switch:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#" onclick="switchLanguage()" class="lang-switch" id="langSwitch">English</a>
+    
+    <div class="container">
+        <div class="header">
+            <div class="app-icon">🔔</div>
+            <h1 id="appTitle">Remind!!! サポート</h1>
+            <p id="appSubtitle">忘れることは悪いことじゃない。思い出すお手伝いをするだけです。</p>
+        </div>
+        
+        <div class="section">
+            <h2 id="featuresTitle">主な機能</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎤</div>
+                    <h3 id="voiceTitle">音声入力</h3>
+                    <p id="voiceDesc">話しかけるだけでリマインダーを作成</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3 id="escalationTitle">エスカレーション通知</h3>
+                    <p id="escalationDesc">段階的に強くなる優しい通知システム</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <h3 id="checklistTitle">チェックリスト</h3>
+                    <p id="checklistDesc">忘れ物防止のためのチェックリスト機能</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📍</div>
+                    <h3 id="gpsTitle">GPS連動</h3>
+                    <p id="gpsDesc">場所に応じた自動リマインダー（プレミアム）</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 id="faqTitle">よくある質問</h2>
+            
+            <div class="faq-item">
+                <h3 id="faq1Q">音声認識が正常に動作しない場合は？</h3>
+                <p id="faq1A">設定アプリ → Remind!!! → マイクが「オン」になっていることを確認してください。また、静かな環境ではっきりと話しかけてください。日本語・英語の両方に対応しています。</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3 id="faq2Q">通知が届かない場合は？</h3>
+                <p id="faq2A">設定アプリ → 通知 → Remind!!! で通知が許可されているか確認してください。また、おやすみモード や集中モードが有効になっていないかご確認ください。</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3 id="faq3Q">エスカレーション通知とは？</h3>
+                <p id="faq3A">最初は優しくお知らせし、時間が経つにつれて段階的に通知を強くするシステムです。5分→10分→15分後に再通知されるため、忘れっぽい方でも確実に気づけます。</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3 id="faq4Q">プレミアム機能について</h3>
+                <p id="faq4A">¥480の買い切りでGPS連動リマインダー、無制限チェックリスト作成、広告非表示がご利用いただけます。一度購入すれば永続的にお使いいただけます。</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3 id="faq5Q">データの安全性について</h3>
+                <p id="faq5A">音声データはすべてデバイス内で処理され、外部に送信されることはありません。位置情報も必要な時のみローカルで処理します。プライバシーを最優先に設計されています。</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3 id="faq6Q">他の言語に対応していますか？</h3>
+                <p id="faq6A">現在、日本語と英語に完全対応しています。システムの言語設定に応じて自動的に切り替わります。</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 id="contactTitle">お問い合わせ</h2>
+            <div class="contact-info">
+                <p id="contactDesc">ご質問、ご要望、不具合報告などがございましたら、お気軽にお問い合わせください。</p>
+                <br>
+                <p><strong id="emailLabel">メール:</strong> <a href="mailto:support@remind-app.com">support@remind-app.com</a></p>
+                <br>
+                <p id="responseTime">通常24時間以内にご返信いたします。お困りのことがございましたら、アプリのバージョン番号と詳細な状況をお知らせください。</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 id="privacyTitle">プライバシーポリシー</h2>
+            <p id="privacyDesc">
+                Remind!!!は、ユーザーのプライバシーを最優先に考えて設計されています。
+            </p>
+            <br>
+            <h3 id="dataCollectionTitle">収集する情報</h3>
+            <ul id="dataCollectionList">
+                <li>音声入力データ（デバイス内でのみ処理、外部送信なし）</li>
+                <li>位置情報（GPS機能使用時のみ、ローカル処理）</li>
+                <li>アプリ使用統計（匿名化されたもの）</li>
+            </ul>
+            <br>
+            <h3 id="dataUsageTitle">情報の利用目的</h3>
+            <ul id="dataUsageList">
+                <li>リマインダー機能の提供</li>
+                <li>アプリの機能向上</li>
+                <li>技術的サポートの提供</li>
+            </ul>
+            <br>
+            <p id="privacyContact">プライバシーに関するご質問は、上記お問い合わせ先までご連絡ください。</p>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p id="footerText">© 2025 Remind!!! - 忘れがちなあなたを優しくサポート</p>
+    </div>
+    
+    <script>
+        let currentLang = 'ja';
+        
+        const translations = {
+            ja: {
+                appTitle: 'Remind!!! サポート',
+                appSubtitle: '忘れることは悪いことじゃない。思い出すお手伝いをするだけです。',
+                featuresTitle: '主な機能',
+                voiceTitle: '音声入力',
+                voiceDesc: '話しかけるだけでリマインダーを作成',
+                escalationTitle: 'エスカレーション通知',
+                escalationDesc: '段階的に強くなる優しい通知システム',
+                checklistTitle: 'チェックリスト',
+                checklistDesc: '忘れ物防止のためのチェックリスト機能',
+                gpsTitle: 'GPS連動',
+                gpsDesc: '場所に応じた自動リマインダー（プレミアム）',
+                faqTitle: 'よくある質問',
+                faq1Q: '音声認識が正常に動作しない場合は？',
+                faq1A: '設定アプリ → Remind!!! → マイクが「オン」になっていることを確認してください。また、静かな環境ではっきりと話しかけてください。日本語・英語の両方に対応しています。',
+                faq2Q: '通知が届かない場合は？',
+                faq2A: '設定アプリ → 通知 → Remind!!! で通知が許可されているか確認してください。また、おやすみモード や集中モードが有効になっていないかご確認ください。',
+                faq3Q: 'エスカレーション通知とは？',
+                faq3A: '最初は優しくお知らせし、時間が経つにつれて段階的に通知を強くするシステムです。5分→10分→15分後に再通知されるため、忘れっぽい方でも確実に気づけます。',
+                faq4Q: 'プレミアム機能について',
+                faq4A: '¥480の買い切りでGPS連動リマインダー、無制限チェックリスト作成、広告非表示がご利用いただけます。一度購入すれば永続的にお使いいただけます。',
+                faq5Q: 'データの安全性について',
+                faq5A: '音声データはすべてデバイス内で処理され、外部に送信されることはありません。位置情報も必要な時のみローカルで処理します。プライバシーを最優先に設計されています。',
+                faq6Q: '他の言語に対応していますか？',
+                faq6A: '現在、日本語と英語に完全対応しています。システムの言語設定に応じて自動的に切り替わります。',
+                contactTitle: 'お問い合わせ',
+                contactDesc: 'ご質問、ご要望、不具合報告などがございましたら、お気軽にお問い合わせください。',
+                emailLabel: 'メール:',
+                responseTime: '通常24時間以内にご返信いたします。お困りのことがございましたら、アプリのバージョン番号と詳細な状況をお知らせください。',
+                privacyTitle: 'プライバシーポリシー',
+                privacyDesc: 'Remind!!!は、ユーザーのプライバシーを最優先に考えて設計されています。',
+                dataCollectionTitle: '収集する情報',
+                dataUsageTitle: '情報の利用目的',
+                privacyContact: 'プライバシーに関するご質問は、上記お問い合わせ先までご連絡ください。',
+                footerText: '© 2025 Remind!!! - 忘れがちなあなたを優しくサポート',
+                langSwitch: 'English'
+            },
+            en: {
+                appTitle: 'Remind!!! Support',
+                appSubtitle: 'Forgetting isn\'t bad. We\'re just here to help you remember.',
+                featuresTitle: 'Main Features',
+                voiceTitle: 'Voice Input',
+                voiceDesc: 'Create reminders just by speaking',
+                escalationTitle: 'Escalation Notifications',
+                escalationDesc: 'Gentle notification system that gradually gets stronger',
+                checklistTitle: 'Checklists',
+                checklistDesc: 'Checklist features to prevent forgotten items',
+                gpsTitle: 'GPS Integration',
+                gpsDesc: 'Location-based automatic reminders (Premium)',
+                faqTitle: 'Frequently Asked Questions',
+                faq1Q: 'What to do if voice recognition doesn\'t work properly?',
+                faq1A: 'Please check Settings app → Remind!!! → Microphone is "On". Also, speak clearly in a quiet environment. Both Japanese and English are supported.',
+                faq2Q: 'What to do if notifications don\'t arrive?',
+                faq2A: 'Please check Settings app → Notifications → Remind!!! to ensure notifications are allowed. Also, check if Do Not Disturb or Focus modes are enabled.',
+                faq3Q: 'What are escalation notifications?',
+                faq3A: 'A system that starts with gentle notifications and gradually makes them stronger over time. Re-notifications occur after 5→10→15 minutes, ensuring even forgetful people will notice.',
+                faq4Q: 'About Premium features',
+                faq4A: 'For ¥480 one-time purchase, you can use GPS-linked reminders, unlimited checklist creation, and ad removal. Once purchased, you can use it permanently.',
+                faq5Q: 'About data security',
+                faq5A: 'All voice data is processed within the device and never transmitted externally. Location information is also processed locally only when needed. Privacy is our top priority in design.',
+                faq6Q: 'Are other languages supported?',
+                faq6A: 'Currently, we fully support Japanese and English. The app automatically switches based on your system language settings.',
+                contactTitle: 'Contact Us',
+                contactDesc: 'If you have any questions, requests, or bug reports, please feel free to contact us.',
+                emailLabel: 'Email:',
+                responseTime: 'We usually respond within 24 hours. If you\'re having trouble, please let us know your app version number and detailed situation.',
+                privacyTitle: 'Privacy Policy',
+                privacyDesc: 'Remind!!! is designed with user privacy as our top priority.',
+                dataCollectionTitle: 'Information We Collect',
+                dataUsageTitle: 'Purpose of Information Use',
+                privacyContact: 'For privacy-related questions, please contact us using the above contact information.',
+                footerText: '© 2025 Remind!!! - Gently supporting forgetful you',
+                langSwitch: '日本語'
+            }
+        };
+        
+        function switchLanguage() {
+            currentLang = currentLang === 'ja' ? 'en' : 'ja';
+            const lang = translations[currentLang];
+            
+            Object.keys(lang).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    if (key === 'dataCollectionList') {
+                        const items = currentLang === 'ja' 
+                            ? ['音声入力データ（デバイス内でのみ処理、外部送信なし）', '位置情報（GPS機能使用時のみ、ローカル処理）', 'アプリ使用統計（匿名化されたもの）']
+                            : ['Voice input data (processed only within device, not transmitted externally)', 'Location information (only when using GPS features, processed locally)', 'App usage statistics (anonymized)'];
+                        element.innerHTML = items.map(item => `<li>${item}</li>`).join('');
+                    } else if (key === 'dataUsageList') {
+                        const items = currentLang === 'ja' 
+                            ? ['リマインダー機能の提供', 'アプリの機能向上', '技術的サポートの提供']
+                            : ['Providing reminder functionality', 'Improving app features', 'Providing technical support'];
+                        element.innerHTML = items.map(item => `<li>${item}</li>`).join('');
+                    } else {
+                        element.textContent = lang[key];
+                    }
+                }
+            });
+            
+            document.documentElement.lang = currentLang;
+        }
+        
+        // Set initial data collection and usage lists
+        document.getElementById('dataCollectionList').innerHTML = [
+            '音声入力データ（デバイス内でのみ処理、外部送信なし）',
+            '位置情報（GPS機能使用時のみ、ローカル処理）',
+            'アプリ使用統計（匿名化されたもの）'
+        ].map(item => `<li>${item}</li>`).join('');
+        
+        document.getElementById('dataUsageList').innerHTML = [
+            'リマインダー機能の提供',
+            'アプリの機能向上',
+            '技術的サポートの提供'
+        ].map(item => `<li>${item}</li>`).join('');
+    </script>
+</body>
+</html>
