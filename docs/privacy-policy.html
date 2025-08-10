@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remind!!! - プライバシーポリシー / Privacy Policy</title>
+    <meta name="description" content="Remind!!!アプリのプライバシーポリシー。個人情報の取り扱いについて詳細に説明します。">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            text-align: center;
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .last-updated {
+            background: #e3f2fd;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 4px solid #2196f3;
+            margin-bottom: 30px;
+            font-weight: 500;
+            color: #1565c0;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 35px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 1.6em;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 12px;
+        }
+        
+        .section h3 {
+            color: #34495e;
+            margin: 25px 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .section p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        
+        .section ul {
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .section li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+        
+        .highlight {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            margin: 20px 0;
+        }
+        
+        .contact-info {
+            background: rgba(118, 75, 162, 0.1);
+            border-radius: 10px;
+            padding: 25px;
+            border-left: 4px solid #764ba2;
+            text-align: center;
+        }
+        
+        .contact-info strong {
+            color: #2c3e50;
+        }
+        
+        .lang-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: 500;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .lang-switch:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+        
+        .app-info {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #666;
+            border-top: 1px solid #eee;
+            margin-top: 40px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 10px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .section {
+                padding: 25px 20px;
+            }
+            
+            .lang-switch {
+                top: 10px;
+                right: 10px;
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button onclick="switchLanguage()" class="lang-switch" id="langSwitch">English</button>
+    
+    <div class="container">
+        <div class="header">
+            <h1 id="pageTitle">プライバシーポリシー</h1>
+            <p id="pageSubtitle">Remind!!!アプリにおける個人情報の取り扱いについて</p>
+        </div>
+        
+        <div class="last-updated">
+            <span id="lastUpdated">最終更新日: 2025年1月10日</span>
+        </div>
+        
+        <div class="app-info">
+            <h3 id="appInfoTitle">📱 アプリケーション情報</h3>
+            <p><strong id="appNameLabel">アプリ名:</strong> Remind!!!</p>
+            <p><strong id="developerLabel">開発者:</strong> Liz-aria</p>
+            <p><strong id="contactEmailLabel">お問い合わせ:</strong> nekomura@liz-aria.com</p>
+        </div>
+        
+        <!-- Japanese Content -->
+        <div id="japaneseContent">
+            <div class="section">
+                <h2>1. 基本方針</h2>
+                <p>Remind!!!（以下「本アプリ」）は、ユーザーの皆様のプライバシーと個人情報の保護を最重要事項として捉え、以下の方針に基づいてサービスを提供いたします。</p>
+                
+                <div class="highlight">
+                    <strong>プライバシーファースト設計</strong><br>
+                    本アプリは、必要最小限のデータのみを収集し、ユーザーのプライバシーを最優先に考慮して設計されています。
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>2. 収集する情報の種類</h2>
+                
+                <h3>2.1 音声データ</h3>
+                <ul>
+                    <li><strong>収集目的:</strong> 音声入力によるリマインダー作成機能の提供</li>
+                    <li><strong>処理方法:</strong> すべてデバイス内で処理（オンデバイス処理）</li>
+                    <li><strong>外部送信:</strong> 一切行いません</li>
+                    <li><strong>保存:</strong> 音声データ自体は保存されず、変換されたテキストのみがリマインダーとして保存されます</li>
+                </ul>
+                
+                <h3>2.2 位置情報</h3>
+                <ul>
+                    <li><strong>収集目的:</strong> GPS連動リマインダー機能の提供（プレミアム機能）</li>
+                    <li><strong>利用条件:</strong> ユーザーが明示的に許可した場合のみ</li>
+                    <li><strong>処理方法:</strong> デバイス内でのみ処理</li>
+                    <li><strong>外部送信:</strong> 一切行いません</li>
+                    <li><strong>保存:</strong> ユーザーが設定した特定の場所の座標のみを保存</li>
+                </ul>
+                
+                <h3>2.3 アプリ使用データ</h3>
+                <ul>
+                    <li><strong>収集内容:</strong> アプリのクラッシュ情報、基本的な使用統計（匿名化）</li>
+                    <li><strong>収集目的:</strong> アプリの安定性向上とバグ修正</li>
+                    <li><strong>個人識別:</strong> 個人を特定できる情報は含まれません</li>
+                </ul>
+                
+                <h3>2.4 広告関連データ</h3>
+                <ul>
+                    <li><strong>広告プラットフォーム:</strong> Google AdMob</li>
+                    <li><strong>収集データ:</strong> 広告配信に必要な最小限の情報</li>
+                    <li><strong>ユーザー選択:</strong> App Tracking Transparency（ATT）により、ユーザーが追跡の許可/拒否を選択可能</li>
+                    <li><strong>GDPR対応:</strong> EU圏内のユーザーには追加の同意確認を実施</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>3. 情報の利用目的</h2>
+                <p>収集した情報は、以下の目的でのみ使用します:</p>
+                <ul>
+                    <li>リマインダー機能およびチェックリスト機能の提供</li>
+                    <li>音声認識機能の提供（デバイス内処理）</li>
+                    <li>GPS連動リマインダー機能の提供（プレミアム機能）</li>
+                    <li>アプリの安定性向上およびバグ修正</li>
+                    <li>ユーザーサポートの提供</li>
+                    <li>法令に基づく対応（法的義務がある場合のみ）</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>4. 第三者への情報提供</h2>
+                
+                <h3>4.1 広告配信サービス</h3>
+                <ul>
+                    <li><strong>提供先:</strong> Google LLC（AdMob）</li>
+                    <li><strong>提供情報:</strong> 広告配信に必要な匿名化された情報</li>
+                    <li><strong>目的:</strong> 適切な広告の表示</li>
+                    <li><strong>ユーザー制御:</strong> 設定により広告の個人化を無効にすることが可能</li>
+                </ul>
+                
+                <h3>4.2 プライバシー保護</h3>
+                <div class="highlight">
+                    上記を除き、ユーザーの明示的な同意なく第三者に個人情報を提供することは一切ありません。
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>5. データの保護と安全性</h2>
+                <ul>
+                    <li><strong>暗号化:</strong> すべてのデータは適切に暗号化されて保存されます</li>
+                    <li><strong>アクセス制御:</strong> 必要最小限の権限でのみデータにアクセスします</li>
+                    <li><strong>セキュリティ監査:</strong> 定期的なセキュリティチェックを実施します</li>
+                    <li><strong>データ最小化:</strong> 必要最小限のデータのみを収集・保存します</li>
+                    <li><strong>自動削除:</strong> 不要になったデータは自動的に削除されます</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>6. ユーザーの権利</h2>
+                <p>ユーザーの皆様には、以下の権利があります:</p>
+                <ul>
+                    <li><strong>アクセス権:</strong> 保存されているデータの確認</li>
+                    <li><strong>訂正権:</strong> 不正確なデータの修正要求</li>
+                    <li><strong>削除権:</strong> データの削除要求（「忘れられる権利」）</li>
+                    <li><strong>処理停止権:</strong> データ処理の停止要求</li>
+                    <li><strong>データポータビリティ権:</strong> データの他サービスへの移行</li>
+                </ul>
+                
+                <p>これらの権利を行使される場合は、下記お問い合わせ先までご連絡ください。</p>
+            </div>
+            
+            <div class="section">
+                <h2>7. Cookie・類似技術の使用</h2>
+                <p>本アプリは、以下の目的でCookieや類似技術を使用する場合があります:</p>
+                <ul>
+                    <li>アプリの設定情報の保存</li>
+                    <li>広告配信の最適化（ユーザーの同意がある場合のみ）</li>
+                    <li>アプリの利用状況分析（匿名化されたデータのみ）</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>8. 国際データ転送</h2>
+                <p>広告配信サービス（Google AdMob）の利用に伴い、データが国外に転送される可能性があります。その場合でも、適切な保護措置を講じ、関連法規に準拠します。</p>
+            </div>
+            
+            <div class="section">
+                <h2>9. 未成年者のプライバシー</h2>
+                <p>本アプリは13歳未満の児童を対象としておらず、意図的に13歳未満の児童から個人情報を収集することはありません。13歳未満の児童のデータが誤って収集されたことが判明した場合、速やかに削除いたします。</p>
+            </div>
+            
+            <div class="section">
+                <h2>10. プライバシーポリシーの変更</h2>
+                <p>本プライバシーポリシーは、法令の変更やサービス内容の変更に伴い更新される場合があります。重要な変更がある場合は、アプリ内通知やウェブサイトでお知らせいたします。</p>
+            </div>
+        </div>
+        
+        <!-- English Content -->
+        <div id="englishContent" class="hidden">
+            <div class="section">
+                <h2>1. Basic Policy</h2>
+                <p>Remind!!! (the "App") considers the privacy and protection of users' personal information as our top priority and provides services based on the following policy.</p>
+                
+                <div class="highlight">
+                    <strong>Privacy-First Design</strong><br>
+                    This app is designed to collect only the minimum necessary data and prioritizes user privacy above all else.
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>2. Types of Information Collected</h2>
+                
+                <h3>2.1 Voice Data</h3>
+                <ul>
+                    <li><strong>Collection Purpose:</strong> Providing voice input reminder creation functionality</li>
+                    <li><strong>Processing Method:</strong> All processing is done on-device</li>
+                    <li><strong>External Transmission:</strong> Never transmitted</li>
+                    <li><strong>Storage:</strong> Voice data itself is not stored; only converted text is saved as reminders</li>
+                </ul>
+                
+                <h3>2.2 Location Information</h3>
+                <ul>
+                    <li><strong>Collection Purpose:</strong> Providing GPS-linked reminder functionality (Premium feature)</li>
+                    <li><strong>Usage Conditions:</strong> Only when explicitly permitted by the user</li>
+                    <li><strong>Processing Method:</strong> Processed only within the device</li>
+                    <li><strong>External Transmission:</strong> Never transmitted</li>
+                    <li><strong>Storage:</strong> Only coordinates of specific locations set by users are stored</li>
+                </ul>
+                
+                <h3>2.3 App Usage Data</h3>
+                <ul>
+                    <li><strong>Collection Content:</strong> App crash information, basic usage statistics (anonymized)</li>
+                    <li><strong>Collection Purpose:</strong> Improving app stability and bug fixes</li>
+                    <li><strong>Personal Identification:</strong> Contains no personally identifiable information</li>
+                </ul>
+                
+                <h3>2.4 Advertising-Related Data</h3>
+                <ul>
+                    <li><strong>Ad Platform:</strong> Google AdMob</li>
+                    <li><strong>Collected Data:</strong> Minimum information necessary for ad delivery</li>
+                    <li><strong>User Choice:</strong> Users can choose to allow/deny tracking via App Tracking Transparency (ATT)</li>
+                    <li><strong>GDPR Compliance:</strong> Additional consent confirmation for EU users</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>3. Purpose of Information Use</h2>
+                <p>Collected information is used only for the following purposes:</p>
+                <ul>
+                    <li>Providing reminder and checklist functionality</li>
+                    <li>Providing voice recognition functionality (on-device processing)</li>
+                    <li>Providing GPS-linked reminder functionality (Premium feature)</li>
+                    <li>Improving app stability and bug fixes</li>
+                    <li>Providing user support</li>
+                    <li>Legal compliance (only when legally required)</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>4. Information Sharing with Third Parties</h2>
+                
+                <h3>4.1 Ad Delivery Service</h3>
+                <ul>
+                    <li><strong>Recipient:</strong> Google LLC (AdMob)</li>
+                    <li><strong>Information Provided:</strong> Anonymized information necessary for ad delivery</li>
+                    <li><strong>Purpose:</strong> Displaying appropriate advertisements</li>
+                    <li><strong>User Control:</strong> Ad personalization can be disabled in settings</li>
+                </ul>
+                
+                <h3>4.2 Privacy Protection</h3>
+                <div class="highlight">
+                    Except for the above, we never provide personal information to third parties without explicit user consent.
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>5. Data Protection and Security</h2>
+                <ul>
+                    <li><strong>Encryption:</strong> All data is properly encrypted and stored</li>
+                    <li><strong>Access Control:</strong> Data access is limited to minimum necessary permissions</li>
+                    <li><strong>Security Audits:</strong> Regular security checks are conducted</li>
+                    <li><strong>Data Minimization:</strong> Only minimum necessary data is collected and stored</li>
+                    <li><strong>Automatic Deletion:</strong> Unnecessary data is automatically deleted</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>6. User Rights</h2>
+                <p>Users have the following rights:</p>
+                <ul>
+                    <li><strong>Right of Access:</strong> Confirmation of stored data</li>
+                    <li><strong>Right of Rectification:</strong> Request correction of inaccurate data</li>
+                    <li><strong>Right of Erasure:</strong> Request data deletion ("Right to be Forgotten")</li>
+                    <li><strong>Right to Restrict Processing:</strong> Request to stop data processing</li>
+                    <li><strong>Right of Data Portability:</strong> Transfer data to other services</li>
+                </ul>
+                
+                <p>To exercise these rights, please contact us using the information below.</p>
+            </div>
+            
+            <div class="section">
+                <h2>7. Use of Cookies and Similar Technologies</h2>
+                <p>This app may use cookies and similar technologies for the following purposes:</p>
+                <ul>
+                    <li>Storing app configuration information</li>
+                    <li>Optimizing ad delivery (only with user consent)</li>
+                    <li>Analyzing app usage (anonymized data only)</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>8. International Data Transfers</h2>
+                <p>Data may be transferred internationally in connection with the use of ad delivery services (Google AdMob). Even in such cases, we implement appropriate protective measures and comply with relevant laws and regulations.</p>
+            </div>
+            
+            <div class="section">
+                <h2>9. Privacy of Minors</h2>
+                <p>This app is not intended for children under 13 and does not knowingly collect personal information from children under 13. If we become aware that personal information from a child under 13 has been collected inadvertently, we will promptly delete it.</p>
+            </div>
+            
+            <div class="section">
+                <h2>10. Changes to Privacy Policy</h2>
+                <p>This privacy policy may be updated due to changes in laws or service content. In case of significant changes, we will notify users through in-app notifications or our website.</p>
+            </div>
+        </div>
+        
+        <div class="contact-info">
+            <h2 id="contactTitle">お問い合わせ / Contact</h2>
+            <p id="contactText">プライバシーに関するご質問や本ポリシーについてのお問い合わせは、下記までご連絡ください。</p>
+            <p id="contactText2">For questions about privacy or this policy, please contact us:</p>
+            <br>
+            <p><strong>Email:</strong> nekomura@liz-aria.com</p>
+            <p id="responseInfo">通常24時間以内に回答いたします / We usually respond within 24 hours</p>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 Remind!!! - Liz-aria. All rights reserved.</p>
+    </div>
+    
+    <script>
+        let currentLang = 'ja';
+        
+        const translations = {
+            ja: {
+                pageTitle: 'プライバシーポリシー',
+                pageSubtitle: 'Remind!!!アプリにおける個人情報の取り扱いについて',
+                lastUpdated: '最終更新日: 2025年1月10日',
+                appInfoTitle: '📱 アプリケーション情報',
+                appNameLabel: 'アプリ名:',
+                developerLabel: '開発者:',
+                contactEmailLabel: 'お問い合わせ:',
+                contactTitle: 'お問い合わせ / Contact',
+                contactText: 'プライバシーに関するご質問や本ポリシーについてのお問い合わせは、下記までご連絡ください。',
+                contactText2: 'For questions about privacy or this policy, please contact us:',
+                responseInfo: '通常24時間以内に回答いたします / We usually respond within 24 hours',
+                langSwitch: 'English'
+            },
+            en: {
+                pageTitle: 'Privacy Policy',
+                pageSubtitle: 'How we handle personal information in the Remind!!! app',
+                lastUpdated: 'Last Updated: January 10, 2025',
+                appInfoTitle: '📱 Application Information',
+                appNameLabel: 'App Name:',
+                developerLabel: 'Developer:',
+                contactEmailLabel: 'Contact:',
+                contactTitle: 'Contact / お問い合わせ',
+                contactText: 'For questions about privacy or this policy, please contact us:',
+                contactText2: 'プライバシーに関するご質問や本ポリシーについてのお問い合わせは、下記までご連絡ください。',
+                responseInfo: 'We usually respond within 24 hours / 通常24時間以内に回答いたします',
+                langSwitch: '日本語'
+            }
+        };
+        
+        function switchLanguage() {
+            currentLang = currentLang === 'ja' ? 'en' : 'ja';
+            const lang = translations[currentLang];
+            
+            // Update text content
+            Object.keys(lang).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.textContent = lang[key];
+                }
+            });
+            
+            // Show/hide content sections
+            if (currentLang === 'ja') {
+                document.getElementById('japaneseContent').classList.remove('hidden');
+                document.getElementById('englishContent').classList.add('hidden');
+            } else {
+                document.getElementById('japaneseContent').classList.add('hidden');
+                document.getElementById('englishContent').classList.remove('hidden');
+            }
+            
+            document.documentElement.lang = currentLang;
+        }
+    </script>
+</body>
+</html>
