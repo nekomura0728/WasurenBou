@@ -41,7 +41,7 @@ struct ChecklistView: View {
                         .frame(height: 50)
                 }
             }
-            .navigationTitle(NSLocalizedString("checklists_title", comment: ""))
+            .navigationTitle(LocalizedStringKey("checklists_title"))
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -98,9 +98,9 @@ struct ChecklistView: View {
                 
                 Button(action: {
                     // サンプルテンプレート作成（3つ）
-                    viewModel.createChecklist(title: "外出用", emoji: "🚶‍♂️")
-                    viewModel.createChecklist(title: "買い物", emoji: "🛒")
-                    viewModel.createChecklist(title: "仕事", emoji: "💼")
+                    viewModel.createChecklist(title: NSLocalizedString("going_out_checklist", comment: ""), emoji: "🚶‍♂️")
+                    viewModel.createChecklist(title: NSLocalizedString("travel_checklist", comment: ""), emoji: "🛒")
+                    viewModel.createChecklist(title: NSLocalizedString("work_checklist", comment: ""), emoji: "💼")
                 }) {
                     HStack { Image(systemName: "sparkles"); Text(LocalizedStringKey("add_samples")) }
                         .frame(maxWidth: .infinity)
@@ -115,7 +115,7 @@ struct ChecklistView: View {
             Spacer()
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel(NSLocalizedString("empty_checklists_a11y", comment: ""))
+        .accessibilityLabel(LocalizedStringKey("empty_checklists_a11y"))
     }
     
     // MARK: - Skeleton
@@ -173,7 +173,7 @@ struct ChecklistRowView: View {
                     .font(.title2)
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(checklist.title ?? "チェックリスト")
+                    Text(checklist.title ?? NSLocalizedString("checklist", comment: ""))
                         .font(.body)
                         .fontWeight(.medium)
                         .foregroundColor(.primary)
@@ -181,14 +181,14 @@ struct ChecklistRowView: View {
                     
                     HStack(spacing: 8) {
                         // 完了状況
-                        Text("\(Int(checklist.completionPercentage * 100))% 完了")
+                        Text(String(format: NSLocalizedString("completion_percentage", comment: ""), Int(checklist.completionPercentage * 100)))
                             .font(.caption)
                             .foregroundColor(.secondary)
                         
                         if checklist.isLocationBased {
                             HStack(spacing: 4) {
                                 Image(systemName: "location.fill")
-                                Text("GPS")
+                                Text(NSLocalizedString("gps_location", comment: ""))
                             }
                             .font(.caption2)
                             .padding(.horizontal, 6)

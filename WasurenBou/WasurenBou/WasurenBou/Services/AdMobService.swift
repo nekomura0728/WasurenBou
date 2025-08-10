@@ -81,9 +81,7 @@ class AdMobService: ObservableObject {
     func initialize() {
         #if canImport(GoogleMobileAds)
         GADMobileAds.sharedInstance().start(completionHandler: nil)
-        print("AdMob初期化: AppID=\(Bundle.main.object(forInfoDictionaryKey: "GADApplicationIdentifier") as? String ?? "-")")
         #else
-        print("AdMob初期化（SDK未導入）")
         #endif
     }
     

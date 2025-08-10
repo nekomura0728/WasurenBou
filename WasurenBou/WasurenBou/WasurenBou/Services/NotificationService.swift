@@ -39,12 +39,9 @@ class NotificationService: NSObject, ObservableObject {
             checkAuthorizationStatus()
             
             if granted {
-                print("🔔 通知権限が許可されました")
             } else {
-                print("❌ 通知権限が拒否されました")
             }
         } catch {
-            print("❌ 通知権限リクエストエラー: \(error)")
         }
     }
     
@@ -61,10 +58,9 @@ class NotificationService: NSObject, ObservableObject {
     // MARK: - Schedule Notifications
     
     func scheduleReminderNotifications(for reminder: Reminder) {
-        guard let scheduledTime = reminder.scheduledTime,
-              let title = reminder.title,
+        guard let _ = reminder.scheduledTime,
+              let _ = reminder.title,
               let reminderId = reminder.id?.uuidString else {
-            print("❌ リマインダー情報が不完全です")
             return
         }
         
@@ -79,7 +75,6 @@ class NotificationService: NSObject, ObservableObject {
         guard let reminderId = reminder.id?.uuidString,
               let title = reminder.title,
               let scheduledTime = reminder.scheduledTime else {
-            print("❌ リマインダー情報が不完全です")
             return
         }
         // ユーザー設定の間隔を反映（秒）
@@ -131,12 +126,8 @@ class NotificationService: NSObject, ObservableObject {
                 trigger: trigger
             )
             
-            center.add(request) { error in
-                if let error = error {
-                    print("❌ 通知スケジュールエラー (\(notificationId)): \(error)")
-                } else {
-                    print("✅ 通知スケジュール成功: \(title) at \(notificationTime)")
-                }
+            center.add(request) { _ in
+                // Notification scheduled
             }
         }
         
@@ -146,9 +137,7 @@ class NotificationService: NSObject, ObservableObject {
         do {
             try context.save()
         } catch {
-            print("❌ 通知ID保存エラー: \(error)")
         }
-        print("📩 スケジュールされた通知ID: \(scheduledIds)")
     }
     
     // MARK: - Cancel Notifications
@@ -174,7 +163,6 @@ class NotificationService: NSObject, ObservableObject {
         center.removePendingNotificationRequests(withIdentifiers: uniqueIds)
         center.removeDeliveredNotifications(withIdentifiers: uniqueIds)
         
-        print("🗑️ 通知キャンセル: \(reminderId)")
         
         // バッジ数を更新
         updateBadgeCount()
@@ -183,7 +171,6 @@ class NotificationService: NSObject, ObservableObject {
     func cancelAllNotifications() {
         center.removeAllPendingNotificationRequests()
         center.removeAllDeliveredNotifications()
-        print("🗑️ すべての通知をキャンセルしました")
         
         // バッジをクリア
         if #available(iOS 16.0, *) {
@@ -207,7 +194,6 @@ class NotificationService: NSObject, ObservableObject {
             let count = try context.count(for: request)
             return count
         } catch {
-            print("❌ リマインダー数取得エラー: \(error)")
             return 0
         }
     }
@@ -219,7 +205,6 @@ class NotificationService: NSObject, ObservableObject {
         } else {
             UIApplication.shared.applicationIconBadgeNumber = count
         }
-        print("🔢 バッジ数更新: \(count)")
     }
     
     // MARK: - Notification Categories
@@ -347,7 +332,7 @@ extension NotificationService: UNUserNotificationCenterDelegate {
                 
             case UNNotificationDefaultActionIdentifier:
                 // 通知タップでアプリを開く
-                print("📱 通知タップでアプリ起動: \(reminderId)")
+                break
                 
             default:
                 break
@@ -361,7 +346,6 @@ extension NotificationService: UNUserNotificationCenterDelegate {
         let userInfo = response.notification.request.content.userInfo
         guard let checklistID = userInfo["checklistID"] as? String,
               let checklistTitle = userInfo["checklistTitle"] as? String else {
-            print("❌ チェックリストリマインダーの情報が不完全")
             return
         }
         
@@ -377,7 +361,6 @@ extension NotificationService: UNUserNotificationCenterDelegate {
                         "checklistTitle": checklistTitle
                     ]
                 )
-                print("📋 チェックリスト通知からアプリ起動: \(checklistTitle)")
             }
             
         case UNNotificationDefaultActionIdentifier:
@@ -391,7 +374,6 @@ extension NotificationService: UNUserNotificationCenterDelegate {
                         "checklistTitle": checklistTitle
                     ]
                 )
-                print("📱 チェックリスト通知タップでアプリ起動: \(checklistTitle)")
             }
             
         default:
@@ -407,7 +389,6 @@ extension NotificationService: UNUserNotificationCenterDelegate {
         if let uuid = UUID(uuidString: reminderId) {
             request.predicate = NSPredicate(format: "id == %@", uuid as CVarArg)
         } else {
-            print("❌ 無効なreminderId: \(reminderId)")
             return
         }
         
@@ -428,10 +409,8 @@ extension NotificationService: UNUserNotificationCenterDelegate {
                     userInfo: ["reminderId": reminderId]
                 )
                 
-                print("✅ 通知から完了: \(reminder.title ?? "")")
             }
         } catch {
-            print("❌ 通知からの完了処理エラー: \(error)")
         }
     }
     
@@ -457,12 +436,8 @@ extension NotificationService: UNUserNotificationCenterDelegate {
             trigger: trigger
         )
         
-        center.add(request) { error in
-            if let error = error {
-                print("❌ スヌーズ通知エラー: \(error)")
-            } else {
-                print("⏰ スヌーズ通知スケジュール: \(title)")
-            }
+        center.add(request) { _ in
+            // Snooze notification scheduled
         }
     }
 }

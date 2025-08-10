@@ -34,19 +34,19 @@ struct LocationSettingsView: View {
                 }
                 .padding()
             }
-            .navigationTitle(NSLocalizedString("gps_settings_title", comment: "GPS settings title"))
+            .navigationTitle(LocalizedStringKey("gps_settings_title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button(NSLocalizedString("cancel", comment: "Cancel")) {
+                    Button(String(localized: "cancel")) {
                         dismiss()
                     }
                 }
                 
                 // 保存ボタン（常時表示）
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(NSLocalizedString("save", comment: "Save")) {
-                        saveLocationSettings()
+                    Button(String(localized: "save")) {
+                        saveSettings()
                     }
                     .fontWeight(.semibold)
                 }
@@ -74,16 +74,16 @@ struct LocationSettingsView: View {
                 .font(.system(size: 60))
                 .foregroundColor(.blue)
             
-            Text(NSLocalizedString("location_based_reminder_title", comment: "Location based reminder title"))
+            Text(LocalizedStringKey("location_based_reminder_title"))
                 .font(.title2)
                 .fontWeight(.bold)
             
-            Text(NSLocalizedString("location_based_reminder_desc", comment: "Location based reminder description"))
+            Text(LocalizedStringKey("location_based_reminder_desc"))
                 .font(.body)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
             
-            Text(NSLocalizedString("location_name_hint_desc", comment: "Location name hint description"))
+            Text(LocalizedStringKey("location_name_hint_desc"))
                 .font(.caption)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
@@ -94,8 +94,8 @@ struct LocationSettingsView: View {
                         .font(.caption)
                         .foregroundColor(.red)
                         .multilineTextAlignment(.center)
-                    Button(NSLocalizedString("open_settings", comment: "Open settings")) {
-                        LocationService.shared.openAppSettings()
+                    Button(String(localized: "open_settings")) {
+                        openAppSettings()
                     }
                     .font(.caption)
                 }
@@ -107,8 +107,10 @@ struct LocationSettingsView: View {
     private var gpsSettingsView: some View {
         VStack(spacing: 20) {
             // GPS有効/無効切り替え
-            Toggle(NSLocalizedString("location_toggle_enable", comment: "Enable location toggle"), isOn: $isLocationEnabled)
-                .toggleStyle(SwitchToggleStyle())
+            Toggle(isOn: $isLocationEnabled) {
+                Text(LocalizedStringKey("location_toggle_enable"))
+            }
+            .toggleStyle(SwitchToggleStyle())
             
             if isLocationEnabled {
                 VStack(spacing: 16) {
@@ -117,29 +119,29 @@ struct LocationSettingsView: View {
                         MiniMapView(center: CLLocationCoordinate2D(latitude: lat, longitude: lon), radius: radius)
                             .frame(height: 180)
                             .cornerRadius(12)
-                            .accessibilityLabel(NSLocalizedString("map_preview_a11y", comment: "Map preview a11y"))
+                            .accessibilityLabel(LocalizedStringKey("map_preview_a11y"))
                     }
                     // 場所名設定
                     VStack(alignment: .leading, spacing: 8) {
-                        Text(NSLocalizedString("location_name", comment: "Location name label"))
+                        Text(LocalizedStringKey("location_name"))
                             .font(.subheadline)
                             .fontWeight(.medium)
                         
-                        TextField(NSLocalizedString("location_name_placeholder", comment: "Location name placeholder"), text: $locationName)
+                        TextField(String(localized: "location_name_placeholder"), text: $locationName)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .accessibilityHint(NSLocalizedString("location_name_a11y_hint", comment: "Location name a11y hint"))
+                            .accessibilityHint(LocalizedStringKey("location_name_a11y_hint"))
                     }
                     
                     // 範囲設定
                     VStack(alignment: .leading, spacing: 8) {
-                        Text(String(format: NSLocalizedString("detection_range_m", comment: "Detection range"), Int(radius)))
+                        Text(String(format: String(localized: "detection_range_m"), Int(radius)))
                             .font(.subheadline)
                             .fontWeight(.medium)
                         
                         Slider(value: $radius, in: 50...500, step: 25)
                             .accentColor(.blue)
-                            .accessibilityLabel(NSLocalizedString("detection_range_label", comment: "Detection range label"))
-                            .accessibilityValue(String(format: NSLocalizedString("meters_value", comment: "Meters value"), Int(radius)))
+                            .accessibilityLabel(LocalizedStringKey("detection_range_label"))
+                            .accessibilityValue(String(format: String(localized: "meters_value"), Int(radius)))
                         
                         HStack {
                             Text("50m")
@@ -153,10 +155,10 @@ struct LocationSettingsView: View {
                     }
                     
                     // 現在地設定ボタン
-                    Button(action: setCurrentLocation) {
+                    Button(action: useCurrentLocation) {
                         HStack {
                             Image(systemName: "location.fill")
-                            Text(NSLocalizedString("use_current_location", comment: "Use current location"))
+                            Text(LocalizedStringKey("use_current_location"))
                         }
                         .frame(maxWidth: .infinity)
                         .padding()
@@ -164,7 +166,7 @@ struct LocationSettingsView: View {
                         .foregroundColor(.blue)
                         .cornerRadius(8)
                     }
-                    .accessibilityHint(NSLocalizedString("use_current_location_hint", comment: "Use current location hint"))
+                    .accessibilityHint(LocalizedStringKey("use_current_location_hint"))
                     
                     if let lat = latitude, let lon = longitude {
                         HStack(spacing: 8) {
@@ -228,15 +230,15 @@ struct LocationSettingsView: View {
         longitude = checklist.longitude
     }
     
-    private func saveLocationSettings() {
+    private func saveSettings() {
         if isLocationEnabled {
             guard let lat = latitude, let lon = longitude else {
-                LocationService.shared.errorMessage = "現在地が取得できていません。『現在地の座標を使用』を押してから保存してください。"
+                LocationService.shared.errorMessage = NSLocalizedString("location_not_available_error", comment: "")
                 return
             }
             viewModel.enableLocationReminder(
                 for: checklist,
-                locationName: locationName.isEmpty ? "（未命名の場所）" : locationName,
+                locationName: locationName.isEmpty ? NSLocalizedString("unnamed_location", comment: "") : locationName,
                 latitude: lat,
                 longitude: lon,
                 radius: radius
@@ -249,10 +251,14 @@ struct LocationSettingsView: View {
         dismiss()
     }
     
-    private func setCurrentLocation() {
+    private func useCurrentLocation() {
         LocationService.shared.requestAuthorization(always: true)
         LocationService.shared.requestSingleLocation()
         HapticFeedback.impact(.medium)
+    }
+    
+    private func openAppSettings() {
+        LocationService.shared.openAppSettings()
     }
 }
 
@@ -290,7 +296,7 @@ struct MiniMapView: View {
 
 #Preview {
     let context = PersistenceController.preview.container.viewContext
-    let checklist = Checklist(context: context, title: "外出用", emoji: "🚶‍♂️")
+    let checklist = Checklist(context: context, title: NSLocalizedString("going_out_checklist", comment: ""), emoji: "🚶‍♂️")
     
     return LocationSettingsView(
         checklist: checklist,

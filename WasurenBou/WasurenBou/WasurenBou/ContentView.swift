@@ -60,7 +60,7 @@ struct ContentView: View {
                         // 今日のリマインダー一覧
                         VStack(alignment: .leading, spacing: 16) {
                             HStack {
-                                Text("今日のリマインダー")
+                                Text(NSLocalizedString("today_reminders", comment: ""))
                                     .font(.system(size: 22, weight: .semibold))
                                     .foregroundColor(.primary)
                                 Spacer()
@@ -77,11 +77,11 @@ struct ContentView: View {
                                         .font(.system(size: 48, weight: .light))
                                         .foregroundColor(Color(red: 0.298, green: 0.733, blue: 0.400))
                                     
-                                    Text("今日のリマインダーはありません")
+                                    Text(NSLocalizedString("no_reminders_today", comment: ""))
                                         .font(.system(size: 16, weight: .medium))
                                         .foregroundColor(.primary)
                                     
-                                    Text("音声入力やテンプレートで\n新しいリマインダーを作成しましょう")
+                                    Text(NSLocalizedString("create_reminder_prompt", comment: ""))
                                         .font(.system(size: 14))
                                         .foregroundColor(.secondary)
                                         .multilineTextAlignment(.center)
@@ -105,7 +105,7 @@ struct ContentView: View {
                         
                         // よく使うテンプレート
                         VStack(alignment: .leading, spacing: 16) {
-                            Text("よく使うテンプレート")
+                            Text(NSLocalizedString("frequently_used_templates", comment: ""))
                                 .font(.title2)
                                 .fontWeight(.semibold)
                                 .foregroundColor(.primary)
@@ -161,7 +161,7 @@ struct ContentView: View {
             .background(Color(.systemGroupedBackground))
             .navigationBarHidden(true)
             .accessibilityElement(children: .contain)
-            .loadingOverlay(isLoading: viewModel.isLoading, message: "データを読み込んでいます")
+            .loadingOverlay(isLoading: viewModel.isLoading, message: NSLocalizedString("loading_data", comment: ""))
             .sheet(isPresented: $showingTimeSelector) {
                 TimeSelectionView(
                     reminderTitle: pendingReminderTitle,
@@ -175,21 +175,21 @@ struct ContentView: View {
             }
             .tabItem {
                 Image(systemName: "alarm")
-                Text("リマインダー")
+                Text(NSLocalizedString("tab_reminders", comment: ""))
             }
             
             // チェックリストタブ
             ChecklistView(viewModel: checklistViewModel)
                 .tabItem {
                     Image(systemName: "checklist")
-                    Text("チェックリスト")
+                    Text(NSLocalizedString("tab_checklists", comment: ""))
                 }
             
             // 設定タブ
             SettingsView(viewModel: viewModel)
                 .tabItem {
                     Image(systemName: "gear")
-                    Text("設定")
+                    Text(NSLocalizedString("tab_settings", comment: ""))
                 }
         }
         .onAppear {
@@ -250,24 +250,24 @@ struct VoiceInputButton: View {
             }
             .scaleEffect(speechService.isRecording ? 1.1 : 1.0)
             .animation(.easeInOut(duration: 0.2), value: speechService.isRecording)
-            .accessibilityLabel(speechService.isRecording ? "録音を停止" : "音声入力を開始")
-            .accessibilityHint("タップしてリマインダーを音声で作成します")
+            .accessibilityLabel(speechService.isRecording ? NSLocalizedString("stop_recording", comment: "") : NSLocalizedString("start_voice_input", comment: ""))
+            .accessibilityHint(NSLocalizedString("voice_input_hint", comment: ""))
             .accessibilityAddTraits(.isButton)
             
             VStack(spacing: 8) {
-                Text(speechService.isRecording ? "音声認識中..." : "🗣️ タップして話す")
+                Text(speechService.isRecording ? NSLocalizedString("voice_recognizing", comment: "") : "🗣️ \(NSLocalizedString("tap_to_speak", comment: ""))")
                     .font(.body)
                     .fontWeight(.semibold)
                     .foregroundColor(.primary)
                     .dynamicTypeSize(...DynamicTypeSize.accessibility2)
                 
                 if speechService.isRecording {
-                    Text("音声を認識しています...")
+                    Text(NSLocalizedString("recognizing_speech", comment: ""))
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                         .dynamicTypeSize(...DynamicTypeSize.accessibility2)
                 } else {
-                    Text("タップして音声でリマインダー作成")
+                    Text(NSLocalizedString("tap_to_speak_prompt", comment: ""))
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                         .dynamicTypeSize(...DynamicTypeSize.accessibility2)
@@ -290,7 +290,7 @@ struct VoiceInputButton: View {
                 }
                 
                 if !speechService.isAuthorized && speechService.authorizationStatus == .denied {
-                    Text("音声認識の権限が必要です。\n設定で有効にしてください")
+                    Text(NSLocalizedString("speech_permission_warning", comment: ""))
                         .font(.caption)
                         .foregroundColor(Color("Danger"))
                         .multilineTextAlignment(.center)
@@ -312,12 +312,12 @@ struct ReminderListView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("今日のリマインダー")
+            Text(NSLocalizedString("today_reminders", comment: ""))
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             if viewModel.todayReminders.isEmpty {
-                Text("今日のリマインダーはありません")
+                Text(NSLocalizedString("no_reminders_today", comment: ""))
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 20)
@@ -370,7 +370,7 @@ struct ReminderCard: View {
             
             Spacer()
             
-            Button("完了") {
+            Button(NSLocalizedString("complete", comment: "")) {
                 isPressed = true
                 let impactFeedback = UIImpactFeedbackGenerator(style: .light)
                 impactFeedback.impactOccurred()
@@ -386,7 +386,7 @@ struct ReminderCard: View {
             .shadow(color: Color("Success").opacity(0.3), radius: 4, x: 0, y: 2)
             .scaleEffect(isPressed ? 0.95 : 1.0)
             .animation(.easeInOut(duration: 0.1), value: isPressed)
-            .accessibilityLabel("完了")
+            .accessibilityLabel(NSLocalizedString("complete", comment: ""))
             .accessibilityAddTraits(.isButton)
         }
         .padding(.horizontal, 20)
@@ -407,33 +407,42 @@ struct TemplateGridView: View {
     let columns: [GridItem]
     
     let defaultTemplates = [
-        ("🧺", "洗濯物取り込む"),
-        ("💊", "薬を飲む"),
-        ("🗑️", "ゴミ出し"),
-        ("📞", "母に電話"),
-        ("🛒", "牛乳買う"),
-        ("🚗", "車のエンジンチェック")
+        ("🧺", NSLocalizedString("template_laundry", comment: "")),
+        ("💊", NSLocalizedString("template_medicine", comment: "")),
+        ("🗑️", NSLocalizedString("template_trash", comment: "")),
+        ("📞", NSLocalizedString("template_call_mom", comment: "")),
+        ("🛒", NSLocalizedString("template_buy_milk", comment: "")),
+        ("🚗", NSLocalizedString("template_check_car", comment: ""))
     ]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("よく使う")
+            Text(NSLocalizedString("frequently_used_templates", comment: ""))
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             LazyVGrid(columns: columns, spacing: 12) {
                 // カスタムテンプレート
                 ForEach(viewModel.templates.prefix(3)) { template in
-                    TemplateButton(emoji: template.emoji ?? "", title: template.title ?? "") {
-                        pendingReminderTitle = template.title ?? ""
+                    TemplateButton(
+                        emoji: template.emoji ?? "📝", 
+                        title: template.title ?? NSLocalizedString("reminder", comment: "Default reminder title")
+                    ) {
+                        pendingReminderTitle = template.title ?? NSLocalizedString("reminder", comment: "Default reminder title")
                         showingTimeSelector = true
                     }
                 }
                 
                 // デフォルトテンプレート
                 ForEach(defaultTemplates.prefix(6 - min(3, viewModel.templates.count)), id: \.1) { emoji, title in
-                    TemplateButton(emoji: emoji, title: title) {
-                        pendingReminderTitle = title
+                    TemplateButton(
+                        emoji: emoji.isEmpty ? "📝" : emoji, 
+                        title: title.isEmpty ? NSLocalizedString("reminder", comment: "Default reminder title") : title
+                    ) {
+                        let finalTitle = title.isEmpty ? NSLocalizedString("reminder", comment: "Default reminder title") : title
+                        pendingReminderTitle = finalTitle
+                        // デフォルトテンプレートを使用した時にカスタムテンプレートとして保存
+                        viewModel.findAndUseMatchingTemplate(for: finalTitle)
                         showingTimeSelector = true
                     }
                 }
@@ -459,11 +468,11 @@ struct TemplateButton: View {
             }
         }) {
             VStack(spacing: 8) {
-                Text(emoji)
+                Text(emoji.isEmpty ? "📝" : emoji)
                     .font(.title2)
                     .dynamicTypeSize(...DynamicTypeSize.accessibility2)
                 
-                Text(title)
+                Text(title.isEmpty ? NSLocalizedString("reminder", comment: "Default title") : title)
                     .font(.caption)
                     .fontWeight(.medium)
                     .foregroundColor(.primary)
@@ -525,7 +534,7 @@ struct TimeSelectionView: View {
                     HStack {
                         Spacer()
                         
-                        Button("×") {
+                        Button(NSLocalizedString("close", comment: "")) {
                             isPresented = false
                         }
                         .font(.title2)
@@ -533,7 +542,7 @@ struct TimeSelectionView: View {
                         .foregroundColor(.secondary)
                         .padding(.top, 20)
                         .padding(.trailing, 20)
-                        .accessibilityLabel("閉じる")
+                        .accessibilityLabel(NSLocalizedString("close", comment: ""))
                         .accessibilityAddTraits(.isButton)
                     }
                     
@@ -549,7 +558,7 @@ struct TimeSelectionView: View {
                             .foregroundColor(.primary)
                             .lineLimit(3)
                             .dynamicTypeSize(...DynamicTypeSize.accessibility2)
-                            .accessibilityLabel("リマインダー: \(reminderTitle)")
+                            .accessibilityLabel(NSLocalizedString("reminder_title", comment: ""))
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 24)
@@ -562,8 +571,8 @@ struct TimeSelectionView: View {
                     // 時刻選択方法の切り替え
                     VStack(spacing: 16) {
                         Picker("選択方法", selection: $useQuickTime) {
-                            Text("簡単選択").tag(true)
-                            Text("詳細設定").tag(false)
+                            Text(NSLocalizedString("quick_selection", comment: "")).tag(true)
+                            Text(NSLocalizedString("detailed_settings", comment: "")).tag(false)
                         }
                         .pickerStyle(SegmentedPickerStyle())
                         .background(Color(.systemBackground))
@@ -626,7 +635,7 @@ struct TimeSelectionView: View {
     // 詳細時刻選択
     private var detailTimeSelection: some View {
         VStack(spacing: 24) {
-            Text("詳しい時刻を選んでください")
+            Text(NSLocalizedString("choose_detailed_time", comment: ""))
                 .font(.body)
                 .fontWeight(.medium)
                 .foregroundColor(.primary)
@@ -650,7 +659,7 @@ struct TimeSelectionView: View {
                 HStack(spacing: 12) {
                     Image(systemName: "bell.fill")
                         .font(.body)
-                    Text("この時刻でリマインド設定")
+                    Text(NSLocalizedString("set_reminder_time", comment: ""))
                         .font(.body)
                         .fontWeight(.semibold)
                         .dynamicTypeSize(...DynamicTypeSize.accessibility2)
@@ -663,7 +672,7 @@ struct TimeSelectionView: View {
                 .shadow(color: Color.accentColor.opacity(0.3), radius: 8, x: 0, y: 4)
             }
             .buttonStyle(PlainButtonStyle())
-            .accessibilityLabel("リマインダーを設定")
+            .accessibilityLabel(NSLocalizedString("set_reminder_time", comment: ""))
             .accessibilityAddTraits(.isButton)
         }
     }

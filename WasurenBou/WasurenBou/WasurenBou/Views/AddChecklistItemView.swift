@@ -24,11 +24,11 @@ struct AddChecklistItemView: View {
                 
                 // 説明
                 VStack(spacing: 8) {
-                    Text("新しいアイテムを追加")
+                    Text(LocalizedStringKey("add_new_item_title"))
                         .font(.title2)
                         .fontWeight(.semibold)
                     
-                    Text("\(checklist.title ?? "チェックリスト") にアイテムを追加します")
+                    Text(String(format: NSLocalizedString("add_item_to_checklist_desc", comment: ""), checklist.title ?? NSLocalizedString("checklist", comment: "")))
                         .font(.body)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
@@ -36,11 +36,11 @@ struct AddChecklistItemView: View {
                 
                 // 入力フィールド
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("アイテム名")
+                    Text(LocalizedStringKey("item_name_label"))
                         .font(.subheadline)
                         .fontWeight(.medium)
                     
-                    TextField("例：スマホ", text: $itemTitle)
+                    TextField(String(localized: "item_name_placeholder"), text: $itemTitle)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .onSubmit {
                             if !itemTitle.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
@@ -52,17 +52,17 @@ struct AddChecklistItemView: View {
                 Spacer()
             }
             .padding()
-            .navigationTitle("アイテム追加")
+            .navigationTitle(LocalizedStringKey("add_item_navigation_title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("キャンセル") {
+                    Button(String(localized: "cancel")) {
                         dismiss()
                     }
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("追加") {
+                    Button(String(localized: "add")) {
                         addItem()
                     }
                     .disabled(itemTitle.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
@@ -90,7 +90,7 @@ struct AddChecklistItemView: View {
 
 #Preview {
     let context = PersistenceController.preview.container.viewContext
-    let checklist = Checklist(context: context, title: "外出用", emoji: "🚶‍♂️")
+    let checklist = Checklist(context: context, title: NSLocalizedString("going_out_checklist", comment: ""), emoji: "🚶‍♂️")
     
     return AddChecklistItemView(
         checklist: checklist,

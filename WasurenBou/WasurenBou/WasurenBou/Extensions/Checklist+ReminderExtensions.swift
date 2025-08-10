@@ -34,7 +34,6 @@ extension Checklist {
                 let days = try JSONDecoder().decode(Set<Int>.self, from: data)
                 return days
             } catch {
-                print("❌ リマインダー曜日データの読み込みエラー: \(error)")
                 return []
             }
         }
@@ -43,7 +42,6 @@ extension Checklist {
                 let data = try JSONEncoder().encode(newValue)
                 reminderRepeatDays = data
             } catch {
-                print("❌ リマインダー曜日データの保存エラー: \(error)")
                 reminderRepeatDays = nil
             }
         }
@@ -56,7 +54,6 @@ extension Checklist {
                 let identifiers = try JSONDecoder().decode([String].self, from: data)
                 return identifiers
             } catch {
-                print("❌ 通知ID読み込みエラー: \(error)")
                 return []
             }
         }
@@ -65,7 +62,6 @@ extension Checklist {
                 let data = try JSONEncoder().encode(newValue)
                 reminderIdentifiers = data
             } catch {
-                print("❌ 通知ID保存エラー: \(error)")
                 reminderIdentifiers = nil
             }
         }

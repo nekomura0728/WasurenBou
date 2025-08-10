@@ -43,11 +43,11 @@ struct SettingsView: View {
                             .foregroundColor(.accentColor)
                         
                         VStack(alignment: .leading, spacing: 4) {
-                            Text(NSLocalizedString("app_name", comment: "App name"))
+                            Text(LocalizedStringKey("app_name"))
                                 .font(.title2)
                                 .fontWeight(.bold)
                             
-                            Text(String(format: NSLocalizedString("version_format", comment: "Version format"), appVersionString))
+                            Text(String(format: String(localized: "version_format"), appVersionString))
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
                         }
@@ -64,7 +64,7 @@ struct SettingsView: View {
                             Image(systemName: "crown.fill")
                                 .foregroundColor(.orange)
                                 .frame(width: 24)
-                            Text("プレミアム版")
+                            Text(LocalizedStringKey("premium_version"))
                             Spacer()
                             Image(systemName: "chevron.right")
                                 .foregroundColor(.secondary)
@@ -76,7 +76,7 @@ struct SettingsView: View {
                             Image(systemName: "arrow.clockwise.circle.fill")
                                 .foregroundColor(.blue)
                                 .frame(width: 24)
-                            Text("購入を復元")
+                            Text(LocalizedStringKey("restore_purchases"))
                         }
                     }
                 }
@@ -89,7 +89,7 @@ struct SettingsView: View {
                             .frame(width: 24)
                         
                         VStack(alignment: .leading, spacing: 2) {
-                            Text(NSLocalizedString("dark_mode", comment: "Dark mode setting"))
+                            Text(LocalizedStringKey("dark_mode"))
                                 .font(.body)
                             
                             Text(darkModePreference.localizedDescription)
@@ -108,7 +108,7 @@ struct SettingsView: View {
                         .pickerStyle(.menu)
                     }
                 } header: {
-                    Text(NSLocalizedString("appearance", comment: "Appearance section"))
+                    Text(LocalizedStringKey("appearance"))
                 }
                 
                 // Templates Section
@@ -122,10 +122,10 @@ struct SettingsView: View {
                                 .frame(width: 24)
                             
                             VStack(alignment: .leading, spacing: 2) {
-                                Text(NSLocalizedString("templates", comment: "Templates section"))
+                                Text(LocalizedStringKey("templates"))
                                     .foregroundColor(.primary)
                                 
-                                Text(String(format: NSLocalizedString("templates_count", comment: "Templates count"), viewModel.templates.count))
+                                Text(String(format: String(localized: "templates_count"), viewModel.templates.count))
                                     .font(.caption)
                                     .foregroundColor(.secondary)
                             }
@@ -138,7 +138,7 @@ struct SettingsView: View {
                         }
                     }
                 } header: {
-                    Text(NSLocalizedString("templates", comment: "Templates section"))
+                    Text(LocalizedStringKey("templates"))
                 }
                 
                 // Notifications Section
@@ -149,7 +149,7 @@ struct SettingsView: View {
                                 .foregroundColor(.orange)
                                 .frame(width: 24)
                             
-                            Text(NSLocalizedString("enable_notifications", comment: "Enable notifications"))
+                            Text(LocalizedStringKey("enable_notifications"))
                         }
                     }
                     
@@ -161,9 +161,9 @@ struct SettingsView: View {
                                     .frame(width: 24)
                                 
                                 VStack(alignment: .leading, spacing: 2) {
-                                    Text(NSLocalizedString("critical_alerts", comment: "Critical alerts"))
+                                    Text(LocalizedStringKey("critical_alerts"))
                                     
-                                    Text(NSLocalizedString("critical_alerts_subtitle", comment: "Critical alerts subtitle"))
+                                    Text(LocalizedStringKey("critical_alerts_subtitle"))
                                         .font(.caption)
                                         .foregroundColor(.secondary)
                                 }
@@ -176,9 +176,9 @@ struct SettingsView: View {
                                 .frame(width: 24)
                             
                             VStack(alignment: .leading, spacing: 2) {
-                                Text(NSLocalizedString("escalation_intervals", comment: "Escalation intervals"))
+                                Text(LocalizedStringKey("escalation_intervals"))
                                 
-                                Text(String(format: NSLocalizedString("minutes_value", comment: "Minutes value"), Int(escalationInterval / 60)))
+                                Text(String(format: String(localized: "minutes_value"), Int(escalationInterval / 60)))
                                     .font(.caption)
                                     .foregroundColor(.secondary)
                             }
@@ -190,17 +190,17 @@ struct SettingsView: View {
                         }
                     }
                 } header: {
-                    Text(NSLocalizedString("notifications", comment: "Notifications section"))
+                    Text(LocalizedStringKey("notifications"))
                 }
                 
                 // Speech Recognition Section
                 Section {
                     Picker(selection: $speechLanguage) {
-                        Text(NSLocalizedString("automatic", comment: "Automatic language"))
+                        Text(LocalizedStringKey("automatic"))
                             .tag("auto")
-                        Text(NSLocalizedString("english", comment: "English language"))
+                        Text(LocalizedStringKey("english"))
                             .tag("en-US")
-                        Text(NSLocalizedString("japanese", comment: "Japanese language"))
+                        Text(LocalizedStringKey("japanese"))
                             .tag("ja-JP")
                     } label: {
                         HStack {
@@ -209,7 +209,7 @@ struct SettingsView: View {
                                 .frame(width: 24)
                             
                             VStack(alignment: .leading, spacing: 2) {
-                                Text(NSLocalizedString("speech_recognition", comment: "Speech recognition"))
+                                Text(LocalizedStringKey("speech_recognition"))
                                 
                                 Text(languageDisplayName(for: speechLanguage))
                                     .font(.caption)
@@ -218,7 +218,7 @@ struct SettingsView: View {
                         }
                     }
                 } header: {
-                    Text(NSLocalizedString("speech_recognition", comment: "Speech recognition section"))
+                    Text(LocalizedStringKey("speech_recognition"))
                 }
                 
                 // About Section
@@ -231,7 +231,7 @@ struct SettingsView: View {
                                 .foregroundColor(.gray)
                                 .frame(width: 24)
                             
-                            Text(NSLocalizedString("about", comment: "About section"))
+                            Text(LocalizedStringKey("about"))
                                 .foregroundColor(.primary)
                             
                             Spacer()
@@ -241,8 +241,27 @@ struct SettingsView: View {
                                 .font(.caption)
                         }
                     }
+                    
+                    Button(action: {
+                        openSupportURL()
+                    }) {
+                        HStack {
+                            Image(systemName: "questionmark.circle.fill")
+                                .foregroundColor(.blue)
+                                .frame(width: 24)
+                            
+                            Text(LocalizedStringKey("support"))
+                                .foregroundColor(.primary)
+                            
+                            Spacer()
+                            
+                            Image(systemName: "arrow.up.right")
+                                .foregroundColor(.secondary)
+                                .font(.caption)
+                        }
+                    }
                 } header: {
-                    Text(NSLocalizedString("about", comment: "About section"))
+                    Text(LocalizedStringKey("about"))
                 }
                 
                 #if DEBUG
@@ -254,8 +273,8 @@ struct SettingsView: View {
                                 .foregroundColor(.gray)
                                 .frame(width: 24)
                             VStack(alignment: .leading, spacing: 2) {
-                                Text(NSLocalizedString("dev_force_premium", comment: "Developer force premium"))
-                                Text(NSLocalizedString("dev_force_premium_desc", comment: "Developer force premium description"))
+                                Text(LocalizedStringKey("dev_force_premium"))
+                                Text(LocalizedStringKey("dev_force_premium_desc"))
                                     .font(.caption)
                                     .foregroundColor(.secondary)
                             }
@@ -265,15 +284,15 @@ struct SettingsView: View {
                         HapticFeedback.selection()
                     }
                 } header: {
-                    Text(NSLocalizedString("developer", comment: "Developer section"))
+                    Text(LocalizedStringKey("developer"))
                 }
                 #endif
             }
-            .navigationTitle(NSLocalizedString("settings", comment: "Settings title"))
+            .navigationTitle(LocalizedStringKey("settings"))
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(NSLocalizedString("done", comment: "Done button")) {
+                    Button(String(localized: "done")) {
                         dismiss()
                     }
                 }
@@ -292,14 +311,21 @@ struct SettingsView: View {
     private func languageDisplayName(for code: String) -> String {
         switch code {
         case "auto":
-            return NSLocalizedString("automatic", comment: "Automatic language")
+            return String(localized: "automatic")
         case "en-US":
-            return NSLocalizedString("english", comment: "English language")
+            return String(localized: "english")
         case "ja-JP":
-            return NSLocalizedString("japanese", comment: "Japanese language")
+            return String(localized: "japanese")
         default:
-            return NSLocalizedString("automatic", comment: "Automatic language")
+            return String(localized: "automatic")
         }
+    }
+    
+    private func openSupportURL() {
+        guard let url = URL(string: "https://nekomura0728.github.io/WasurenBou/support.html") else {
+            return
+        }
+        UIApplication.shared.open(url)
     }
 }
 
@@ -323,11 +349,11 @@ enum ColorSchemePreference: String, CaseIterable {
     var localizedDescription: String {
         switch self {
         case .automatic:
-            return NSLocalizedString("automatic", comment: "Automatic color scheme")
+            return String(localized: "automatic")
         case .light:
-            return NSLocalizedString("light", comment: "Light color scheme")
+            return String(localized: "light")
         case .dark:
-            return NSLocalizedString("dark", comment: "Dark color scheme")
+            return String(localized: "dark")
         }
     }
 }
@@ -343,9 +369,9 @@ struct TemplateManagerView: View {
             List {
                 if viewModel.templates.isEmpty {
                     ContentUnavailableView(
-                        "No Templates",
+                        LocalizedStringKey("no_templates"),
                         systemImage: "rectangle.grid.3x2",
-                        description: Text("Create your first custom template to get started")
+                        description: Text(LocalizedStringKey("no_templates_description"))
                     )
                 } else {
                     ForEach(viewModel.templates, id: \.objectID) { template in
@@ -354,11 +380,11 @@ struct TemplateManagerView: View {
                     .onDelete(perform: deleteTemplates)
                 }
             }
-            .navigationTitle(NSLocalizedString("templates", comment: "Templates"))
+            .navigationTitle(LocalizedStringKey("templates"))
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button(NSLocalizedString("done", comment: "Done")) {
+                    Button(LocalizedStringKey("done")) {
                         dismiss()
                     }
                 }
@@ -400,7 +426,7 @@ struct TemplateRowView: View {
                     .font(.body)
                     .fontWeight(.medium)
                 
-                Text(String(format: NSLocalizedString("usage_count", comment: "Usage count"), template.usageCount))
+                Text(String(format: String(localized: "usage_count"), template.usageCount))
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
@@ -430,9 +456,9 @@ struct AddTemplateView: View {
         NavigationStack {
             Form {
                 Section {
-                    TextField(NSLocalizedString("template_title", comment: "Template title"), text: $title)
+                    TextField(LocalizedStringKey("template_title"), text: $title)
                 } header: {
-                    Text(NSLocalizedString("template_title", comment: "Template title"))
+                    Text(LocalizedStringKey("template_title"))
                 }
                 
                 Section {
@@ -461,20 +487,20 @@ struct AddTemplateView: View {
                     }
                     .padding(.vertical)
                 } header: {
-                    Text(NSLocalizedString("template_emoji", comment: "Template emoji"))
+                    Text(LocalizedStringKey("template_emoji"))
                 }
             }
-            .navigationTitle(NSLocalizedString("add_template", comment: "Add template"))
+            .navigationTitle(LocalizedStringKey("add_template"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button(NSLocalizedString("cancel", comment: "Cancel")) {
+                    Button(LocalizedStringKey("cancel")) {
                         dismiss()
                     }
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(NSLocalizedString("save", comment: "Save")) {
+                    Button(LocalizedStringKey("save")) {
                         saveTemplate()
                     }
                     .disabled(title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
@@ -507,15 +533,15 @@ struct AboutView: View {
                             .font(.system(size: 80))
                             .foregroundColor(.accentColor)
                         
-                        Text(NSLocalizedString("app_name", comment: "App name"))
+                        Text(LocalizedStringKey("app_name"))
                             .font(.largeTitle)
                             .fontWeight(.bold)
                         
-                        Text("Version 1.0.0")
+                        Text(String(format: NSLocalizedString("version_format", comment: ""), "1.0.0"))
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                         
-                        Text("A kind reminder app for everyone")
+                        Text(LocalizedStringKey("app_description"))
                             .font(.body)
                             .foregroundColor(.secondary)
                             .multilineTextAlignment(.center)
@@ -524,29 +550,29 @@ struct AboutView: View {
                     
                     // Features
                     VStack(alignment: .leading, spacing: 16) {
-                        Text("Features")
+                        Text(LocalizedStringKey("features"))
                             .font(.headline)
                         
-                        FeatureRow(icon: "mic.fill", title: "Voice Input", description: "Create reminders using voice recognition")
-                        FeatureRow(icon: "bell.fill", title: "Smart Notifications", description: "Escalating reminders ensure you never forget")
-                        FeatureRow(icon: "rectangle.grid.3x2.fill", title: "Custom Templates", description: "Quick access to your frequently used reminders")
-                        FeatureRow(icon: "moon.fill", title: "Dark Mode", description: "Beautiful interface that adapts to your preference")
-                        FeatureRow(icon: "globe", title: "Multilingual", description: "Supports Japanese and English")
+                        FeatureRow(icon: "mic.fill", title: NSLocalizedString("feature_voice_input", comment: ""), description: NSLocalizedString("feature_voice_input_desc", comment: ""))
+                        FeatureRow(icon: "bell.fill", title: NSLocalizedString("feature_smart_notifications", comment: ""), description: NSLocalizedString("feature_smart_notifications_desc", comment: ""))
+                        FeatureRow(icon: "rectangle.grid.3x2.fill", title: NSLocalizedString("feature_custom_templates", comment: ""), description: NSLocalizedString("feature_custom_templates_desc", comment: ""))
+                        FeatureRow(icon: "moon.fill", title: NSLocalizedString("feature_dark_mode", comment: ""), description: NSLocalizedString("feature_dark_mode_desc", comment: ""))
+                        FeatureRow(icon: "globe", title: NSLocalizedString("feature_multilingual", comment: ""), description: NSLocalizedString("feature_multilingual_desc", comment: ""))
                     }
                     .padding(.horizontal)
                     
                     // Credits
                     VStack(spacing: 8) {
-                        Text("Created with ❤️ using SwiftUI")
+                        Text(LocalizedStringKey("created_with_love"))
                             .font(.footnote)
                             .foregroundColor(.secondary)
                         
-                        Text("© 2025 Remind!!!")
+                        Text(LocalizedStringKey("copyright"))
                             .font(.footnote)
                             .foregroundColor(.secondary)
                         
                         #if DEBUG
-                        Text("Current Language: \(Locale.current.languageCode ?? "unknown")")
+                        Text(String(format: NSLocalizedString("current_language", comment: ""), Locale.current.languageCode ?? "unknown"))
                             .font(.caption2)
                             .foregroundColor(.gray)
                         #endif
@@ -554,11 +580,11 @@ struct AboutView: View {
                 }
                 .padding()
             }
-            .navigationTitle(NSLocalizedString("about", comment: "About"))
+            .navigationTitle(LocalizedStringKey("about"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(NSLocalizedString("done", comment: "Done")) {
+                    Button(LocalizedStringKey("done")) {
                         dismiss()
                     }
                 }

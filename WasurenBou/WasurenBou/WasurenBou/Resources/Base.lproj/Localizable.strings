@@ -28,6 +28,48 @@
 "reminder_completed" = "Reminder completed! 🎉";
 "time_label" = "Time: %@";
 
+// MARK: - Completion Messages
+"completion_message_1" = "Great job! 🎉";
+"completion_message_2" = "Well done! ⭐";
+"completion_message_3" = "Excellent! 👏";
+"completion_message_4" = "Perfect! ✨";
+"completion_message_5" = "Amazing! 🌟";
+
+// MARK: - AddChecklistItem Screen
+"add_new_item_title" = "Add New Item";
+"add_item_to_checklist_desc" = "Add item to %@";
+"item_name_label" = "Item Name";
+"item_name_placeholder" = "e.g., Phone";
+"add_item_navigation_title" = "Add Item";
+"add" = "Add";
+
+// MARK: - Reminder Settings
+"enable_reminder" = "Enable Reminder";
+"checklist_reminder_footer" = "You can set up reminders to check your checklist";
+"time_settings_section" = "Time Settings";
+"notification_time" = "Notification Time";
+"repeat_settings" = "Repeat Settings";
+"repeat_footer" = "Repeats daily or on specified days";
+"repeat_days_section" = "Repeat Days";
+"notification_preview" = "Preview: \"%@ check reminder!\"";
+"notification_content_header" = "Notification Content";
+"reminder_settings_title" = "Reminder Settings";
+
+// MARK: - Days of Week
+"sunday" = "Sunday";
+"monday" = "Monday";
+"tuesday" = "Tuesday";
+"wednesday" = "Wednesday";
+"thursday" = "Thursday";
+"friday" = "Friday";
+"saturday" = "Saturday";
+
+// MARK: - Location Settings
+"location_not_available_error" = "Location not available. Please tap 'Use Current Location' before saving.";
+"unnamed_location" = "(Unnamed Location)";
+"checklist" = "Checklist";
+"support" = "Support & Help";
+
 // MARK: - Time Selection
 "close" = "Close";
 "reminder_title" = "Reminder: %@";
@@ -219,6 +261,19 @@
 "no_templates" = "No Templates";
 "no_templates_description" = "Create your first custom template to get started";
 
+// MARK: - Tab Bar
+"tab_reminders" = "Reminders";
+"tab_checklists" = "Checklists";
+"tab_settings" = "Settings";
+
+// MARK: - Voice Input Component
+"stop_recording" = "Stop recording";
+"start_voice_input" = "Start voice input";
+"voice_input_hint" = "Tap to create reminder with voice";
+"voice_recognizing" = "Recognizing...";
+"tap_to_speak_prompt" = "Tap to create reminder with voice";
+"speech_permission_warning" = "Speech recognition permission required.\nPlease enable from Settings";
+
 // MARK: - About Screen
 "app_description" = "A kind reminder app for everyone";
 "features" = "Features";
@@ -234,4 +289,4 @@
 "feature_multilingual_desc" = "Supports Japanese and English";
 "created_with_love" = "Created with ❤️ using SwiftUI";
 "copyright" = "© 2025 Remind!!!";
-"current_language" = "Current Language: %@";
+"current_language" = "Current Language: %@";"reminder" = "Reminder";

@@ -28,14 +28,14 @@ struct ChecklistDetailView: View {
                     Image(systemName: "calendar"
                     )
                         .foregroundColor(.secondary)
-                    Text("日付が変わるとチェックは自動的にリセットされます")
+                    Text(LocalizedStringKey("daily_reset_desc"))
                         .font(.caption)
                         .foregroundColor(.secondary)
                     Spacer()
                     Button {
                         viewModel.resetChecklistItems(checklist)
                     } label: {
-                        Label("手動でリセット", systemImage: "arrow.counterclockwise")
+                        Label(LocalizedStringKey("manual_reset"), systemImage: "arrow.counterclockwise")
                             .font(.caption)
                     }
                     .buttonStyle(.bordered)
@@ -55,11 +55,11 @@ struct ChecklistDetailView: View {
                     adBannerView
                 }
             }
-            .navigationTitle(checklist.title ?? "チェックリスト")
+            .navigationTitle(checklist.title ?? NSLocalizedString("checklist", comment: ""))
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("完了") {
+                    Button(LocalizedStringKey("done_button")) {
                         dismiss()
                     }
                 }
@@ -67,22 +67,22 @@ struct ChecklistDetailView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
                         Button(action: { showingAddItem = true }) {
-                            Label("アイテム追加", systemImage: "plus")
+                            Label(LocalizedStringKey("add_item"), systemImage: "plus")
                         }
                         
                         Button(action: { showingReminderSettings = true }) {
-                            Label("リマインダー設定", systemImage: "alarm")
+                            Label(LocalizedStringKey("reminder_settings"), systemImage: "alarm")
                         }
                         
                         // GPS設定は常に表示
                         Button(action: { showingLocationSettings = true }) {
-                            Label("GPS設定", systemImage: "location")
+                            Label(LocalizedStringKey("gps_settings_title"), systemImage: "location")
                         }
                         
                         Divider()
                         
                         Button(role: .destructive, action: deleteChecklist) {
-                            Label("削除", systemImage: "trash")
+                            Label(LocalizedStringKey("delete"), systemImage: "trash")
                         }
                     } label: {
                         Image(systemName: "ellipsis.circle")
@@ -128,19 +128,19 @@ struct ChecklistDetailView: View {
                     .font(.largeTitle)
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(checklist.title ?? "チェックリスト")
+                    Text(checklist.title ?? NSLocalizedString("checklist", comment: ""))
                         .font(.title2)
                         .fontWeight(.bold)
                     
                     HStack(spacing: 8) {
-                        Text("\(checklist.itemsArray.count)個のアイテム")
+                        Text(String(format: NSLocalizedString("items_count_format", comment: ""), checklist.itemsArray.count))
                             .font(.caption)
                             .foregroundColor(.secondary)
                         
                         if checklist.isLocationBased {
                             HStack(spacing: 4) {
                                 Image(systemName: "location.fill")
-                                Text(checklist.locationName ?? "GPS連動")
+                                Text(checklist.locationName ?? NSLocalizedString("gps_location", comment: ""))
                             }
                             .font(.caption2)
                             .padding(.horizontal, 6)
@@ -148,7 +148,7 @@ struct ChecklistDetailView: View {
                             .background(Color.blue.opacity(0.2))
                             .foregroundColor(.blue)
                             .cornerRadius(4)
-                            .accessibilityLabel("位置連動: \(checklist.locationName ?? "有効")")
+                            .accessibilityLabel(String(format: NSLocalizedString("location_toggle_enable", comment: ""), checklist.locationName ?? NSLocalizedString("gps_location", comment: "")))
                         }
                         
                         if checklist.reminderEnabled {
@@ -162,7 +162,7 @@ struct ChecklistDetailView: View {
                             .background(Color.orange.opacity(0.2))
                             .foregroundColor(.orange)
                             .cornerRadius(4)
-                            .accessibilityLabel("リマインダー: \(checklist.getReminderDescription())")
+                            .accessibilityLabel(String(format: NSLocalizedString("reminder_settings", comment: "") + ": %@", checklist.getReminderDescription()))
                         }
                     }
                 }
@@ -174,29 +174,29 @@ struct ChecklistDetailView: View {
             HStack(spacing: 16) {
                 progressRing
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("進行状況")
+                    Text(LocalizedStringKey("progress"))
                         .font(.caption)
                         .foregroundColor(.secondary)
-                    Text("\(Int(checklist.completionPercentage * 100))% 完了")
+                    Text(String(format: NSLocalizedString("completion_percentage", comment: ""), Int(checklist.completionPercentage * 100)))
                         .font(.subheadline)
                         .fontWeight(.semibold)
                         .foregroundColor(checklist.isCompleted ? .green : .primary)
-                    Text("自動リセットまで \(hoursUntilMidnightText())")
+                    Text(String(format: NSLocalizedString("auto_reset_in", comment: ""), hoursUntilMidnightText()))
                         .font(.caption)
                         .foregroundColor(.secondary)
-                        .accessibilityLabel("自動リセットまで \(hoursUntilMidnightText())")
+                        .accessibilityLabel(String(format: NSLocalizedString("auto_reset_in", comment: ""), hoursUntilMidnightText()))
                 }
                 Spacer()
             }
             .accessibilityElement(children: .combine)
-            .accessibilityLabel("進捗 \(Int(checklist.completionPercentage * 100))パーセント。自動リセットまで \(hoursUntilMidnightText())")
+            .accessibilityLabel(String(format: NSLocalizedString("progress", comment: "") + " %d%%. " + NSLocalizedString("auto_reset_in", comment: ""), Int(checklist.completionPercentage * 100), hoursUntilMidnightText()))
             
             // 完了メッセージ
             if checklist.isCompleted {
                 HStack {
                     Image(systemName: "checkmark.circle.fill")
                         .foregroundColor(.green)
-                    Text("すべて完了しました！🎉")
+                    Text(LocalizedStringKey("all_completed_message"))
                         .font(.subheadline)
                         .fontWeight(.medium)
                         .foregroundColor(.green)
@@ -216,12 +216,12 @@ struct ChecklistDetailView: View {
                             .foregroundColor(.orange)
                         
                         VStack(alignment: .leading, spacing: 2) {
-                            Text("リマインダー設定")
+                            Text(LocalizedStringKey("reminder_settings"))
                                 .font(.subheadline)
                                 .fontWeight(.medium)
                                 .foregroundColor(.primary)
                             
-                            Text(checklist.reminderEnabled ? checklist.getReminderDescription() : "リマインダーなし")
+                            Text(checklist.reminderEnabled ? checklist.getReminderDescription() : NSLocalizedString("no_reminder", comment: ""))
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }
@@ -240,7 +240,7 @@ struct ChecklistDetailView: View {
                     )
                 }
                 .buttonStyle(PlainButtonStyle())
-                .accessibilityHint("タップしてリマインダーを設定")
+                .accessibilityHint(NSLocalizedString("tap_to_set_reminder", comment: ""))
             }
         }
         .padding(.horizontal)
@@ -278,10 +278,13 @@ struct ChecklistDetailView: View {
         let remaining = startOfTomorrow.timeIntervalSince(now)
         let hours = Int(remaining / 3600)
         let minutes = Int((remaining.truncatingRemainder(dividingBy: 3600)) / 60)
-        if hours > 0 {
-            return "\(hours)時間\(minutes > 0 ? "\(minutes)分" : "")"
+        
+        if hours > 0 && minutes > 0 {
+            return String(format: NSLocalizedString("hours_minutes_format", comment: ""), hours, minutes)
+        } else if hours > 0 {
+            return String(format: NSLocalizedString("hours_only_format", comment: ""), hours)
         } else {
-            return "\(minutes)分"
+            return String(format: NSLocalizedString("minutes_only_format", comment: ""), minutes)
         }
     }
     
@@ -415,7 +418,7 @@ struct ChecklistItemRow: View {
 
 #Preview {
     let context = PersistenceController.preview.container.viewContext
-    let checklist = Checklist(context: context, title: "外出用チェックリスト", emoji: "🚶‍♂️")
+    let checklist = Checklist(context: context, title: NSLocalizedString("going_out_checklist", comment: ""), emoji: "🚶‍♂️")
     
     return ChecklistDetailView(
         checklist: checklist,

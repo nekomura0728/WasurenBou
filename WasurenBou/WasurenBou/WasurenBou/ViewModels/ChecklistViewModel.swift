@@ -172,7 +172,6 @@ class ChecklistViewModel: ObservableObject {
         do {
             try context.save()
             HapticFeedback.notification(.success)
-            print("✅ チェックリスト作成完了: \(title)")
         } catch {
             errorService.handle(
                 AppError.coreDataError(error.localizedDescription),
@@ -187,7 +186,6 @@ class ChecklistViewModel: ObservableObject {
         
         do {
             try context.save()
-            print("🗑️ チェックリスト削除: \(checklist.title ?? "無題")")
         } catch {
             errorService.handle(
                 AppError.coreDataError(error.localizedDescription),
@@ -206,7 +204,6 @@ class ChecklistViewModel: ObservableObject {
         do {
             try context.save()
         } catch {
-            print("Failed to update lastUsed: \(error)")
         }
     }
     
@@ -243,8 +240,6 @@ class ChecklistViewModel: ObservableObject {
         
         do {
             try context.save()
-            print("✅ チェックリストアイテム追加完了: \(title)")
-            print("📋 チェックリスト: \(checklist.title ?? "無題") - アイテム数: \(checklist.itemsArray.count)")
             
             // 即座にUIを更新
             objectWillChange.send()
@@ -258,7 +253,6 @@ class ChecklistViewModel: ObservableObject {
                 AppError.coreDataError(error.localizedDescription),
                 context: "チェックリストアイテムの追加"
             )
-            print("❌ チェックリストアイテム追加エラー: \(error)")
         }
     }
     
@@ -368,7 +362,6 @@ class ChecklistViewModel: ObservableObject {
         
         do {
             try context.save()
-            print("✅ チェックリストリマインダー設定保存: \(checklist.title ?? "無題")")
             
             // 有効な場合は新しい通知をスケジュール
             if enabled {
@@ -390,7 +383,6 @@ class ChecklistViewModel: ObservableObject {
         if !identifiers.isEmpty {
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
             checklist.scheduledNotificationIdentifiers = []
-            print("🔕 既存通知キャンセル: \(identifiers.count)件")
         }
     }
     
@@ -432,9 +424,7 @@ class ChecklistViewModel: ObservableObject {
                 do {
                     try await UNUserNotificationCenter.current().add(request)
                     notificationIdentifiers.append(identifier)
-                    print("📅 毎日リマインダースケジュール: \(hour):\(String(format: "%02d", minute))")
                 } catch {
-                    print("❌ 通知スケジュールエラー: \(error)")
                 }
             } else {
                 // 指定曜日に繰り返し
@@ -462,9 +452,7 @@ class ChecklistViewModel: ObservableObject {
                     do {
                         try await UNUserNotificationCenter.current().add(request)
                         notificationIdentifiers.append(identifier)
-                        print("📅 週間リマインダースケジュール: 曜日\(dayNumber) \(hour):\(String(format: "%02d", minute))")
                     } catch {
-                        print("❌ 通知スケジュールエラー: \(error)")
                     }
                 }
             }
@@ -489,9 +477,7 @@ class ChecklistViewModel: ObservableObject {
             do {
                 try await UNUserNotificationCenter.current().add(request)
                 notificationIdentifiers.append(identifier)
-                print("📅 1回限りリマインダースケジュール: \(reminderDate)")
             } catch {
-                print("❌ 通知スケジュールエラー: \(error)")
             }
         }
         
@@ -500,9 +486,7 @@ class ChecklistViewModel: ObservableObject {
         let context = persistenceController.container.viewContext
         do {
             try context.save()
-            print("📱 \(notificationIdentifiers.count)件の通知をスケジュール")
         } catch {
-            print("❌ 通知ID保存エラー: \(error)")
         }
     }
     

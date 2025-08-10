@@ -22,19 +22,37 @@ struct AddChecklistView: View {
     
     private let templates: [ChecklistTemplate] = [
         ChecklistTemplate(
-            title: "外出用チェックリスト",
+            title: NSLocalizedString("going_out_checklist", comment: ""),
             emoji: "🚶‍♂️",
-            items: ["スマホ", "財布", "家の鍵", "ハンカチ・ティッシュ", "マスク"]
+            items: [
+                NSLocalizedString("item_smartphone", comment: ""),
+                NSLocalizedString("item_wallet", comment: ""),
+                NSLocalizedString("item_house_keys", comment: ""),
+                NSLocalizedString("item_handkerchief", comment: ""),
+                NSLocalizedString("item_mask", comment: "")
+            ]
         ),
         ChecklistTemplate(
-            title: "旅行用チェックリスト",
+            title: NSLocalizedString("travel_checklist", comment: ""),
             emoji: "✈️",
-            items: ["パスポート・身分証", "チケット", "充電器", "着替え", "洗面用具"]
+            items: [
+                NSLocalizedString("item_passport", comment: ""),
+                NSLocalizedString("item_tickets", comment: ""),
+                NSLocalizedString("item_charger", comment: ""),
+                NSLocalizedString("item_clothes", comment: ""),
+                NSLocalizedString("item_toiletries", comment: "")
+            ]
         ),
         ChecklistTemplate(
-            title: "仕事用チェックリスト",
+            title: NSLocalizedString("work_checklist", comment: ""),
             emoji: "💼",
-            items: ["ノートPC", "資料", "名刺", "筆記用具", "社員証"]
+            items: [
+                NSLocalizedString("item_laptop", comment: ""),
+                NSLocalizedString("item_documents", comment: ""),
+                NSLocalizedString("item_business_cards", comment: ""),
+                NSLocalizedString("item_stationery", comment: ""),
+                NSLocalizedString("item_employee_id", comment: "")
+            ]
         )
     ]
     
@@ -50,17 +68,17 @@ struct AddChecklistView: View {
                 }
                 .padding()
             }
-            .navigationTitle("チェックリストを追加")
+            .navigationTitle(NSLocalizedString("add_checklist", comment: ""))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("キャンセル") {
+                    Button(NSLocalizedString("cancel", comment: "")) {
                         dismiss()
                     }
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("作成") {
+                    Button(NSLocalizedString("create_button", comment: "")) {
                         createChecklist()
                     }
                     .disabled(title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
@@ -73,7 +91,7 @@ struct AddChecklistView: View {
     // MARK: - Template Selection
     private var templateSelectionSection: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("テンプレートを選択")
+            Text(NSLocalizedString("select_template", comment: ""))
                 .font(.headline)
                 .fontWeight(.semibold)
             
@@ -89,7 +107,7 @@ struct AddChecklistView: View {
             
             // カスタムテンプレート
             TemplateRow(
-                template: ChecklistTemplate(title: "カスタム", emoji: "✏️", items: []),
+                template: ChecklistTemplate(title: NSLocalizedString("custom_template", comment: ""), emoji: "✏️", items: []),
                 isSelected: selectedTemplate == nil,
                 onTap: { selectCustomTemplate() }
             )
@@ -99,23 +117,23 @@ struct AddChecklistView: View {
     // MARK: - Customization Section
     private var customizationSection: some View {
         VStack(alignment: .leading, spacing: 20) {
-            Text("カスタマイズ")
+            Text(NSLocalizedString("customize", comment: ""))
                 .font(.headline)
                 .fontWeight(.semibold)
             
             // タイトル入力
             VStack(alignment: .leading, spacing: 8) {
-                Text("タイトル")
+                Text(NSLocalizedString("title_label", comment: ""))
                     .font(.subheadline)
                     .fontWeight(.medium)
                 
-                TextField("例：外出用チェックリスト", text: $title)
+                TextField(NSLocalizedString("checklist_placeholder", comment: ""), text: $title)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
             
             // 絵文字選択
             VStack(alignment: .leading, spacing: 8) {
-                Text("絵文字")
+                Text(NSLocalizedString("emoji_label", comment: ""))
                     .font(.subheadline)
                     .fontWeight(.medium)
                 

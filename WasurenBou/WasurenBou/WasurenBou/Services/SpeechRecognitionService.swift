@@ -85,19 +85,14 @@ class SpeechRecognitionService: NSObject, ObservableObject {
         switch authorizationStatus {
         case .authorized:
             isAuthorized = true
-            print("🎤 音声認識が許可されました")
         case .denied:
             isAuthorized = false
-            print("❌ 音声認識が拒否されました")
         case .restricted:
             isAuthorized = false
-            print("❌ 音声認識が制限されています")
         case .notDetermined:
             isAuthorized = false
-            print("⏳ 音声認識の権限が未決定です")
         @unknown default:
             isAuthorized = false
-            print("❓ 音声認識の権限状態が不明です")
         }
     }
     
@@ -116,21 +111,18 @@ class SpeechRecognitionService: NSObject, ObservableObject {
         }
         
         guard isAuthorized else {
-            print("❌ 音声認識の権限がありません")
             return
         }
         
         // マイクの権限確認
         let micAuthorized = await requestMicrophoneAuthorization()
         guard micAuthorized else {
-            print("❌ マイクの権限がありません")
             return
         }
         
         do {
             try await startSpeechRecognition()
         } catch {
-            print("❌ 音声認識の開始に失敗: \(error)")
         }
     }
     
@@ -170,7 +162,6 @@ class SpeechRecognitionService: NSObject, ObservableObject {
                 if let result = result {
                     self.transcription = result.bestTranscription.formattedString
                     isFinal = result.isFinal
-                    print("🎤 認識結果: \(self.transcription)")
                 }
                 
                 if error != nil || isFinal {
@@ -191,7 +182,6 @@ class SpeechRecognitionService: NSObject, ObservableObject {
         
         isRecording = true
         transcription = ""
-        print("🎤 音声認識開始")
     }
     
     func stopRecording() {
@@ -205,7 +195,6 @@ class SpeechRecognitionService: NSObject, ObservableObject {
         recognitionTask = nil
         
         isRecording = false
-        print("🛑 音声認識停止")
     }
     
     // MARK: - Text Processing
@@ -242,9 +231,7 @@ extension SpeechRecognitionService: SFSpeechRecognizerDelegate {
     nonisolated func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         Task { @MainActor in
             if available {
-                print("✅ 音声認識が利用可能になりました")
             } else {
-                print("❌ 音声認識が利用できません")
                 isAuthorized = false
             }
         }

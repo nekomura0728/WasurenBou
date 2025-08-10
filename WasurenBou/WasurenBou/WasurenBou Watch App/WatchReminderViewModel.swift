@@ -87,16 +87,13 @@ class WatchReminderViewModel: NSObject, ObservableObject {
         let context = persistenceController.container.viewContext
         let reminder = Reminder(context: context, title: title, scheduledTime: scheduledTime)
         
-        do {
-            try context.save()
+        if persistenceController.safeSave() {
             loadTodayReminders()
             
             // iPhoneに同期
             syncReminderToiPhone(reminder)
-            
-            print("✅ Watch: Reminder created - \(title)")
-        } catch {
-            errorMessage = "Failed to create reminder: \(error.localizedDescription)"
+        } else {
+            errorMessage = "リマインダーの作成に失敗しました"
         }
     }
     
@@ -105,16 +102,13 @@ class WatchReminderViewModel: NSObject, ObservableObject {
         reminder.isCompleted = true
         reminder.completedAt = Date()
         
-        do {
-            try context.save()
+        if persistenceController.safeSave() {
             loadTodayReminders()
             
             // iPhoneに同期
             syncReminderCompletionToiPhone(reminder)
-            
-            print("✅ Watch: Reminder completed - \(reminder.title ?? "")")
-        } catch {
-            errorMessage = "Failed to complete reminder: \(error.localizedDescription)"
+        } else {
+            errorMessage = "リマインダーの完了に失敗しました"
         }
     }
     
@@ -130,7 +124,9 @@ class WatchReminderViewModel: NSObject, ObservableObject {
         ]
         
         session.sendMessage(reminderData, replyHandler: nil) { error in
-            print("❌ Failed to sync reminder to iPhone: \(error)")
+            Task { @MainActor in
+                self.errorMessage = "同期エラー: \(error.localizedDescription)"
+            }
         }
     }
     
@@ -143,7 +139,9 @@ class WatchReminderViewModel: NSObject, ObservableObject {
         ]
         
         session.sendMessage(completionData, replyHandler: nil) { error in
-            print("❌ Failed to sync completion to iPhone: \(error)")
+            Task { @MainActor in
+                self.errorMessage = "同期エラー: \(error.localizedDescription)"
+            }
         }
     }
     
@@ -158,7 +156,9 @@ class WatchReminderViewModel: NSObject, ObservableObject {
                 self?.handleiPhoneDataResponse(reply)
             }
         }) { error in
-            print("❌ Failed to request data from iPhone: \(error)")
+            Task { @MainActor in
+                self?.errorMessage = "データ要求エラー: \(error.localizedDescription)"
+            }
         }
     }
     
@@ -166,12 +166,12 @@ class WatchReminderViewModel: NSObject, ObservableObject {
         // iPhoneからのデータを処理
         if let remindersData = data["reminders"] as? [[String: Any]] {
             // リマインダーデータの同期処理
-            print("📱 Received \(remindersData.count) reminders from iPhone")
+            // リマインダーデータを受信
         }
         
         if let templatesData = data["templates"] as? [[String: Any]] {
             // テンプレートデータの同期処理
-            print("📱 Received \(templatesData.count) templates from iPhone")
+            // テンプレートデータを受信
         }
     }
 }
@@ -181,11 +181,9 @@ extension WatchReminderViewModel: WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         DispatchQueue.main.async {
             if let error = error {
-                print("❌ Watch Connectivity activation failed: \(error)")
+                self.errorMessage = "Watch接続エラー: \(error.localizedDescription)"
                 return
             }
-            
-            print("✅ Watch Connectivity activated with state: \(activationState.rawValue)")
             
             // アクティベーション後にiPhoneからデータを要求
             if activationState == .activated {
@@ -214,17 +212,17 @@ extension WatchReminderViewModel: WCSessionDelegate {
         case "reminderCreated":
             // iPhoneで作成されたリマインダーを反映
             loadTodayReminders()
-            print("📱 iPhone created a reminder, refreshing data")
+            // iPhoneでリマインダーが作成されました
             
         case "reminderCompleted":
             // iPhoneで完了されたリマインダーを反映
             loadTodayReminders()
-            print("📱 iPhone completed a reminder, refreshing data")
+            // iPhoneでリマインダーが完了されました
             
         case "templatesUpdated":
             // テンプレートが更新された
             loadTemplates()
-            print("📱 iPhone updated templates, refreshing data")
+            // iPhoneでテンプレートが更新されました
             
         default:
             break

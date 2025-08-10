@@ -37,6 +37,48 @@
 "reminder_completed" = "素晴らしい！リマインダーを完了しました 🎉";
 "time_label" = "時刻: %@";
 
+// MARK: - Completion Messages
+"completion_message_1" = "素晴らしい！ 🎉";
+"completion_message_2" = "よくできました！ ⭐";
+"completion_message_3" = "完璧です！ 👏";
+"completion_message_4" = "素敵です！ ✨";
+"completion_message_5" = "すごい！ 🌟";
+
+// MARK: - AddChecklistItem Screen
+"add_new_item_title" = "新しいアイテムを追加";
+"add_item_to_checklist_desc" = "%@にアイテムを追加します";
+"item_name_label" = "アイテム名";
+"item_name_placeholder" = "例：スマホ";
+"add_item_navigation_title" = "アイテム追加";
+"add" = "追加";
+
+// MARK: - Reminder Settings
+"enable_reminder" = "リマインダーを有効にする";
+"checklist_reminder_footer" = "チェックリストの確認リマインダーを設定できます";
+"time_settings_section" = "時刻設定";
+"notification_time" = "通知時刻";
+"repeat_settings" = "繰り返し設定";
+"repeat_footer" = "毎日または指定した曜日に繰り返し通知されます";
+"repeat_days_section" = "繰り返し曜日";
+"notification_preview" = "プレビュー: \"%@の確認をお忘れなく！\"";
+"notification_content_header" = "通知内容";
+"reminder_settings_title" = "リマインダー設定";
+
+// MARK: - Days of Week
+"sunday" = "日曜日";
+"monday" = "月曜日";
+"tuesday" = "火曜日";
+"wednesday" = "水曜日";
+"thursday" = "木曜日";
+"friday" = "金曜日";
+"saturday" = "土曜日";
+
+// MARK: - Location Settings
+"location_not_available_error" = "現在地が取得できていません。『現在地の座標を使用』を押してから保存してください。";
+"unnamed_location" = "（未命名の場所）";
+"checklist" = "チェックリスト";
+"support" = "サポート・ヘルプ";
+
 // MARK: - Time Selection
 "close" = "×";
 "reminder_title" = "リマインダー: %@";
@@ -159,3 +201,92 @@
 "developer" = "開発";
 "dev_force_premium" = "開発用: プレミアムを強制ON";
 "dev_force_premium_desc" = "テスト用。実機課金が使えない場合に利用";
+
+// MARK: - Checklist Screen
+"checklist" = "チェックリスト";
+"completion_percentage" = "%d%% 完了";
+"items_count_format" = "%d個のアイテム";
+"progress" = "進行状況";
+"auto_reset_in" = "自動リセットまで %@";
+"all_completed_message" = "すべて完了しました！🎉";
+"reminder_settings" = "リマインダー設定";
+"no_reminder" = "リマインダーなし";
+"tap_to_set_reminder" = "タップしてリマインダーを設定";
+"manual_reset" = "手動でリセット";
+"daily_reset_desc" = "日付が変わるとチェックは自動的にリセットされます";
+"done_button" = "完了";
+"add_item" = "アイテム追加";
+"gps_location" = "GPS連動";
+
+// MARK: - Settings Screen
+"premium_version" = "プレミアム版";
+"restore_purchases" = "購入を復元";
+
+// MARK: - Time Format
+"hours_minutes_format" = "%d時間%d分";
+"hours_only_format" = "%d時間";
+"minutes_only_format" = "%d分";
+
+// MARK: - Add Checklist Screen
+"add_checklist" = "チェックリストを追加";
+"select_template" = "テンプレートを選択";
+"custom_template" = "カスタム";
+"create_button" = "作成";
+"going_out_checklist" = "外出用チェックリスト";
+"travel_checklist" = "旅行用チェックリスト";
+"work_checklist" = "仕事用チェックリスト";
+"item_smartphone" = "スマホ";
+"item_wallet" = "財布";
+"item_house_keys" = "家の鍵";
+"item_handkerchief" = "ハンカチ・ティッシュ";
+"item_mask" = "マスク";
+"item_passport" = "パスポート・身分証";
+"item_tickets" = "チケット";
+"item_charger" = "充電器";
+"item_clothes" = "着替え";
+"item_toiletries" = "洗面用具";
+"item_laptop" = "ノートPC";
+"item_documents" = "資料";
+"item_business_cards" = "名刺";
+"item_stationery" = "筆記用具";
+"item_employee_id" = "社員証";
+"checklist_name" = "チェックリスト名";
+"select_emoji" = "絵文字を選択";
+"customize" = "カスタマイズ";
+"title_label" = "タイトル";
+"emoji_label" = "絵文字";
+"checklist_placeholder" = "例：外出用チェックリスト";
+
+// MARK: - Template Manager
+"no_templates" = "テンプレートがありません";
+"no_templates_description" = "最初のカスタムテンプレートを作成してください";
+
+// MARK: - Tab Bar
+"tab_reminders" = "リマインダー";
+"tab_checklists" = "チェックリスト";
+"tab_settings" = "設定";
+
+// MARK: - Voice Input Component
+"stop_recording" = "録音を停止";
+"start_voice_input" = "音声入力を開始";
+"voice_input_hint" = "タップしてリマインダーを音声で作成します";
+"voice_recognizing" = "音声認識中...";
+"tap_to_speak_prompt" = "タップして音声でリマインダー作成";
+"speech_permission_warning" = "音声認識の権限が必要です。\n設定で有効にしてください";
+
+// MARK: - About Screen  
+"app_description" = "みんなに優しいリマインダーアプリ";
+"features" = "機能";
+"feature_voice_input" = "音声入力";
+"feature_voice_input_desc" = "音声認識でリマインダーを作成";
+"feature_smart_notifications" = "スマート通知";
+"feature_smart_notifications_desc" = "エスカレーション通知で忘れを防止";
+"feature_custom_templates" = "カスタムテンプレート";
+"feature_custom_templates_desc" = "よく使うリマインダーに簡単アクセス";
+"feature_dark_mode" = "ダークモード";
+"feature_dark_mode_desc" = "好みに合わせた美しいインターフェース";
+"feature_multilingual" = "多言語対応";
+"feature_multilingual_desc" = "日本語と英語に対応";
+"created_with_love" = "SwiftUIで❤️を込めて作られました";
+"copyright" = "© 2025 Remind!!!";
+"current_language" = "現在の言語: %@";"reminder" = "リマインダー";

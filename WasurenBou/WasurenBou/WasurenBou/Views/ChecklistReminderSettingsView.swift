@@ -17,30 +17,32 @@ struct ChecklistReminderSettingsView: View {
     @State private var isRepeating = false
     @State private var repeatDays: Set<Int> = []
     
-    private let weekdays = [
-        (1, "日曜日"),
-        (2, "月曜日"),
-        (3, "火曜日"),
-        (4, "水曜日"),
-        (5, "木曜日"),
-        (6, "金曜日"),
-        (7, "土曜日")
-    ]
+    private var weekdays: [(Int, String)] {
+        [
+            (1, NSLocalizedString("sunday", comment: "")),
+            (2, NSLocalizedString("monday", comment: "")),
+            (3, NSLocalizedString("tuesday", comment: "")),
+            (4, NSLocalizedString("wednesday", comment: "")),
+            (5, NSLocalizedString("thursday", comment: "")),
+            (6, NSLocalizedString("friday", comment: "")),
+            (7, NSLocalizedString("saturday", comment: ""))
+        ]
+    }
     
     var body: some View {
         NavigationStack {
             Form {
                 Section {
-                    Toggle("リマインダーを有効にする", isOn: $reminderEnabled)
+                    Toggle(String(localized: "enable_reminder"), isOn: $reminderEnabled)
                         .tint(.blue)
                 } footer: {
-                    Text("チェックリストの確認リマインダーを設定できます")
+                    Text(LocalizedStringKey("checklist_reminder_footer"))
                 }
                 
                 if reminderEnabled {
-                    Section("時刻設定") {
+                    Section(String(localized: "time_settings_section")) {
                         DatePicker(
-                            "通知時刻",
+                            String(localized: "notification_time"),
                             selection: $reminderTime,
                             displayedComponents: .hourAndMinute
                         )
@@ -49,14 +51,14 @@ struct ChecklistReminderSettingsView: View {
                     }
                     
                     Section {
-                        Toggle("繰り返し設定", isOn: $isRepeating)
+                        Toggle(String(localized: "repeat_settings"), isOn: $isRepeating)
                             .tint(.blue)
                     } footer: {
-                        Text("毎日または指定した曜日に繰り返し通知されます")
+                        Text(LocalizedStringKey("repeat_footer"))
                     }
                     
                     if isRepeating {
-                        Section("繰り返し曜日") {
+                        Section(String(localized: "repeat_days_section")) {
                             ForEach(weekdays, id: \.0) { dayNumber, dayName in
                                 Button(action: {
                                     if repeatDays.contains(dayNumber) {
@@ -82,25 +84,25 @@ struct ChecklistReminderSettingsView: View {
                     }
                     
                     Section {
-                        Text("プレビュー: \"\(checklist.title ?? "チェックリスト")の確認をお忘れなく！\"")
+                        Text(String(format: NSLocalizedString("notification_preview", comment: ""), checklist.title ?? NSLocalizedString("checklist", comment: "")))
                             .font(.caption)
                             .foregroundColor(.secondary)
                     } header: {
-                        Text("通知内容")
+                        Text(LocalizedStringKey("notification_content_header"))
                     }
                 }
             }
-            .navigationTitle("リマインダー設定")
+            .navigationTitle(LocalizedStringKey("reminder_settings_title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("キャンセル") {
+                    Button(String(localized: "cancel")) {
                         dismiss()
                     }
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("保存") {
+                    Button(String(localized: "save")) {
                         saveReminderSettings()
                         dismiss()
                     }
@@ -121,11 +123,6 @@ struct ChecklistReminderSettingsView: View {
         isRepeating = checklist.reminderIsRepeating
         repeatDays = checklist.reminderDays
         
-        print("📖 リマインダー設定読み込み: \(checklist.title ?? "無題")")
-        print("   有効: \(reminderEnabled)")
-        print("   時刻: \(reminderTime)")
-        print("   繰り返し: \(isRepeating)")
-        print("   曜日: \(repeatDays)")
     }
     
     private func saveReminderSettings() {
@@ -160,13 +157,12 @@ struct ChecklistReminderSettingsView: View {
             message = "リマインダーを無効にしました。"
         }
         
-        print("💾 \(message)")
     }
 }
 
 #Preview {
     let context = PersistenceController.preview.container.viewContext
-    let checklist = Checklist(context: context, title: "外出用チェックリスト", emoji: "🚶‍♂️")
+    let checklist = Checklist(context: context, title: NSLocalizedString("going_out_checklist", comment: ""), emoji: "🚶‍♂️")
     
     return ChecklistReminderSettingsView(
         checklist: checklist,

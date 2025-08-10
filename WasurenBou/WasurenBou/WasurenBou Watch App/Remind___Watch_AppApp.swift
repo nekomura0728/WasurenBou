@@ -22,7 +22,7 @@ struct Remind___Watch_App: App {
     }
     
     private func setupWatch() {
-        // Watch固有の初期化
-        print("🎯 Remind!!! Watch App initialized")
+        // Watch固有の初期化処理
+        // 必要に応じてWatch特有の設定を行う
     }
 }

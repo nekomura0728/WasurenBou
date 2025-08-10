@@ -159,3 +159,92 @@
 "developer" = "Developer";
 "dev_force_premium" = "Developer: Force Premium ON";
 "dev_force_premium_desc" = "For testing when real purchase isn't available";
+
+// MARK: - Checklist Screen
+"checklist" = "Checklist";
+"completion_percentage" = "%d%% Complete";
+"items_count_format" = "%d items";
+"progress" = "Progress";
+"auto_reset_in" = "Auto-reset in %@";
+"all_completed_message" = "All completed! 🎉";
+"reminder_settings" = "Reminder Settings";
+"no_reminder" = "No reminder";
+"tap_to_set_reminder" = "Tap to set a reminder";
+"manual_reset" = "Manual reset";
+"daily_reset_desc" = "Checks will automatically reset when the date changes";
+"done_button" = "Done";
+"add_item" = "Add Item";
+"gps_location" = "GPS linked";
+
+// MARK: - Settings Screen
+"premium_version" = "Premium Version";
+"restore_purchases" = "Restore Purchases";
+
+// MARK: - Time Format
+"hours_minutes_format" = "%d hours %d minutes";
+"hours_only_format" = "%d hours";
+"minutes_only_format" = "%d minutes";
+
+// MARK: - Add Checklist Screen  
+"add_checklist" = "Add Checklist";
+"select_template" = "Select Template";
+"custom_template" = "Custom";
+"create_button" = "Create";
+"going_out_checklist" = "Going Out Checklist";
+"travel_checklist" = "Travel Checklist";
+"work_checklist" = "Work Checklist";
+"item_smartphone" = "Smartphone";
+"item_wallet" = "Wallet";
+"item_house_keys" = "House Keys";
+"item_handkerchief" = "Handkerchief/Tissues";
+"item_mask" = "Mask";
+"item_passport" = "Passport/ID";
+"item_tickets" = "Tickets";
+"item_charger" = "Charger";
+"item_clothes" = "Change of Clothes";
+"item_toiletries" = "Toiletries";
+"item_laptop" = "Laptop";
+"item_documents" = "Documents";
+"item_business_cards" = "Business Cards";
+"item_stationery" = "Stationery";
+"item_employee_id" = "Employee ID";
+"checklist_name" = "Checklist Name";
+"select_emoji" = "Select Emoji";
+"customize" = "Customize";
+"title_label" = "Title";
+"emoji_label" = "Emoji";
+"checklist_placeholder" = "e.g., Going Out Checklist";
+
+// MARK: - Template Manager
+"no_templates" = "No Templates";
+"no_templates_description" = "Create your first custom template to get started";
+
+// MARK: - Tab Bar
+"tab_reminders" = "Reminders";
+"tab_checklists" = "Checklists";
+"tab_settings" = "Settings";
+
+// MARK: - Voice Input Component
+"stop_recording" = "Stop recording";
+"start_voice_input" = "Start voice input";
+"voice_input_hint" = "Tap to create reminder with voice";
+"voice_recognizing" = "Recognizing...";
+"tap_to_speak_prompt" = "Tap to create reminder with voice";
+"speech_permission_warning" = "Speech recognition permission required.\nPlease enable from Settings";
+
+// MARK: - About Screen
+"app_description" = "A kind reminder app for everyone";
+"features" = "Features";
+"feature_voice_input" = "Voice Input";
+"feature_voice_input_desc" = "Create reminders using voice recognition";
+"feature_smart_notifications" = "Smart Notifications";
+"feature_smart_notifications_desc" = "Escalating reminders ensure you never forget";
+"feature_custom_templates" = "Custom Templates";
+"feature_custom_templates_desc" = "Quick access to your frequently used reminders";
+"feature_dark_mode" = "Dark Mode";
+"feature_dark_mode_desc" = "Beautiful interface that adapts to your preference";
+"feature_multilingual" = "Multilingual";
+"feature_multilingual_desc" = "Supports Japanese and English";
+"created_with_love" = "Created with ❤️ using SwiftUI";
+"copyright" = "© 2025 Remind!!!";
+"current_language" = "Current Language: %@";

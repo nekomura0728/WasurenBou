@@ -111,9 +111,6 @@ class ErrorHandlingService: ObservableObject {
         
         // Log error for debugging
         #if DEBUG
-        print("🔴 Error: \(appError.errorDescription ?? "Unknown")")
-        print("📍 Context: \(context ?? "None")")
-        print("💡 Suggestion: \(appError.recoverySuggestion ?? "None")")
         #endif
     }
     

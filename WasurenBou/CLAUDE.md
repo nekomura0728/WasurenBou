@@ -12,14 +12,24 @@ WasurenBou (わすれん棒) is an iOS/watchOS reminder app specifically designe
 
 ### Building the Project
 ```bash
-# Build for simulator
-xcodebuild -project WasurenBou.xcodeproj -scheme WasurenBou -configuration Debug -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.2' build
+# Build for simulator (recommended device: iPhone 16 Pro for screenshots)
+xcodebuild -project WasurenBou.xcodeproj -scheme WasurenBou -configuration Debug -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=18.2' build
 
 # Build for device (requires signing configuration)
 xcodebuild -project WasurenBou.xcodeproj -scheme WasurenBou -configuration Release -destination 'generic/platform=iOS' build
 
 # Clean build
 xcodebuild -project WasurenBou.xcodeproj -scheme WasurenBou clean
+```
+
+### Version Management
+```bash
+# Update build number (current: 1.0(7))
+agvtool new-version [BUILD_NUMBER]
+
+# Check current version
+agvtool what-version
+agvtool what-marketing-version
 ```
 
 ### Running Tests
@@ -97,6 +107,19 @@ Voice input flow:
 3. `processTranscription()` applies intelligent corrections for common phrases
 4. `ReminderViewModel.processVoiceInput()` creates templates from recognized patterns
 
+### Core Data Model Structure
+**Entities**:
+- **Reminder**: Basic reminders with escalating notifications
+  - `title`, `scheduledTime`, `isCompleted`, `notificationIdentifiers`
+- **ReminderTemplate**: Frequently used reminder patterns
+  - `title`, `emoji`, `usageCount`, `lastUsed`
+- **Checklist**: Group of items with location/reminder capabilities
+  - `title`, `emoji`, `reminderEnabled`, `isLocationBased`, `latitude/longitude`
+- **ChecklistItem**: Individual checklist items
+  - `title`, `isChecked`, `order`
+
+**Relationships**: Checklist → ChecklistItem (one-to-many, cascade delete)
+
 ## Critical Implementation Details
 
 ### Actor Isolation
@@ -115,10 +138,18 @@ The app requires these Info.plist keys (added to project build settings):
 - `INFOPLIST_KEY_NSSpeechRecognitionUsageDescription`: Speech recognition permission
 
 ### Build Configuration
+- **App Name**: Remind!!! (code name: WasurenBou)
 - **Minimum iOS**: 18.2 (configured in project settings)
 - **Swift Version**: 5.0
 - **Development Team**: RVU4KGDM65
 - **Bundle ID**: com.lizaria.WasurenBou
+- **Current Version**: 1.0 (7)
+
+### AdMob Configuration
+- **App ID**: ca-app-pub-4187811193514537~8449937639
+- **Banner Unit ID**: ca-app-pub-4187811193514537/6354257330
+- **Test Ads**: Automatically used in Debug builds
+- **Production Ads**: Used in Release builds only
 
 ## Common Development Tasks
 
@@ -138,13 +169,43 @@ The app requires these Info.plist keys (added to project build settings):
 2. Update template matching in `ReminderViewModel.findAndUseMatchingTemplate()`
 3. Test with Japanese voice input in simulator/device
 
+### Template Display Issues
+If templates show empty icons/titles:
+1. Check `ReminderViewModel.findAndUseMatchingTemplate()` is public (not private)
+2. Ensure template usage tracking calls `incrementUsage()` and saves context
+3. Verify cache is cleared after template updates: `cache.removeObject(forKey: "templates")`
+
 ## Project Structure Notes
 
 - **Extensions/**: Core Data entity extensions for custom methods
-- **Services/**: Singleton services for notifications, speech, persistence
+- **Services/**: Singleton services (AdMob, Location, Speech, Notifications, etc.)
 - **ViewModels/**: MVVM view models managing business logic
-- **Views**: SwiftUI views (main views in ContentView.swift)
+- **Views/**: SwiftUI views for different features
+- **Resources/**: Localization files (ja.lproj, en.lproj, Base.lproj)
+- **ViewModifiers/**: Custom SwiftUI modifiers (DesignSystem, AnimationSystem)
+- **Models/**: Swift model classes (Checklist, ChecklistItem)
 - **build/**: Auto-generated build artifacts (ignore in development)
+
+## Localization Architecture
+
+### Language Support
+- **Primary**: Japanese (`ja_JP`) - Default development language
+- **Secondary**: English (`en_US`) - International support
+- **Fallback**: English for missing Japanese localizations
+
+### Localization Files Structure
+```
+Resources/
+├── Base.lproj/          # English base localization
+├── ja.lproj/           # Japanese localization  
+└── en.lproj/           # English localization
+```
+
+### Key Implementation Details
+- App determines locale in `WasurenBouApp.determineAppLocale()`
+- All user-facing strings use `NSLocalizedString()`
+- Speech recognition defaults to `ja-JP` locale
+- Bundle localization configuration in Info.plist
 
 ## Testing Considerations
 
@@ -152,3 +213,26 @@ The app requires these Info.plist keys (added to project build settings):
 - Notifications require proper entitlements and user permission
 - Core Data operations should be tested with both empty and populated stores
 - Test escalating notifications with accelerated time intervals for development
+- AdMob ads automatically use test IDs in Debug builds, production IDs in Release builds
+- Location-based features require physical device for accurate GPS testing
+- Premium features (in-app purchase) testing requires App Store Connect configuration
+
+## App Store Preparation
+
+### Current Status
+- **Version**: 1.0 (7) - Ready for submission
+- **Localization**: Complete (Japanese/English)
+- **AdMob Integration**: Configured and ready
+- **Privacy**: ATT and GDPR compliance implemented
+- **Support Site**: https://s-maemura.github.io/WasurenBou-support/
+
+### Required Screenshots
+- iPhone 6.7" (1284×2778px): Use iPhone 16 Pro simulator
+- Screenshots stored in: `/Users/s.maemura/AppPJ/sc/`
+
+### Key App Store Metadata
+- **Bundle ID**: com.lizaria.WasurenBou
+- **App Name**: Remind!!!
+- **Category**: Productivity  
+- **Age Rating**: 4+
+- **In-App Purchase**: Premium features ¥480

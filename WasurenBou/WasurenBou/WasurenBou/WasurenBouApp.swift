@@ -17,8 +17,20 @@ struct WasurenBouApp: App {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(notificationService)
+                .environment(\.locale, determineAppLocale())
                 .withErrorHandling()
                 .onAppear {
+                    // ロケール診断ログ（一時）
+                    let preferred = Bundle.main.preferredLocalizations
+                    let available = Bundle.main.localizations
+                    let currentLang = Locale.current.identifier
+                    
+                    // Locale debugging
+                    let currentLocale = Locale.current
+                    let preferredLangs = Locale.preferredLanguages
+                    let bundleLocalizations = Bundle.main.localizations
+                    let bundlePreferred = Bundle.main.preferredLocalizations
+                    
                     setupNotifications()
                     setupNotificationObservers()
                     Task {
@@ -44,5 +56,24 @@ struct WasurenBouApp: App {
         NotificationCenter.default.addObserver(forName: NSNotification.Name("OpenChecklistFromNotification"), object: nil, queue: .main) { note in
             // ここではアプリ全体の状態更新のみ。実際の画面遷移はContentView側でハンドル
         }
+    }
+    
+    private func determineAppLocale() -> Locale {
+        // Get the preferred language from Bundle
+        let preferredLanguage = Bundle.main.preferredLocalizations.first ?? "en"
+        
+        // Map the language to appropriate locale identifier
+        let localeIdentifier: String
+        switch preferredLanguage {
+        case "ja":
+            localeIdentifier = "ja_JP"
+        case "en":
+            localeIdentifier = "en_US"
+        default:
+            // Fallback to system locale if neither ja nor en
+            return Locale.current
+        }
+        
+        return Locale(identifier: localeIdentifier)
     }
 }

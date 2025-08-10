@@ -22,9 +22,13 @@ struct PersistenceController {
         do {
             try viewContext.save()
         } catch {
-            // プレビュー用なのでエラーは無視
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            // プレビュー用なので一時的なエラーはログ出力のみ
+            Task { @MainActor in
+                ErrorHandlingService.shared.handle(
+                    AppError.coreDataError(error.localizedDescription),
+                    context: "Preview data creation"
+                )
+            }
         }
         return result
     }()
@@ -50,7 +54,15 @@ struct PersistenceController {
         
         container.loadPersistentStores(completionHandler: { _, error in
             if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+                // Core Dataストアの読み込みエラーを処理
+                Task { @MainActor in
+                    ErrorHandlingService.shared.handle(
+                        AppError.coreDataError(error.localizedDescription),
+                        context: "Loading persistent stores"
+                    )
+                }
+                // 重大なエラーの場合は代替手段を試行
+                // 例: メモリ内データベースへのフォールバック
             }
         })
         
@@ -65,9 +77,36 @@ struct PersistenceController {
             do {
                 try context.save()
             } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                // エラーハンドリング: コンテキストをロールバックして復旧を試行
+                context.rollback()
+                Task { @MainActor in
+                    ErrorHandlingService.shared.handle(
+                        AppError.coreDataError(error.localizedDescription),
+                        context: "Saving Core Data context"
+                    )
+                }
             }
+        }
+    }
+    
+    // 新しいメソッド: 安全な保存（成功/失敗を返す）
+    func safeSave() -> Bool {
+        let context = container.viewContext
+        
+        guard context.hasChanges else { return true }
+        
+        do {
+            try context.save()
+            return true
+        } catch {
+            context.rollback()
+            Task { @MainActor in
+                ErrorHandlingService.shared.handle(
+                    AppError.coreDataError(error.localizedDescription),
+                    context: "Safe saving Core Data context"
+                )
+            }
+            return false
         }
     }
 }

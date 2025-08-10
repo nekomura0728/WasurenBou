@@ -76,7 +76,6 @@ final class LocationService: NSObject, ObservableObject {
         manager.startMonitoring(for: region)
         monitoredRegionsByChecklist[checklistID] = identifier
         
-        print("📍 Start monitoring region: \(title) r=\(clampedRadius)m")
     }
     
     func stopMonitoringForChecklist(checklistID: String) {
@@ -90,7 +89,6 @@ final class LocationService: NSObject, ObservableObject {
         for region in manager.monitoredRegions {
             if region.identifier == regionIdentifier, let circular = region as? CLCircularRegion {
                 manager.stopMonitoring(for: circular)
-                print("🛑 Stop monitoring: \(regionIdentifier)")
             }
         }
     }
@@ -103,7 +101,6 @@ extension LocationService: CLLocationManagerDelegate {
             self.authorizationStatus = manager.authorizationStatus
             switch manager.authorizationStatus {
             case .authorizedAlways, .authorizedWhenInUse:
-                print("✅ Location authorized: \(manager.authorizationStatus.rawValue)")
                 if self.pendingSingleLocationRequest {
                     self.pendingSingleLocationRequest = false
                     self.manager.requestLocation()
@@ -123,7 +120,6 @@ extension LocationService: CLLocationManagerDelegate {
         Task { @MainActor in
             self.lastKnownLocation = location
             self.errorMessage = nil
-            print("📍 Current location updated: \(location.coordinate.latitude), \(location.coordinate.longitude)")
         }
     }
     
@@ -169,6 +165,5 @@ extension LocationService: CLLocationManagerDelegate {
     }
     
     nonisolated func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
-        print("❌ Region monitoring failed: \(error.localizedDescription)")
     }
 } 
