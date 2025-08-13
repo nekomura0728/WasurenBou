@@ -1,0 +1,29 @@
+# AdMob Configuration Template
+# Copy this file to 'AdMobConfig.swift' and fill in your actual values
+# AdMobConfig.swift will be ignored by git (.gitignore)
+
+import Foundation
+
+struct AdMobConfig {
+    // Replace with your actual AdMob App ID
+    static let appID = "ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX"
+    
+    // Replace with your actual AdMob Banner Unit ID
+    static let bannerUnitID = "ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX"
+    
+    // Replace with your actual Publisher ID for app-ads.txt
+    static let publisherID = "pub-XXXXXXXXXXXXXXXX"
+    
+    // Test IDs (do not modify - these are standard Google test IDs)
+    struct TestIDs {
+        static let appID = "ca-app-pub-3940256099942544~1458002511"
+        static let bannerUnitID = "ca-app-pub-3940256099942544/2934735716"
+    }
+}
+
+// MARK: - Usage Example
+/*
+// In AdMobService.swift:
+let appID = AppConfig.isDebugBuild ? AdMobConfig.TestIDs.appID : AdMobConfig.appID
+let bannerID = AppConfig.isDebugBuild ? AdMobConfig.TestIDs.bannerUnitID : AdMobConfig.bannerUnitID
+*/

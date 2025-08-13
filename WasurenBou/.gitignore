@@ -1,0 +1,49 @@
+# Xcode
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+DerivedData
+*.xcarchive
+*.ipa
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Swift Package Manager
+.swiftpm/
+.build/
+
+# AdMob Configuration Files - CONFIDENTIAL
+# These files contain sensitive publisher/app IDs
+AdMob_Setup_Guide.md
+ADMOB_SETUP.md
+app-ads.txt
+AdMobConfig.swift
+
+# Configuration Files with Sensitive Data
+**/*config*.plist
+**/*Config*.swift
+**/*SECRET*
+**/*secret*
+**/*API_KEY*
+**/*api_key*
+
+# Development Files
+.DS_Store
+.vscode/
+.idea/
+
+# Archive Files
+archives/
+export/
