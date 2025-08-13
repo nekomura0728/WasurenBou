@@ -44,6 +44,10 @@ AdMobConfig.swift
 .vscode/
 .idea/
 
+# Documentation Files - Do not commit to repository
+*.md
+**/*.md
+
 # Archive Files
 archives/
 export/
